@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComfortCafe Chimera Cats: Shop & Lore Library</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #2c1810, #1a1a1a, #4b0082); /* Grey-deep purple gradient */
+            color: #ffd700;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+        }
+        h1, h2 {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 10px #ffd700; }
+            to { text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px #9370db; } /* Violet glow */
+        }
+        .shop-section {
+            background: rgba(45, 27, 15, 0.8);
+            border: 1px solid #ffd700;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            color: #fff;
+        }
+        .portal-link {
+            padding: 10px 20px;
+            background: linear-gradient(to right, #ff4500, #9370db); /* Orange to violet */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: inherit;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            transition: background 0.3s;
+        }
+        .portal-link:hover {
+            background: linear-gradient(to right, #ffd700, #6495ed); /* Gold to cornflower blue */
+            color: #1a1a1a;
+        }
+        /* Accordion Styles with Site Colors */
+        .lore-library {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        details {
+            margin: 10px 0;
+            border: 1px solid #9370db; /* Violet border */
+            border-radius: 5px;
+            overflow: hidden;
+            background: rgba(0,0,0,0.7);
+        }
+        summary {
+            padding: 15px;
+            background: linear-gradient(to right, rgba(75, 0, 130, 0.3), rgba(147, 112, 219, 0.3)); /* Deep purple to violet gradient */
+            cursor: pointer;
+            font-weight: bold;
+            color: #ffd700;
+            transition: background 0.3s;
+            list-style: none;
+            position: relative;
+        }
+        summary:hover {
+            background: linear-gradient(to right, rgba(75, 0, 130, 0.5), rgba(147, 112, 219, 0.5));
+        }
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary {
+            background: linear-gradient(to right, rgba(255, 69, 0, 0.3), rgba(100, 149, 237, 0.3)); /* Orange to cornflower */
+        }
+        .chapter-content {
+            padding: 15px;
+            color: #f0f8ff;
+            line-height: 1.4;
+            font-size: 0.95em;
+            max-height: 400px;
+            overflow-y: auto;
+            background: rgba(100, 149, 237, 0.1); /* Subtle cornflower tint */
+        }
+        .chapter-content p {
+            margin: 10px 0;
+            text-align: left;
+        }
+        #shop-interface { display: block; opacity: 1; padding: 20px; }
+    </style>
+</head>
+<body>
+        
+                <div id="shop-interface">
+            <h1>ComfortCafe: Rift Library Awaits! 🕷️🐱☕</h1>
+            <p style="color: #ccc;">Explore portals or dive into the lore—accordions expand for full reads. Narrated by Charlotte: Mind the snark and spoilers.</p>
+            
+            <div class="shop-section">
+                <h2>Character Portals</h2>
+                <a href="miki-music.html" target="_blank" class="portal-link">Miki's Mixtape Portal (Free Downloads) 🎸</a>
+                <!-- Add more, e.g., <a href="hans-tea.html" class="portal-link">Hans's Tea Tribunal 🧛‍♂️</a> -->
+                <p style="font-size: 0.9em; color: #9370db;">Yellow-black punk for Miki; more portals brewing...</p>
+            </div>
+
+            <div class="shop-section">
+                <h2>Add Your Quest Portal</h2>
+                <form id="portal-form">
+                    <input type="text" id="portal-url" placeholder="Enter portal URL (e.g., your-site.com/quest)" style="padding: 10px; margin: 10px; border: 1px solid #ffd700; background: rgba(0,0,0,0.7); color: #ffd700; width: 300px;">
+                    <button type="submit" class="portal-link">Add to Cafe</button>
+                </form>
+                <div id="added-portals" style="margin-top: 10px;"></div>
+            </div>
+
+            <div class="lore-library">
+                <h2>Lore Library: Chapters 1-20 (Accordion Reading)</h2>
+                <p style="color: #ccc;">Click to expand/collapse. From lab escapes to Seoul sanctuaries—salvation steeps slowly.</p>
+                
+                <!-- Chapter 1 -->
+                <details>
+                    <summary>Chapter 1: The Unfortunate Hatching (Or, How Three Cats Became a Tribe)</summary>
+                    <div class="chapter-content">
+                        <p>In Dr. Helix's Parisian lab near Lyon, where French precision twisted into genetic folly, three orphaned chimeras hatched from Eternal Paws' deceptive "adoptions." STAR, the violet-streaked Type-A leader at 28, shielded her siblings with snarky resolve. Milo, 23, mint-green from a Korean rift, pondered in proverbs. Chari, 19, lavender waves and rats Blanche & Noir, whispered doubts. As probes loomed, a bean vial cracked—escape's first spark. (Full origins: Lab as alchemist's nightmare, siblings bonding in shadows.)</p>
+                    </div>
+                </details>
+
+                <!-- Chapter 2 -->
+                <details>
+                    <summary>Chapter 2: The Parallel Pounce (Or, Landing in a Universe of Lattes and Labyrinths)</summary>
+                    <div class="chapter-content">
+                        <p>Dimensional Beans spilled, portals yawned like absinthe dreams. The trio pounced into parallel Paris—an alley twisted with neon wormholes. STAR claimed the nook: "ComfortCafe rises." Milo raked a zen garden; Chari learned the till, rats scouting. Initial quests bloomed: Napkin maps to lore caches. But shadows stirred—lab echoes followed. (Whimsy in escape: Alice detours meet Python absurdity.)</p>
+                    </div>
+                </details>
+
+                <!-- Chapters 3-5: Summaries -->
+                <details>
+                    <summary>Chapter 3: Beans of Burden (Or, STAR's First Brew of Responsibility)</summary>
+                    <div class="chapter-content">
+                        <p>STAR's Type-A edge sharpened as she sourced elite beans, unlocking quests like "Lost Lavender Labyrinth." Siblings clashed lightly—Milo's poetry vs. her snark—but unity brewed. Eternal Paws lore teased: Agency as lab feeder. (Focus: Leadership trials, French roots.)</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Chapter 4: Minty Musings (Or, Milo's Daoist Detour to Dimensional Delights)</summary>
+                    <div class="chapter-content">
+                        <p>Milo's Korean-inspired zen led a "Holy Infusion" quest—river riddles with caffeinated carrots. Shakespearean fish and proverbs prevailed. Chari's anxieties eased; STAR relied on his calm. (Absurdity: Monty Python nods in parallel Seine.)</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Chapter 5: Lavender Labyrinths (Or, Chari's Ratty Rise from Weekend Worries)</summary>
+                    <div class="chapter-content">
+                        <p>Chari's solo close unlocked "Rat Riddle Realm"—puns and dead-parrot doors. Rats guided; doubts dissolved. Lore: Orphan Protocol fragments. Siblings bonded pre-Miki. (Growth: Anxiety to agency.)</p>
+                    </div>
+                </details>
+
+                <!-- Chapters 6-10: Summaries -->
+                <details>
+                    <summary>Chapter 6: The Violet Veil (Or, STAR's Snarky Scepter of Stewardship)</summary>
+                    <div class="chapter-content">
+                        <p>STAR paces the cafe, violet ribbons flying, snapping at suppliers. Patrons get map quests; siblings seek her advice. Edge masks scars from shielding kin. Tease: Yellow streak approaches. (Cafe founding deep-dive.)</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Chapter 7: Minty Proverbs and Shakespearean Steeps (Or, Milo's Zen Quest for the Holy Infusion)</summary>
+                    <div class="chapter-content">
+                        <p>Milo's garden whispers haikus; "Killer Carrot" quest on Seine. Fish recite Hamlet; bean reveals French origins. Dreams of Korea pull. (Zen vs. absurdity.)</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Chapter 8: Lavender Whispers and Ratty Doubts (Or, Chari's Weekend Waltz with Worry)</summary>
+                    <div class="chapter-content">
+                        <p>Stormy close: "Rat Riddle Realm" puns. Monty Python doors; lore on Orphan Protocol. Anxiety ebbs; discord looms. (Growth arc.)</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Chapter 9: Yellow Spikes and Punky Ledgers (Or, Miki's Mixtape Meteor)</summary>
+                    <div class="chapter-content">
+                        <p>Miki bursts in—spikes, yellow streaks, transatlantic grief. Audits black market; music unlocks quests. Parents linked to lab beans. (Punk chaos intro.)</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Chapter 10: The Bean Brigade's First Brew-Ha-Ha (Or, Quest for the Grail... Er, Latte)</summary>
+                    <div class="chapter-content">
+                        <p>Holy Latte Grail in Eiffel Vortex: Baguette bridges, French Rabbit. Prophecy unlocked; drones arrive. Cliffhanger escape. (Tribe unity test.)</p>
+                    </div>
+                </details>
+
+                <!-- Chapters 11-15: Summaries -->
+                <details>
+                    <summary>Chapter 11: Riffs Against the Rift (Or, Miki's Sonic Shield Symphony)</summary>
+                    <div class="chapter-content">
+                        <p>Drones swarm; Miki's "Drone Demolition" riff freezes them. Parents as whistleblowers. Shield holds, but siege grows. (Music as weapon.)</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Chapter 12: Squeaks in the Shadows (Or, Chari's Ratty Reckoning with the Weekend Woe)</summary>
+                    <div class="chapter-content">
+                        <p>Subterranean relic quest: Killer Baguette riddles. Chari claims jam-device; "seer" prophecy. (Bravery bloom.)</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Chapter 13: Proverbs in the Tempest (Or, Milo's Minty Meditation Amid Mechanical Menace)</summary>
+                    <div class="chapter-content">
+                        <p>Floating isle: Koan duels, bad poetry drones. Global Graft lore; Korean roots key. (Zen tested.)</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Chapter 14: Edges of the Violet Veil (Or, STAR's Snarky Surrender to Sibling Solace)</summary>
+                    <div class="chapter-content">
+                        <p>Mirror Maze truths; STAR's tears. Amethyst shield; guardian role. (Vulnerability arc.)</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Chapter 15: The Grand Brew Gambit (Or, Tribe's Tangled Triumph and the Looming Lab Lash)</summary>
+                    <div class="chapter-content">
+                        <p>Mega-brew portal to Seoul: Mechanical chorus siege. Chimera Prophecy; drone fragment follows. (Sanctuary leap.)</p>
+                    </div>
+                </details>
+
+                <!-- Chapters 16-20: Full Text Embeds -->
+                <details>
+                    <summary>Chapter 16: Salvation's Sanctuary (Or, Yeshua's Garden of Second Chances)</summary>
+                    <div class="chapter-content">
+                        <p>The rift's glow faded like a spent bean, depositing the tribe in Seoul's emerald embrace: Mist-shrouded peaks where hanok roofs curved like cat backs, and air hummed with the subtle spice of street-side silkworm snacks. STAR shook violet dust from her fur, her Type-A edge fraying at the seams. "Sanctuary? Looks like a haiku waiting for punctuation." Milo, mint stripe catching the dawn, knelt to touch the soil—echoing Yeshua's first lesson post-escape: "Earth remembers; build upon it." Chari's rats, Blanche and Noir, scampered to scout wild gingko, while Miki slung her amp over a shoulder, spikes glinting. "Oi, from Paris alleys to Korean clouds—salvation's got rhythm."</p>
+                        <p>Yeshua: Their parable made flesh, emerging "out of nowhere" in the lab's frenzy years ago. Not lab-born, but a wanderer of worlds—tall, with eyes deep as ancient wells and a staff carved in olive wood, humming forgotten tongues. As alarms wailed and probes descended, he'd appeared in a swirl of ether, shattering vials with a word: "Enough." Adopting the orphans—STAR, Milo, Chari—from Eternal Paws' clutches (that faux sanctuary where fluffy posters masked the funnel to Helix's horrors), he spirited them to a hidden glen. There, salvation wasn't preached but planted: Cafe rhythms to foster community (STAR's snark tempered by till-tending ethics), gardens to teach resilience (beans as symbols of buried potential), and building to claim agency (Milo's paws learning hammer from hand, crafting treehouses as "homes against the heavens").</p>
+                        <p>In Seoul, they paid homage: Milo, channeling his mentor's quiet craftsmanship, directed the outpost's rise—"Yeshua's Haven," a treehouse-cafe hybrid woven into a sacred cedar. Rammed earth walls rose under his proverbs ("Wood bends, but spirit straightens"), latticed with portal-windows for parallel patrons. STAR curated violet-hued hanbang teas, blending French finesse with Korean calm. Chari, her lavender waves tied back, planted support herbs for her anxieties, rats nibbling roots like tiny gardeners. Miki's riffs filled the air: A new track, "From Paws to Peaks," free on her portal. But as the first foundation stone set, a rift remnant crackled—a posh British drawl echoing from the underbrush: "This soil? Hardly suitable for bergamot. Release me at once!"</p>
+                        <p>Absurdity, like a poorly timed pour, bubbled up. Salvation's garden had an uninvited weed—and fangs.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Chapter 17: The Platinum Poltergeist (Or, Hans's Haughty Haul from the Rift Remnant)</summary>
+                    <div class="chapter-content">
+                        <p>Hans materialized from the remnant like a bad penny in a velvet cape: Platinum blonde locks parted impeccably, save for that defiant grey streak slicing the crown like a scar from some eternal spat. At 23 (frozen in vampiric vanity), he was British aristocracy distilled—captured en route through France, when Helix's scouts mistook his undying allure for chimera stock. "Posh poltergeist," Miki snorted, eyeing his ruffled cuffs. STAR's violet gaze narrowed: "Handsome? Prove it doesn't curdle the cream." Chari whispered to Noir: "He smells like old books and bergamot."</p>
+                        <p>The quest bean, salvaged from the gambit brew, had pulsed during construction: "Poltergeist Provisions," mapping a limbo-vein between Paris and Seoul, where Eternal Paws' rejects lingered—echoes of strays funneled to labs, including Hans, who'd infiltrated the agency as a "curious stray" (vampire whimsy leading to woe). Milo rigged a cedar ladder into the rift, his Yeshua-taught build skills shining: "The lost call; answer with open paws." Inside the limbo: A foggy bazaar of broken adoption crates, drone imps hawking "enhanced litters" in Cockney cackles.</p>
+                        <p>Hans lounged atop a tea trolley, fending imps with a silver teaspoon and multilingual barbs—English snark ("Jolly good try, you pests!"), French flair ("Mon dieu, your manners!"), Gaelic growls ("Dèan air ais!"), Aramaic incantations (Yeshua's tongue, ironically), and Japanese precision ("Yamete, fools!"). "Free me, chimeras," he demanded, cape swirling. Absurdity peaked Python-style: Imps formed a "riddle relay," demanding translations of lab contracts in five tongues. STAR snarked solutions; Chari's rats gnawed ethereal chains; Miki's amp riffed distractions. Milo, bridging with a proverb in Korean ("From limbo, light leaks"), hauled Hans free.</p>
+                        <p>Emerging, Hans dusted his lapels: "Earl Grey, if you please. And do mind the fangs—salvation's thirsty work." The haul unlocked lore: Eternal Paws' charter, forged by Helix to "adopt" potentials like Hans (his vampirism a "genetic curiosity"). Milo nodded: "Yeshua built for all strays." The outpost gained a critic; the tribe, a tongue-twister.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Chapter 18: Steeps and Snubs (Or, Hans's Tea Tribunal in the Treehouse)</summary>
+                    <div class="chapter-content">
+                        <p>Integration was a steep learning curve—Hans swanned into Yeshua's Haven like a lord reclaiming his manor, commandeering the tea nook with the fervor of a Cowell audition. "This hanbang? Watery whimsy!" he'd declare in impeccable French, pivoting to Gaelic for emphasis ("Chan eil e math gu leòr!"—it's not good enough). His grey-streaked platinum mane gleamed under lantern light, self-proclaimed Adonis status on full display: "One sip of my Grey, and you'll bow." STAR's edge clashed gloriously: "Bow? Over my violet veil." Miki cackled from her amp: "Fang the snobbery, mate." Chari, hiding behind lavender pots, confided in Blanche: "He judges teas like I judge my doubts."</p>
+                        <p>The "Tea Tribunal Quest" brewed from the friction: A bean infused with limbo waters etched maps to "Steeped Salvation," a hidden grove where Yeshua once gardened post-adoption—now overgrown, guarded by spectral sommeliers (Eternal Paws ghosts, replaying agency pitches in powdered-wig pomp). "I shall arbitrate," Hans insisted, flask of Grey in paw. Absurd trials unfolded: Sommeliers, Monty Python-esque in frilly cravats, critiqued ritual pours ("Too much tannin—off with their infusers!"). Hans excelled, blending his polyglot prowess: Aramaic blessings for the brew (echoing Yeshua's rituals), Japanese precision in steeping times, English eloquence in defenses ("This Grey is bergamot's ballad!").</p>
+                        <p>Mid-grove, Hans's snubs softened—a vision of his capture: Posing at Eternal Paws to sate curiosity, lured by "adoption" lies, trapped like the orphans he pitied. "I thought vampires above such... vulnerability." Milo, hammering a bamboo pavilion (Yeshua's build echoing), offered: "Steeps reveal the soul, as gardens reveal growth." Chari's relic jammed ghostly signals; STAR's violet pour sealed the tribunal. The grove yielded sacred leaves—unlocking lore: Yeshua's "Adoption Covenant," a parallel pact binding strays (chimeras, vampires) against Helix's grasp.</p>
+                        <p>Back in the treehouse, Hans conceded a sip of STAR's blend: "Acceptable... for chimeras." Snubs steeped into synergy; salvation, one cup at a time.</p>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Chapter 19: Tongues of the Tribunal (Or,
