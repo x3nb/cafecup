@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComfortCafe Chimera Cats: Lore Loading Glitch</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #000, #1a1a1a); /* Void of parallel darkness */
+            color: #ffd700; /* Golden text for lore flair */
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            height: 100vh;
+        }
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.98);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 3s ease-out; /* Slow fade to void */
+        }
+        #loading-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #loading-screen.glitch {
+            animation: glitch 0.5s infinite; /* Erratic glitch effect */
+        }
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); color: #ff0000; }
+            40% { transform: translate(-2px, -2px); color: #00ff00; }
+            60% { transform: translate(2px, 2px); color: #0000ff; }
+            80% { transform: translate(2px, -2px); color: #ffd700; }
+        }
+        #loading-screen.spin {
+            animation: spin 2s linear infinite; /* Hypnotic spin into void */
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 10px #ffd700; }
+            to { text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px #ff4500; }
+        }
+        #animation {
+            font-size: 11px; /* Compact for story text */
+            line-height: 1.2;
+            white-space: pre-wrap;
+            margin: 20px auto;
+            border: 2px solid #ffd700;
+            padding: 20px;
+            background-color: rgba(0,0,0,0.7);
+            border-radius: 10px;
+            max-width: 700px;
+            max-height: 70vh;
+            overflow-y: auto;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(255, 69, 0, 0.5); }
+        }
+        .frame-description {
+            color: #ff4500;
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 1em;
+        }
+        .glitch-text {
+            color: #ff0000;
+            animation: flicker 0.2s infinite;
+        }
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        #charlotte-intro {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2em;
+            color: #f0f8ff;
+            text-align: left;
+            max-width: 600px;
+            opacity: 0;
+            transition: opacity 2s ease-in;
+            background: rgba(0,0,0,0.8);
+            padding: 20px;
+            border: 1px solid #ffd700;
+            border-radius: 10px;
+        }
+        #charlotte-intro.show {
+            opacity: 1;
+        }
+        #shop-interface {
+            position: relative;
+            z-index: 500;
+            display: none;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+            transition: opacity 2s ease-in;
+        }
+        #shop-interface.show {
+            display: block;
+            opacity: 1;
+        }
+        /* Reuse previous shop styles for brevity - add if needed */
+        .shop-section { /* ... same as before ... */ }
+        /* ... other styles from previous HTML ... */
+    </style>
+</head>
+<body>
+    <!-- Cryptic Loading Screen with Story Glitch -->
+    <div id="loading-screen">
+        <h1>COMFORTCAFE CHIMERA LORE: THE ESCAPE BEGINS</h1>
+        <p style="color: #ccc; font-size: 1em;">*A tale of three cats, a lab's misfortune, and beans that bite back... Or do they?*</p>
+        
+        <div id="animation"></div>
+        <div id="description" class="frame-description"></div>
+
+        <!-- POOF! Charlotte's Intro (Fades In Post-Glitch) -->
+        <div id="charlotte-intro">
+            <p>And so it begins. Hi, I'm Charlotte—yes, like the Spider, and yes, I am a spider. This story is mostly about a tribe of orphaned cats who escaped from a most unfortunate experiment, but I won't give that story away just yet. What am I doing here, you ask? Well, every cat's cafe needs its hand-selected beans (the kind that unlock hidden maps and quests, naturally), and a special guide to weave you through the web of adventures. I'm that guide. So join me, dear reader, and escape into the lore of the ComfortCafe Chimera Cats. But mind the threads—they tangle if you're not careful.</p>
+            <p><em>(Narrated by Charlotte, with a wink from the shadows. Ready for Chapter 1? The cafe awaits...)</em></p>
+        </div>
+    </div>
+
+    <!-- Shop Interface (Revealed After POOF!) -->
+    <div id="shop-interface">
+        <!-- Same as previous: Welcome, Add Link Form, etc. -->
+        <h2>ComfortCafe: Enter the Lore! 🕷️🐱☕</h2>
+        <p style="color: #ccc;">Now that the glitch has passed, explore the chapters below or add your own quest portals!</p>
+        <!-- Embed chapters or link to them here in your project -->
+        <div class="shop-section">
+            <h3>Lore Chapters Unlocked</h3>
+            <p>Read on, or brew a coffee to continue...</p>
+            <!-- You can dynamically load chapters via JS if desired -->
+        </div>
+        <!-- Rest of shop form/links from previous HTML -->
+    </div>
+
+    <script>
+        // Cryptic Story Frames (Builds tale of 3 chimeras, then glitches)
+        const storyFrames = [
+            {
+                art: `Chapter Tease: The Three Chimeras
+
+In a laboratory not unlike the one where mad scientists brew potions (or perhaps just very strong tea), there were three cats. Not ordinary cats, mind you—oh no. These were chimeras, stitched from dreams and DNA gone delightfully awry.
+
+First, Whiskers the Winged: A tabby with feathers sprouting from her shoulders, who dreamed of flying over rooftops but often settled for knocking teacups off shelves.
+
+Second, Splotch the Scaled: A calico covered in iridescent lizard scales, who could change colors like a chameleon at a disco, but preferred hiding in plain sight under lab coats.
+
+Third, Paws the Phantom: A sleek black cat who could phase through walls—or so the scientists thought, until they realized he was just very good at squeezing into vents.
+
+[LOADING: 0% - The Experiment Awakens]`,
+                desc: "The tale unfolds... If only it were that simple."
+            },
+            {
+                art: `The Escape Plot Thickens
+
+One fateful night, as thunder rumbled like a disgruntled teapot, the three chimeras huddled in their cage. 'We must escape,' whispered Whiskers, flapping her wings experimentally (and knocking over a beaker of glowing goo).
+
+'But how?' meowed Splotch, turning camouflage-green with envy. 'The door is guarded by that dreadful laser grid.'
+
+Paws grinned his phantom grin. 'Fear not. I'll phase us through. Or, failing that, we'll meow the Monty Python shrubbery bit until they let us out.'
+
+And so, with a chorus of 'Ni!' (adapted for cats as 'Meow!'), they began their daring plan...
+
+[LOADING: 25% - Wings Flutter, Scales Shimmer]`,
+                desc: "A whimsical plot, wouldn't you agree? But plots, like cats, have claws."
+            },
+            {
+                art: `Midnight Mayhem
+
+The lab alarms wailed as Whiskers soared (well, glided) over the lasers, Splotch blended into the shadows like ink in milk, and Paws... well, he squeezed. But oh, dear reader, if you think this was a smooth getaway, prepare for misfortune.
+
+A scientist—a man with spectacles thicker than a cat's patience—spotted them. 'Halt, you chimeric nuisances!' he bellowed, deploying a net that smelled suspiciously of wet dog.
+
+In a left-field twist, Splotch turned plaid (yes, plaid), confusing the man into reciting Shakespeare instead of capturing them.
+
+[LOADING: 50% - Phasing Through Peril]`,
+                desc: "Halfway there, and already the absurdity mounts. Like Alice at a mad tea party."
+            },
+            {
+                art: `<span class="glitch-text">GLITCH: The Spin Begins</span>
+
+Wait—what's this? The tale stutters. The three chimeras pause mid-escape, their eyes wide as saucers (the kind you pour tea into, not fly).
+
+The lab begins to... spin? Walls whirl like a deranged carousel, DNA strands twisting into knots. 'This isn't right,' hisses Whiskers. 'The experiment's backfiring!'
+
+Splotch flickers colors: red, error, blue screen of doom. Paws phases into... nothing?
+
+[LOADING: 75% - ERROR: NARRATIVE CORRUPTION]
+
+<span class="glitch-text">...fading... to... void...</span>`,
+                desc: "A pause. A glitch. The story unravels—much like my web, if spiders had deadlines."
+            },
+            {
+                art: ` 
+                 
+                 
+                 
+                 
+                 [SPINNING INTO DARKNESS]
+                 
+                 
+                 
+                 
+                 POOF! The void claims the tale... for now.
+                 
+                 
+                 
+                 
+                 [LOADING: 100% - LORE REBORN]`,
+                desc: "Nothingness. But from nothing, dear explorer, comes the spider's thread."
+            }
+        ];
+
+        let currentFrame = 0;
+        const animationDiv = document.getElementById('animation');
+        const descriptionDiv = document.getElementById('description');
+        const loadingScreen = document.getElementById('loading-screen');
+        const charlotteIntro = document.getElementById('charlotte-intro');
+        const shopInterface = document.getElementById('shop-interface');
+
+        function updateFrame() {
+            const frame = storyFrames[currentFrame];
+            animationDiv.innerHTML = frame.art;
+            descriptionDiv.textContent = frame.desc;
+            
+            currentFrame++;
+            
+            // Trigger glitch at frame 3 (75%)
+            if (currentFrame === 3) {
+                loadingScreen.classList.add('glitch');
+                setTimeout(() => {
+                    loadingScreen.classList.remove('glitch');
+                    loadingScreen.classList.add('spin');
+                }, 2000);
+            }
+            
+            // End at frame 4: Spin for 4s, then POOF to Charlotte
+            if (currentFrame >= 4) {
+                setTimeout(() => {
+                    loadingScreen.classList.remove('spin');
+                    loadingScreen.classList.add('fade-out');
+                    charlotteIntro.classList.add('show');
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                        shopInterface.classList.add('show');
+                    }, 3000);
+                }, 4000);
+                return; // Stop updating
+            }
+        }
+
+        // Start cryptic loading: Slower pace for tension
+        updateFrame(); // Frame 0
+        setInterval(() => {
+            if (currentFrame < 4) updateFrame();
+        }, 3000); // 3s per frame for dramatic build
+
+        // Shop form/previous scripts here (omitted for brevity)
+    </script>
+</body>
+</html>
