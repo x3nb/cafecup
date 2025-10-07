@@ -7,32 +7,56 @@
     <style>
         body {
             font-family: 'Courier New', monospace;
-            background: linear-gradient(135deg, #2c1810, #1a1a1a, #4b0082); /* Grey-deep purple gradient */
-            color: #ffd700; /* Gold text for wisdom */
+            background: linear-gradient(135deg, #4b0082, #301934, #2c1810); /* Indigo to deep purple majestic gradient */
+            color: #e6e6fa; /* Creamy lavender for body text - serene & high-contrast */
             text-align: center;
             padding: 20px;
             margin: 0;
             min-height: 100vh;
             line-height: 1.4;
+            position: relative;
+            overflow-x: hidden;
+        }
+        /* Subtle Majestic Particles (gentle stars for ethereal feel) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #ffd700, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(147, 112, 219, 0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, #ffd700, transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(147, 112, 219, 0.6), transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: twinkle 20s linear infinite; /* Slow, majestic twinkle - no seizure risk */
+            opacity: 0.3;
+            z-index: -1;
+        }
+        @keyframes twinkle {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-100px); }
         }
         h1 {
             font-size: 2.5em;
-            text-shadow: 0 0 10px #ffd700;
+            text-shadow: 0 0 15px #ffd700; /* Gold glow for majesty */
             margin-bottom: 10px;
             letter-spacing: 2px;
-            color: #556b2f; /* Olive green for earthy reverence */
+            color: #4b0082; /* Deep indigo for title - regal & bold */
         }
         p.intro {
             font-size: 1.1em;
             max-width: 600px;
             margin: 0 auto 30px;
             opacity: 0.9;
-            color: #f0f8ff; /* Light blue-white for serenity */
         }
         #unlock-btn {
-            background: linear-gradient(to right, #556b2f, #9370db); /* Olive to violet */
-            border: 2px solid #ffd700;
-            color: #ffd700;
+            background: linear-gradient(to right, #4b0082, #9370db); /* Indigo to violet for majestic depth */
+            border: 2px solid #ffd700; /* Gold border */
+            color: #ffd700; /* Gold text */
             padding: 15px 30px;
             cursor: pointer;
             font-size: 1.2em;
@@ -43,8 +67,8 @@
             letter-spacing: 1px;
         }
         #unlock-btn:hover {
-            background: linear-gradient(to right, #ffd700, #6495ed); /* Gold to cornflower blue */
-            color: #1a1a1a;
+            background: linear-gradient(to right, #ffd700, #e6e6fa); /* Gold to creamy lavender */
+            color: #4b0082; /* Indigo text on hover */
             box-shadow: 0 0 15px #ffd700;
         }
         #unlock-btn:active {
@@ -65,8 +89,8 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .lesson {
-            background: rgba(85, 107, 47, 0.1); /* Subtle olive tint for sanctuary */
-            border: 1px solid #ffd700;
+            background: rgba(48, 25, 52, 0.6); /* Deep purple tint for majestic sanctuary */
+            border: 1px solid #ffd700; /* Gold border */
             border-radius: 5px;
             padding: 15px;
             margin: 15px 0;
@@ -76,28 +100,27 @@
             align-items: center;
         }
         .lesson:hover {
-            background: rgba(85, 107, 47, 0.2);
+            background: rgba(48, 25, 52, 0.8);
             box-shadow: 0 0 10px #ffd700;
         }
         .lesson-title {
             font-weight: bold;
             font-size: 1.1em;
-            color: #556b2f; /* Olive for titles */
+            color: #483d8b; /* Dark slate blue (purple-green) for earthy majesty */
         }
         .lesson-desc {
             font-size: 0.9em;
-            opacity: 0.8;
+            opacity: 0.9;
             margin-top: 5px;
-            color: #f0f8ff;
         }
         .lesson-excerpt {
             font-style: italic;
-            color: #9370db; /* Violet for parables */
+            color: #ffd700; /* Gold for parables - warm wisdom */
             margin-top: 5px;
             font-size: 0.85em;
         }
         .download-btn {
-            background: #1a1a1a;
+            background: #301934; /* Deep purple bg */
             border: 1px solid #ffd700;
             color: #ffd700;
             padding: 8px 15px;
@@ -108,7 +131,7 @@
         }
         .download-btn:hover {
             background: #ffd700;
-            color: #1a1a1a;
+            color: #4b0082; /* Indigo text on hover */
         }
         .back-link {
             position: fixed;
@@ -121,22 +144,23 @@
         }
         .back-link:hover {
             opacity: 1;
+            color: #e6e6fa;
         }
         footer {
             margin-top: 50px;
             font-size: 0.8em;
             opacity: 0.6;
-            color: #6495ed; /* Cornflower blue for footer */
+            color: #9370db; /* Medium violet for footer - majestic accent */
         }
-        /* Aramaic Flair: Faux script overlay (subtle, decorative) */
+        /* Aramaic Flair: Faux script in faded gold */
         .aramaic {
             font-family: 'serif'; /* Mimic ancient script */
-            color: rgba(147, 112, 219, 0.5); /* Faded violet */
+            color: rgba(255, 215, 0, 0.4); /* Faded gold */
             font-size: 0.7em;
             position: absolute;
             top: 5px;
             right: 10px;
-            opacity: 0.3;
+            opacity: 0.5;
         }
     </style>
 </head>
@@ -212,8 +236,8 @@
             if (!lessonsDiv.classList.contains('show')) {
                 lessonsDiv.classList.add('show');
                 unlockBtn.textContent = 'Glen Opened! 🌿';
-                unlockBtn.style.background = 'linear-gradient(to right, #ffd700, #6495ed)';
-                unlockBtn.style.color = '#1a1a1a';
+                unlockBtn.style.background = 'linear-gradient(to right, #ffd700, #e6e6fa)';
+                unlockBtn.style.color = '#4b0082';
             }
         });
 
@@ -227,4 +251,5 @@
     </script>
 </body>
 </html>
+
 
