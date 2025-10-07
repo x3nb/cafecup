@@ -263,4 +263,70 @@
                 </details>
 
                 <details>
-                    <summary>Chapter 19: Tongues of the Tribunal (Or,
+                                            <summary>Chapter 19: Tongues of the Tribunal (Or, Hans's Polyglot Parable in the Parallel Peaks)</summary>
+                    <div class="chapter-content">
+                        <p>Hans's quintet of tongues—English's empire, French's finesse, Gaelic's growl, Aramaic's ancient aura, Japanese's zen—weren't vanities but vessels, much like Yeshua's whispers unlocked the orphans' hidden strengths. In the outpost's peaks, where cherry petals drifted like forgotten proverbs, the "Polyglot Parable Quest" stirred: A rift-born bean, laced with grove leaves, inscribed maps in palimpsest—layers of languages veiling "Echo Enclave," a cave where Eternal Paws' echoes replayed adoptions gone awry, lab-bound strays pleading in polyphonic pain.</p>
+                        <p>"Follow my lexicon, peasants," Hans drawled, but Milo's Yeshua-inspired wisdom tempered: "Tongues build bridges, as hammers build homes." The tribe delved: STAR leading with snark, Chari's dual eyes piercing illusions, Miki's riffs harmonizing echoes, Milo crafting vine-ladders mid-climb. Absurdity echoed Python absurdity: Cave guardians—holographic adoption agents—demanded "tongue trials," reciting contracts in mashups (Gaelic legalese meets Japanese haiku: "Sign here, or wander eternal—cherry blossoms fall, but debts rise!"). Hans shone, translating fluently: Aramaic to unravel curses (Yeshua's salvation script), French to negotiate freedoms.</p>
+                        <p>Deep in the enclave, Hans confronted his echo: A captured self, fangs bared at agency lies ("Handsome eternal? Try lab eternal!"). Vulnerability cracked his Adonis facade: "I sought adventure, found chains—like your Paws orphans." Chari empathized, rats squeaking solidarity; STAR advised: "Edge it off with Earl Grey." The translations unlocked the core: A lore cache of "Stray Scriptures," Yeshua's handwritten parables from the glen—adoption as redemption, building as belief. One fragment: "From five tongues, one truth: Kin is chosen."</p>
+                        <p>Emerging, Hans's grey streak seemed less stark. "Your... ensemble has merit." Tongues tangled into tribe; the peaks purred with parable.</p>
+                    </div>
+                </details>
+
+                <!-- Chapter 20 -->
+                <details>
+                    <summary>Chapter 20: Fangs in the Foundation (Or, The Outpost's Opening and the Lab's Lingering Lash)</summary>
+                    <div class="chapter-content">
+                        <p>With tongues translated and steeps sanctified, Yeshua's Haven creaked to life: A treehouse triumph, cedar beams Milo-hewn echoing his mentor's hands, portals flickering with parallel promise. STAR unveiled the sign—violet-etched, cornflower blues glowing in the dusk. "Cafe open: Brews for the bound, freedom for the fangs." Chari, keyholder now without jitters, arranged lavender saucers; Miki's portal-linked amp played an opening riff; Hans, surprisingly, steeped the first pot: "Grey for the guests—salvation starts with scent."</p>
+                        <p>The "Foundation Fangs Quest" marked the ribbon-cut: A mega-bean from the enclave pulsed, mapping "Lash Legacy"—residual lab tendrils snaking from Eternal Paws' echoes, threatening the outpost with drone roots. "No sanctuary unchallenged," Milo proverbed, as the ground trembled. Absurd siege: Roots erupted like Monty Python's killer rabbit, but tea-flavored—bergamot barbs and espresso thorns. Hans's polyglot commands (Aramaic wards, Japanese strikes) directed defenses; STAR's violet veil shielded; Chari's rats burrowed counters; Miki's "Fang Riff" scrambled signals.</p>
+                        <p>In the heart-chamber, a Helix hologram lashed: "Adoptions end; experiments eternal!" But Yeshua's covenant glowed—unlocking full lore: The sanctuary's true founder, a whistleblower kin to Hans's line, saved by the wanderer himself. The tribe severed the lash, foundations firm. Patrons poured in—strays from parallels, toasting salvation.</p>
+                        <p>Yet as lanterns lit, a new rift hummed: Whispers of more orphans, Paws-fleeing. "The web widens," I murmur from my branch. Fangs fortified, but lashes linger—dare the next steep?</p>
+                    </div>
+                </details>
+
+            </div> <!-- Close lore-library -->
+
+            <div class="shop-section" style="text-align: center; font-style: italic; color: #9370db;">
+                <p>*End of Arc 1: Seoul Sanctuary. More chapters brewing—Yeshua's legacy calls. Brew responsibly; mind the fangs.*</p>
+            </div>
+
+        </div> <!-- Close shop-interface -->
+
+    </body>
+
+    <script>
+        // Smooth accordion animation (height transition)
+        document.querySelectorAll('details').forEach(detail => {
+            const content = detail.querySelector('.chapter-content');
+            detail.addEventListener('toggle', () => {
+                if (detail.open) {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                } else {
+                    content.style.maxHeight = '0';
+                }
+            });
+            // Initial close (optional: set open for demo)
+            detail.open = false;
+        });
+
+        // Portal form handler: Add dynamic links
+        document.getElementById('portal-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const urlInput = document.getElementById('portal-url');
+            const url = urlInput.value.trim();
+            if (url) {
+                const addedPortals = document.getElementById('added-portals');
+                const link = document.createElement('a');
+                link.href = url;
+                link.textContent = `Added: ${url}`;
+                link.className = 'portal-link';
+                link.target = '_blank';
+                link.style.display = 'inline-block';
+                addedPortals.appendChild(link);
+                addedPortals.appendChild(document.createElement('br'));
+                urlInput.value = ''; // Clear input
+                // Optional: Alert or toast
+                alert('Portal added to the cafe rift! 🌀');
+            }
+        });
+    </script>
+</html>
