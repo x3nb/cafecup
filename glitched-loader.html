@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComfortCafe Chimera Cats: Enter the Rift (Warning)</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #2c1810, #1a1a1a, #4b0082); /* Grey-deep purple gradient */
+            color: #ffd700;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .warning-screen {
+            max-width: 600px;
+            background: rgba(45, 27, 15, 0.9);
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(147, 112, 219, 0.5); /* Violet glow */
+        }
+        .warning-title {
+            font-size: 1.8em;
+            color: #9370db; /* Violet */
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        .warning-text {
+            font-size: 1.1em;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            color: #f0f8ff;
+        }
+        .warning-text strong {
+            color: #ffd700;
+        }
+        .proceed-btn, .safe-btn {
+            padding: 12px 24px;
+            background: linear-gradient(to right, #ff4500, #9370db); /* Orange to violet */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin: 10px;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .proceed-btn:hover, .safe-btn:hover {
+            background: linear-gradient(to right, #ffd700, #6495ed); /* Gold to cornflower blue */
+            color: #1a1a1a;
+        }
+        /* Glitch Screen (Hidden Initially) */
+        #glitch-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 1000;
+            overflow: hidden;
+        }
+        .glitch-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3em;
+            color: #ffff00; /* Yellow for Miki vibe */
+            text-shadow: 0 0 10px #ffff00;
+            animation: glitchText 0.3s infinite; /* Slower flicker for safety */
+        }
+        .glitch-text {
+            position: relative;
+            animation: glitch 1s linear infinite;
+        }
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); color: #ff00ff; } /* Magenta shift */
+            40% { transform: translate(-2px, -2px); color: #00ffff; } /* Cyan shift */
+            60% { transform: translate(2px, 2px); color: #ffff00; } /* Yellow */
+            80% { transform: translate(2px, -2px); color: #ff0000; } /* Red */
+            100% { transform: translate(0); color: #ffff00; }
+        }
+        @keyframes glitchText {
+            0%, 100% { clip: rect(0, 9999px, 0, 0); }
+            10%, 20% { clip: rect(10px, 9999px, 100px, 0); }
+            30%, 40% { clip: rect(50px, 9999px, 150px, 0); }
+            50%, 60% { clip: rect(20px, 9999px, 80px, 0); }
+            70%, 80% { clip: rect(90px, 9999px, 120px, 0); }
+            90% { clip: rect(40px, 9999px, 60px, 0); }
+        }
+        .scan-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 255, 0, 0.05) 2px,
+                rgba(255, 255, 0, 0.05) 4px
+            );
+            animation: scan 0.5s linear infinite; /* Slower scan for safety */
+        }
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100px); }
+        }
+        /* Shop Redirect (After Glitch) */
+        #shop-redirect {
+            display: none;
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        /* Hide warning after proceed */
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <!-- Warning Screen -->
+    <div class="warning-screen" role="alert" aria-live="polite">
+        <h1 class="warning-title">🕷️ Charlotte's Web Warning</h1>
+        <p class="warning-text">
+            <strong>Photosensitive Epilepsy & Flashing Lights Warning:</strong> This portal to the ComfortCafe Chimera Cats universe features glitch animations with rapid color shifts, flickering, and distortions. These may trigger seizures, migraines, or discomfort for individuals with photosensitive epilepsy or similar sensitivities. If you or someone nearby has these conditions, please use the "Safe Entry" option below or exit now.
+        </p>
+        <p class="warning-text">
+            Proceed at your own risk. The glitch is brief (3-5 seconds) but immersive—like a rift tearing open. For a calm entry, choose Safe Mode (no animations, direct to shop).
+        </p>
+        <p class="warning-text" style="font-style: italic; color: #9370db;">
+            Narrated by Charlotte: "Mind the web—some threads flicker fiercely, but the cafe's warmth awaits all kin."
+        </p>
+        <button class="proceed-btn" onclick="startGlitch()" aria-label="Acknowledge warning and start glitch animation">Proceed to Glitch Rift 🌀</button>
+        <a href="comfortcafe-shop.html" class="safe-btn" aria-label="Safe entry without animations">Safe Entry: Direct to Cafe (No Glitch)</a>
+    </div>
+
+    <!-- Glitch Screen (Triggers on Button Click) -->
+    <div id="glitch-screen">
+        <div class="scan-lines"></div>
+        <div class="glitch-container">
+            <div class="glitch-text">RIFT OPENING... POOF! 🐱☕</div>
+        </div>
+    </div>
+
+    <!-- Redirect to Shop (After Glitch) -->
+    <div id="shop-redirect" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 1001;">
+        <p style="font-size: 1.5em; color: #ffd700;">Glitch complete—entering ComfortCafe...</p>
+        <p>Redirecting in 2 seconds...</p>
+    </div>
+
+    <script>
+        function startGlitch() {
+            // Hide warning
+            document.querySelector('.warning-screen').classList.add('hidden');
+            
+            // Show glitch
+            const glitchScreen = document.getElementById('glitch-screen');
+            glitchScreen.style.display = 'block';
+            
+            // Glitch duration: 4 seconds
+            setTimeout(() => {
+                glitchScreen.style.display = 'none';
+                document.getElementById('shop-redirect').style.display = 'block';
+                
+                // Redirect to shop after 2s (or embed shop here if preferred)
+                setTimeout(() => {
+                    window.location.href = 'comfortcafe-shop.html'; // Change to your shop file
+                }, 2000);
+            }, 4000);
+        }
+
+        // Optional: Keyboard skip for accessibility (Enter to proceed)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !document.querySelector('.warning-screen').classList.contains('hidden')) {
+                startGlitch();
+            }
+        });
+
+        // Safe mode: Direct link already in HTML—no JS needed
+    </script>
+</body>
+</html>
