@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chimera Brews Loading Portal</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #1a1a1a, #2d1b0f); /* Dark, cosmic coffee shop vibe */
+            color: #ffd700; /* Golden text for flair */
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            height: 100vh;
+        }
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(26, 26, 26, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 2s ease-out; /* Fade out transition */
+        }
+        #loading-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 10px #ffd700; }
+            to { text-shadow: 2px 2px 4px rgba(0,0,0,0.8), 0 0 20px #ff4500; }
+        }
+        #animation {
+            font-size: 12px; /* Scaled for screen fit */
+            line-height: 1;
+            white-space: pre;
+            margin: 20px auto;
+            border: 2px solid #ffd700;
+            padding: 20px;
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 10px;
+            max-width: 600px;
+            max-height: 60vh;
+            overflow-y: auto;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(255, 69, 0, 0.5); }
+        }
+        .frame-description {
+            color: #ff4500; /* Fiery accent */
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+        .steam {
+            color: #f0f8ff; /* Light blue-white for steam */
+            animation: rise 2s ease-out infinite;
+        }
+        .coffee-stream {
+            color: #4B2E1A; /* Dark brown for chimeric brew */
+            text-shadow: 0 0 5px rgba(75, 46, 26, 0.7);
+            animation: flow 1s linear infinite;
+        }
+        @keyframes flow {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        @keyframes rise {
+            0% { opacity: 0.5; transform: translateY(0); }
+            100% { opacity: 1; transform: translateY(-3px); }
+        }
+        #shop-interface {
+            position: relative;
+            z-index: 500;
+            display: none; /* Hidden until loading fades */
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0;
+            transition: opacity 2s ease-in;
+        }
+        #shop-interface.show {
+            display: block;
+            opacity: 1;
+        }
+        #shop-interface h2 {
+            color: #ffd700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+            margin-bottom: 20px;
+        }
+        .shop-section {
+            background: rgba(45, 27, 15, 0.8);
+            border: 1px solid #ffd700;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            color: #fff;
+        }
+        .add-link-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .add-link-form input {
+            padding: 10px;
+            border: 1px solid #ffd700;
+            border-radius: 5px;
+            background: rgba(0,0,0,0.5);
+            color: #ffd700;
+            width: 300px;
+        }
+        .add-link-form button, .portal-link {
+            padding: 10px 20px;
+            background: #ff4500;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .add-link-form button:hover, .portal-link:hover {
+            background: #ffd700;
+            color: #1a1a1a;
+        }
+        .added-links {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .added-links a {
+            display: block;
+            color: #ffd700;
+            text-decoration: none;
+            padding: 5px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        .added-links a:hover {
+            color: #ff4500;
+        }
+        .portal-link {
+            display: inline-block;
+            margin: 20px 0;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <h1>ENTERING CHIMERA BREWS PORTAL</h1>
+        <p style="color: #ccc; font-size: 1.1em;">*Escaped experiments brewing... Parallel universe loading... 🐱☕🌌*</p>
+        
+        <div id="animation"></div>
+        <div id="description" class="frame-description"></div>
+    </div>
+
+    <!-- Coffee Shop Interface (Fades In After Loading) -->
+    <div id="shop-interface">
+        <h2>Welcome to Chimera Brews! 🐾☕</h2>
+        <p style="color: #ccc;">Run by escaped cat chimeras in a parallel universe. Order your brew and add portals to other dimensions!</p>
+        
+        <div class="shop-section">
+            <h3>Today's Special: Quantum Claw-fé</h3>
+            <p>Extra whisker foam and a hint of multiverse magic. Served by our winged barista!</p>
+            <p><em>"Meow-delicious for catpeople on the run from labs!"</em></p>
+        </div>
+        
+        <div class="shop-section">
+            <h3>Add a New Portal Link</h3>
+            <p>Create a gateway to another page in the universe. Enter a URL (e.g., to your next adventure):</p>
+            <form class="add-link-form" id="linkForm">
+                <input type="url" id="newLink" placeholder="https://example.com/parallel-adventure" required>
+                <button type="submit">Add Portal Link 🌀</button>
+            </form>
+            <div id="addedLinks" class="added-links">
+                <p>No portals added yet. Be the first explorer!</p>
+            </div>
+        </div>
+        
+        <div class="shop-section">
+            <h3>Quick Jump to the Next Dimension</h3>
+            <p>Ready to leap? This portal takes you to a sample "Cat Chimera Lab Escape" page.</p>
+            <a href="https://en.wikipedia.org/wiki/Chimera_(genetics)" target="_blank" class="portal-link">Open Sample Portal (Real-World Chimera Info) 🚀</a>
+            <!-- Replace the href above with your actual new page URL, e.g., "next-page.html" -->
+        </div>
+        
+        <p style="color: #ccc; font-size: 0.9em; margin-top: 40px;">*All links open in new tabs/windows for safe dimension-hopping. No lab coats required!*</p>
+    </div>
+
+    <script>
+        // Animated Frames for Chimera Brews Loading (5 frames: shop "opening" sequence)
+        const frames = [
+            {
+                art: `          /\\_/\\      
+         ( o.o )     
+          > ^ <      
+                 Welcome to CHIMERA BREWS!
+                 
+     (Chimera Barista 1 Appears)
+       /\\_/\\  
+      ( o.o ) 
+       > ^ <  
+      /     \\ 
+     |  MEOW |  [LOADING: 0% - Portals Aligning]
+      \\     /  
+       |   |   
+        \\ /    
+         |     
+        / \\   
+       |   |  
+        \\_/   
+           ||  
+           ||  
+          /  \\  
+         |    | 
+         |    | 
+          \\__/ 
+             
+     (Shop Front Materializing...)` ,
+                desc: "Portals Opening (0% Loaded) - Chimeras sense your arrival"
+            },
+            {
+                art: `          /\\_/\\      
+         ( o.o )     
+          > ^ <      
+                 Welcome to CHIMERA BREWS!
+                 
+     (Barista 1 Brewing)
+       /\\_/\\  
+      ( o.o ) 
+       > ^ <  
+      /     \\ 
+     |  MEOW |  [LOADING: 25%]
+      \\     /  
+       |   |   
+        \\ /    
+         |     
+        / \\   
+       |   |  
+        \\_/   
+           ||  <span class="coffee-stream">~</span>
+           || <span class="coffee-stream">~~</span>
+          /  \\<span class="coffee-stream">~~~</span>
+         |    | 
+         |    | 
+          \\__/ 
+             
+     (Barista 2 Wings Unfurl)
+         /\\_/\\  
+        ( >.< )  
+         > ^ <   
+        /     \\ 
+       | PURR  |  
+        \\     /  
+         |   |   
+          \\ /    
+           |     
+          / \\   
+         |   |  
+          \\_/   
+             ^^^` ,
+                desc: "Brew Ignites (25% Loaded) - First chimeric coffee pours!"
+            },
+            {
+                art: `          /\\_/\\      
+         ( o.o )     
+          > ^ <      
+                 Welcome to CHIMERA BREWS!
+                 
+     (Barista 1 Serving)
+       /\\_/\\  
+      ( o.o ) 
+       > ^ <  
+      /     \\ 
+     |  MEOW |  [LOADING: 50%]
+      \\     /  
+       |   |   
+        \\ /    
+         |     
+        / \\   
+       |   |  
+        \\_/   
+           || <span class="coffee-stream">~~~</span>
+           ||<span class="coffee-stream">~~~~</span>
+          /  \\<span class="coffee-stream">~~~~~</span>
+         |    |<span class="coffee-stream">~~~~~~</span>
+         |    | 
+          \\__/ 
+             
+     (Barista 2 Delivers)
+         /\\_/\\  
+        ( >.< )  *Whisker Wings Active!*
+         > ^ <   
+        /     \\ 
+       | PURR  |  
+        \\     /  
+         |   |   
+          \\ /    
+           |     
+          / \\   
+         |   |  
+          \\_/   
+             <span class="steam">^^^</span> <span class="steam">~~~</span>` ,
+                desc: "Cascade Builds (50% Loaded) - Steam rises, patrons purr"
+            },
+            {
+                art: `          /\\_/\\      
+         ( o.o )     
+          > ^ <      
+                 Welcome to CHIMERA BREWS!
+                 
+     (Barista 1 Full Pour)
+       /\\_/\\  
+      ( o.o ) 
+       > ^ <  
+      /     \\ 
+     |  MEOW |  [LOADING: 75%]
+      \\     /  
+       |   |   
+        \\ /    
+         |     
+        / \\   
+       |   |  
+        \\_/   
+           ||<span class="coffee-stream">~~~~~</span>
+           ||<span class="coffee-stream">~~~~~~</span>
+          /  \\<span class="coffee-stream">~~~~~~~</span>
+         |    |<span class="coffee-stream">~~~~~~~~</span>
+         |    |<span class="coffee-stream">~~~~~~</span>
+          \\__/ 
+             
+     (Barista 2 Serves Patron)
+         /\\_/\\  
+        ( >.< )  
+         > ^ <   
+        /     \\ 
+       | PURR  |  [Helix Latte Ready!]
+        \\     /  
+         |   |   
+          \\ /    
+           |     
+          / \\   
+         |   |  
+          \\_/   
+             <span class="steam">^^^^</span> <span class="steam">~~~~</span>` ,
+                desc: "Elixir Rises (75% Loaded) - Chimeric brew fills the cup"
+            },
+            {
+                art: `          /\\_/\\      
+         ( o.o )     
+          > ^ <      
+                 Welcome to CHIMERA BREWS!
+                 
+     (Baristas Complete Service)
+       /\\_/\\  
+      ( o.o ) 
+       > ^ <  
+      /     \\ 
+     |  MEOW |  [LOADING: 100% - PORTAL OPEN!]
+      \\     /  
+       |   |   
+        \\ /    
+         |     
+        / \\   
+       |   |  
+        \\_/   
+           ||<span class="coffee-stream">~~~~~~</span>
+           ||<span class="coffee-stream">~~~~~~~</span>
+          /  \\<span class="coffee-stream">~~~~~~~~</span>
+         |    |<span class="coffee-stream">~~~~~~~~~</span>
+         |    |<span class="coffee-stream">~~~~~~~~</span>
+          \\__/ 
+             
+         /\\_/\\  
+        ( >.< )  *Purr-fect Service!*
+         > ^ <   
+        /     \\ 
+       | PURR  |  
+        \\     /  
+         |   |   
+          \\ /    
+           |     
+          / \\   
+         |   |  
+          \\_/   
+             <span class="steam">^^^^^</span> <span class="steam">~~~~~</span>
+             
+          Patron: "One Helix Latte—extra dimensions!"` ,
+                desc: "Portal Complete (100% Loaded) - Enter the shop, explorer!"
+            }
+        ];
+
+        let currentFrame = 0;
+        const animationDiv = document.getElementById('animation');
+        const descriptionDiv = document.getElementById('description');
+        const loadingScreen = document.getElementById('loading-screen');
+        const shopInterface = document.getElementById('shop-interface');
+
+        function updateFrame() {
+            const frame = frames[currentFrame];
+            animationDiv.innerHTML = frame.art; // innerHTML for spans/animations
+            descriptionDiv.textContent = frame.desc;
+            
+            currentFrame = (currentFrame + 1) % frames.length;
+        }
+
+        // Start loading animation
+        updateFrame(); // First frame
+        const interval = setInterval(updateFrame, 2000); // 2s per frame
+
+        // After 2 full cycles (10s total), fade out loading and show shop
+        setTimeout(() => {
+            clearInterval(interval);
+            loadingScreen.classList.add('fade-out');
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                shopInterface.classList.add('show');
+            }, 2000); // Match fade duration
+        }, 10000);
+
+        // Handle "Add New Link" Form
+        const form = document.getElementById('linkForm');
+        const addedLinksDiv = document.getElementById('addedLinks');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const url = document.getElementById('newLink').value;
+            if (url) {
+                const link = document.createElement('a');
+                link.href = url;
+                link.target = '_blank';
+                link.textContent = `Portal to: ${url}`;
+                addedLinksDiv.innerHTML = ''; // Clear placeholder
+                addedLinksDiv.appendChild(link);
+                document.getElementById('newLink').value = ''; // Reset input
+                // Optional: Save to localStorage for persistence across sessions
+                localStorage.setItem('addedPortal', url);
+            }
+        });
+
+        // Load any previously added link on page load (after interface shows)
+        window.addEventListener('load', () => {
+            const savedLink = localStorage.getItem('addedPortal');
+            if (savedLink && shopInterface.classList.contains('show')) {
+                const link = document.createElement('a');
+                link.href = savedLink;
+                link.target = '_blank';
+                link.textContent = `Saved Portal: ${savedLink}`;
+                addedLinksDiv.innerHTML = ''; // Clear placeholder
+                addedLinksDiv.appendChild(link);
+            }
+        });
+    </script>
+</body>
+</html>
