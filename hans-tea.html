@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hans's Tea Tribunal | ComfortCafe Chimera Cats</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #2c1810, #1a1a1a, #4b0082); /* Grey-deep purple gradient */
+            color: #ffd700; /* Gold text for elegance */
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+            line-height: 1.4;
+        }
+        h1 {
+            font-size: 2.5em;
+            text-shadow: 0 0 10px #ffd700;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            color: #8b0000; /* Deep red for vampiric vibe */
+        }
+        p.intro {
+            font-size: 1.1em;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+            color: #f0f8ff; /* Light blue-white for readability */
+        }
+        #unlock-btn {
+            background: linear-gradient(to right, #8b0000, #9370db); /* Red to violet */
+            border: 2px solid #ffd700;
+            color: #ffd700;
+            padding: 15px 30px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 40px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        #unlock-btn:hover {
+            background: linear-gradient(to right, #ffd700, #6495ed); /* Gold to cornflower blue */
+            color: #1a1a1a;
+            box-shadow: 0 0 15px #ffd700;
+        }
+        #unlock-btn:active {
+            transform: scale(0.98);
+        }
+        #entries {
+            display: none; /* Hidden initially */
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        #entries.show {
+            display: block;
+            animation: fadeIn 1s ease-in; /* Smooth, non-flashy fade */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .entry {
+            background: rgba(139, 0, 0, 0.1); /* Subtle red tint for gothic tea */
+            border: 1px solid #ffd700;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .entry:hover {
+            background: rgba(139, 0, 0, 0.2);
+            box-shadow: 0 0 10px #ffd700;
+        }
+        .entry-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #8b0000; /* Red for titles */
+        }
+        .entry-desc {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 5px;
+            color: #f0f8ff;
+        }
+        .download-btn {
+            background: #1a1a1a;
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 3px;
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+        .download-btn:hover {
+            background: #ffd700;
+            color: #1a1a1a;
+        }
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+        .back-link:hover {
+            opacity: 1;
+        }
+        footer {
+            margin-top: 50px;
+            font-size: 0.8em;
+            opacity: 0.6;
+            color: #9370db; /* Violet for footer */
+        }
+        /* Polyglot Flair: Italic for foreign phrases */
+        .polyglot {
+            font-style: italic;
+            color: #6495ed; /* Cornflower blue */
+        }
+    </style>
+</head>
+<body>
+    <a href="comfortcafe-shop.html" class="back-link">← Back to ComfortCafe Portal</a>
+    
+    <h1>HANS'S TEA TRIBUNAL</h1>
+    <p class="intro">Darlings, I am Hans—eternal at 23, platinum perfection with a grey streak of genius. Captured in France for my... unique qualities, I now judge brews with the precision of five tongues: English empire, French finesse, Gaelic growl, Aramaic aura, Japanese zen. Earl Grey reigns supreme; anything less is heresy. Steep the secrets below to access my tribunal—recipes, critiques, and lore for the worthy. <span class="polyglot">Chan eil e math gu leòr!</span> (Not good enough, indeed.) 🧛‍♂️☕</p>
+    
+    <button id="unlock-btn" aria-label="Steep the secrets to reveal tea entries">Steep the Secrets 🌀</button>
+    
+    <div id="entries">
+        <div class="entry">
+            <div>
+                <div class="entry-title">Earl Grey Eternity</div>
+                <div class="entry-desc">The pinnacle: Bergamot bliss for undying discernment. Steep 4 mins at 100°C. Lore: My capture at Eternal Paws—adoption's bitter twist. (Recipe PDF, 2 pages)</div>
+            </div>
+            <a href="#download1" class="download-btn" download>Download Recipe</a>
+            <!-- Replace: e.g., <a href="earl-grey-eternity.pdf" download> -->
+        </div>
+        
+        <div class="entry">
+            <div>
+                <div class="entry-title">Violet Vampire Veil</div>
+                <div class="entry-desc">STAR's snark meets my Grey: Lavender infusion for sibling shields. <span class="polyglot">Mon dieu</span>, passable. Ties to Seoul sanctuary brews. (Guide, 3 pages)</div>
+            </div>
+            <a href="#download2" class="download-btn" download>Download Guide</a>
+            <!-- Replace: e.g., <a href="violet-vampire-veil.pdf" download> -->
+        </div>
+        
+        <div class="entry">
+            <div>
+                <div class="entry-title">Minty Multilingual Mist</div>
+                <div class="entry-desc">Milo's proverbs in a Japanese sencha twist—Gaelic garnish for zen. "Yamete" to weak steeps. Unlocks: Yeshua's garden parables. (Recipe, 2 pages)</div>
+            </div>
+            <a href="#download3" class="download-btn" download>Download Recipe</a>
+            <!-- Replace: e.g., <a href="minty-multilingual-mist.pdf" download> -->
+        </div>
+        
+        <div class="entry">
+            <div>
+                <div class="entry-title">Lavender Lash Critique</div>
+                <div class="entry-desc">Chari's doubts steeped strong: Ratty herbal with Aramaic wards. Handsome verdict: Adequate. Lore: Relic jams from the shadows. (Critique PDF, 1 page)</div>
+            </div>
+            <a href="#download4" class="download-btn" download>Download Critique</a>
+            <!-- Replace: e.g., <a href="lavender-lash-critique.pdf" download> -->
+        </div>
+        
+        <div class="entry">
+            <div>
+                <div class="entry-title">Bergamot Bondage Brew</div>
+                <div class="entry-desc">Miki's riffs in a punky pu-erh—English snark seals it. For lab escapes: Freedom in every fang. <span class="polyglot">Dèan air ais!</span> (Back off, drones.) (Full Guide, 4 pages)</div>
+            </div>
+            <a href="#download5" class="download-btn" download>Download Guide</a>
+            <!-- Replace: e.g., <a href="bergamot-bondage-brew.pdf" download> -->
+        </div>
+    </div>
+    
+    <footer>
+        *Free tribunal for cafe kin only. Judge wisely; steep eternally. © Hans's Eternal Estates, Parallel Paris-Seoul.*
+    </footer>
+
+    <script>
+        const unlockBtn = document.getElementById('unlock-btn');
+        const entriesDiv = document.getElementById('entries');
+
+        unlockBtn.addEventListener('click', () => {
+            if (!entriesDiv.classList.contains('show')) {
+                entriesDiv.classList.add('show');
+                unlockBtn.textContent = 'Tribunal Revealed! ☕';
+                unlockBtn.style.background = 'linear-gradient(to right, #ffd700, #6495ed)';
+                unlockBtn.style.color = '#1a1a1a';
+            }
+        });
+
+        // Optional: Auto-unlock after 3s for immersion (remove for button-only)
+        setTimeout(() => {
+            if (!entriesDiv.classList.contains('show')) {
+                entriesDiv.classList.add('show');
+                unlockBtn.textContent = 'Secrets Steeped Automatically 🌀';
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
