@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComfortCafe Realms: Find Your Eternal Estate</title>
+    <style>
+        body { background: linear-gradient(to bottom, #301934, #4b0082); color: #808080; font-family: 'Georgia', serif; margin: 0; padding: 20px; text-align: center; }
+        .container { max-width: 800px; margin: 0 auto; background: rgba(48,25,52,0.8); padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(100,149,237,0.3); }
+        h1, h2 { color: #e6e6fa; text-shadow: 0 0 5px #6495ED; }
+        button { background: #6495ED; color: #fff; padding: 10px 20px; border: none; border-radius: 15px; cursor: pointer; margin: 10px; transition: all 0.3s; font-family: 'Georgia', serif; }
+        button:hover { background: #FFFF00; color: #000; box-shadow: 0 0 10px #FFFF00; } /* Neon yellow on all hovers for pop */
+        button:disabled { background: #808080; color: #fff; cursor: not-allowed; } /* Grey locks */
+        button.important { border: 2px solid #FFFF00; } /* Extra attention: Neon border */
+        .interview { background: rgba(100,149,237,0.1); padding: 20px; border-radius: 10px; margin: 20px 0; }
+        label { display: block; margin: 10px 0; color: #e6e6fa; }
+        select, input[type="radio"] { margin: 5px; }
+        .realm-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 30px; }
+        .realm-btn { width: 200px; padding: 15px; background: rgba(128,128,128,0.5); color: #e6e6fa; border-radius: 10px; text-decoration: none; display: block; }
+        .realm-btn:hover:not(:disabled) { background: #6495ED; color: #000; }
+        .hidden { display: none; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .container { animation: fadeIn 2s ease-in; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌙 Welcome to the Realms, Heir 🌙</h1>
+        <p style="color: #808080; font-style: italic;">STAR & Miki await to guide your placement. Answer softly to unlock your path.</p>
+
+        <!-- Interview Section (Hidden After Submit/Escape) -->
+        <div id="interview" class="interview">
+            <h2>STAR & Miki's Realm Interview</h2>
+            <p style="color: #e6e6fa;"><em>STAR:</em> What whispers to your soul—veils of lore or riffs of rhythm? <em>Miki:</em> Let's riff on your realm fit!</p>
+            <form id="realmQuiz">
+                <label>1. Preferred Pace: Calm brewing or energetic echoes?</label>
+                <input type="radio" name="pace" value="calm" id="calm"> Calm (Coffee Vibes)<br>
+                <input type="radio" name="pace" value="energetic" id="energetic"> Energetic (Music Vibes)<br>
+
+                <label>2. Creative Spark: Stories & secrets or sounds & symphonies?</label>
+                <input type="radio" name="creative" value="stories" id="stories"> Stories (Veil Vibes)<br>
+                <input type="radio" name="creative" value="sounds" id="sounds"> Sounds (Harmony Vibes)<br>
+
+                <label>3. Social Shade: Solitary shadows or kin connections?</label>
+                <input type="radio" name="social" value="solitary" id="solitary"> Solitary (Recluse Realms)<br>
+                <input type="radio" name="social" value="kin" id="kin"> Kin Connections (Tribe Vibes)<br>
+
+                <label>4. Adventure Flavor: Gentle drifts or bold rifts?</label>
+                <select name="adventure">
+                    <option value="gentle">Gentle Drifts (Coffee/ Veil)</option>
+                    <option value="bold">Bold Rifts (Music/ Harmony)</option>
+                </select><br>
+
+                <button type="submit" class="important">🌟 Submit & Unlock Realms</button>
+                <button type="button" id="escapeBtn" class="important" style="background: #808080;">🚪 Escape Interview (Skip for Now)</button>
+            </form>
+            <p id="suggestion" style="color: #6495ED; font-weight: bold; display: none;"></p>
+        </div>
+
+        <!-- Realm Exploration Grid -->
+        <div id="realmsSection">
+            <h2>Explore the Eternal Realms</h2>
+            <p style="color: #808080;">Each kin's domain awaits—some veiled until you share your spark.</p>
+            <div class="realm-grid">
+                <a href="star-realm.html" class="realm-btn" style="background: #6495ED;">STAR's Veil Realm<br>(Lore & Visions - Always Open)</a>
+                <a href="miki-realm.html" class="realm-btn" id="mikiBtn" disabled>Miki's Music Realm<br>(Riffs & Downloads - Locked)</a>
+                <a href="chari-realm.html" class="realm-btn" id="chariBtn" disabled>Chari's Coffee Realm<br>(Brews & Comfort - Locked)</a>
+                <a href="hans-realm.html" class="realm-btn" id="hansBtn" disabled>Hans's Harmony Realm<br>(Polyglot Hymns - Locked)</a>
+                <!-- Add more as you expand -->
+            </div>
+            <button id="backToIndex" style="background: #808080;">← Back to Arrival</button>
+        </div>
+    </div>
+
+    <script>
+        // Load Progress from localStorage
+        let progress = JSON.parse(localStorage.getItem('realmProgress')) || { completed: false, suggested: '' };
+
+        // Hide Interview if Completed
+        if (progress.completed) {
+            document.getElementById('interview').classList.add('hidden');
+            document.getElementById('realmsSection').style.display = 'block';
+            // Unlock all buttons
+            document.querySelectorAll('.realm-btn').forEach(btn => btn.disabled = false);
+            if (progress.suggested) document.getElementById('suggestion').textContent = `Suggested: ${progress.suggested}!`;
+        } else {
+            document.getElementById('realmsSection').style.display = 'none';
+        }
+
+        // Interview Submit
+        document.getElementById('realmQuiz').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            let score = 0; // Simple scoring for suggestion
+            if (data.pace === 'calm' || data.creative === 'stories' || data.adventure === 'gentle') score += 1;
+            const suggested = score >= 2 ? 'Chari\'s Coffee Realm (Calm & Cozy)' : 'Miki\'s Music Realm (Creative Riffs)';
+            progress = { completed: true, suggested };
+            localStorage.setItem('realmProgress', JSON.stringify(progress));
+            document.getElementById('suggestion').textContent = `Your Realm Fit: ${suggested} 🌟`;
+            document.getElementById('suggestion').style.display = 'block';
+            document.getElementById('interview').classList.add('hidden');
+            document.getElementById('realmsSection').style.display = 'block';
+            // Unlock buttons
+            document.querySelectorAll('.realm-btn').forEach(btn => btn.disabled = false);
+            // Chime if audio linked
+            // chimeAudio.play();
+        });
+
+        // Escape Button
+        document.getElementById('escapeBtn').addEventListener('click', () => {
+            progress.completed = true; // Partial unlock
+            localStorage.setItem('realmProgress', JSON.stringify(progress));
+            document.getElementById('interview').classList.add('hidden');
+            document.getElementById('realmsSection').style.display = 'block';
+            // Unlock basics only (e.g., STAR's)
+            document.getElementById('mikiBtn').disabled = true; // Keep some locked
+        });
+
+        // Back Button
+        document.getElementById('backToIndex').addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
