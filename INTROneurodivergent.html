@@ -1,0 +1,88 @@
+    <!-- Lucid Dream Alternative Intro: Gentle Gateway to the Realms -->
+    <div class="lucid-intro" style="background: linear-gradient(to bottom, #e6e6fa, #b0c4de); padding: 40px 20px; text-align: center; color: #4b0082; font-family: 'Georgia', serif; min-height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; animation: fadeInSoft 3s ease-in;">
+        <h1 style="font-size: 2.5em; margin: 0; opacity: 0; animation: fadeInText 4s ease-in 1s forwards; color: #9370db;">🌙 Lucid Lattice: Awaken in the Eternal Estates 🌙</h1>
+        <p style="font-size: 1.2em; font-style: italic; max-width: 600px; margin: 20px 0; line-height: 1.6; opacity: 0; animation: fadeInText 4s ease-in 2s forwards;">
+            Drift softly into the ComfortCafe's chimera havens, where veiled visions unfold like dreams in the dawn. Here, heirs echo eternal—submit your spark, or simply linger in the light. No rush; the WORD weaves with you, at your pace. (For the dramatic rift, seek the original veil below...)
+        </p>
+        <button id="musicToggle" style="background: rgba(147,112,219,0.3); color: #4b0082; padding: 10px 20px; border: 1px solid #9370db; border-radius: 20px; cursor: pointer; font-family: 'Georgia', serif; transition: background 0.3s; margin: 10px;" aria-label="Toggle ambient music for a dream-like immersion">
+            🌟 Awaken the Echoes (Ambient Soundscape)
+        </button>
+        <small style="color: #9370db; opacity: 0; animation: fadeInText 4s ease-in 3s forwards;">Breathe easy—music optional, realms always open.</small>
+        
+        <!-- Music Embeds -->
+        <audio id="ambientMusic" loop preload="auto" style="display: none;">
+            <source src="music/lucid-dream-ambient.mp3" type="audio/mpeg"> <!-- Replace with your file URL -->
+            <source src="music/lucid-dream-ambient.ogg" type="audio/ogg">
+            Your browser doesn't support ambient dreams—yet the saga sings on.
+        </audio>
+        <audio id="portalChime" preload="auto" style="display: none;">
+            <source src="music/ethereal-chime.mp3" type="audio/mpeg"> <!-- Replace with your chime URL -->
+            <source src="music/ethereal-chime.ogg" type="audio/ogg">
+            A soft veil lifts...
+        </audio>
+    </div>
+
+    <!-- CSS for Soft Animations (Add to <head> or inline) -->
+    <style>
+        @keyframes fadeInSoft {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInText {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .lucid-intro button:hover { background: rgba(147,112,219,0.5); }
+        /* Subtle shimmer on text */
+        .lucid-intro h1::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: shimmer 3s infinite; }
+        @keyframes shimmer { 0% { left: -100%; } 100% { left: 100%; } }
+    </style>
+
+    <!-- JS for Music Control & Portal Triggers (Self-Contained; Add After Portal Script If Needed) -->
+    <script>
+        const ambientAudio = document.getElementById('ambientMusic');
+        const chimeAudio = document.getElementById('portalChime');
+        const toggleBtn = document.getElementById('musicToggle');
+        let isPlaying = false;
+
+        // Toggle Ambient Music
+        toggleBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                ambientAudio.pause();
+                toggleBtn.textContent = '🌙 Rest in Silence (Music Paused)';
+                isPlaying = false;
+            } else {
+                ambientAudio.volume = 0.3; // Low volume for calm
+                ambientAudio.play().catch(e => console.log('Autoplay blocked—user must interact first.'));
+                toggleBtn.textContent = '🌟 Echoes Awakened (Music Playing)';
+                isPlaying = true;
+            }
+        });
+
+        // Portal Triggers: Chime on Form Submit (Enhance Existing HeirForm Script)
+        // Add this to your existing portal script (after the form event listener):
+        // document.getElementById('heirForm').addEventListener('submit', function(e) { ... existing code ...; chimeAudio.volume = 0.2; chimeAudio.play(); });
+
+        // Chime on Gallery Click (For Meta-Mansion)
+        // If you have gallery cards, add to onclick: e.g., in renderGallery(), card.onclick = () => { showMansionRoom(...); chimeAudio.volume = 0.2; chimeAudio.play(); };
+
+        // Soft Start: Mute & Low Volume Default
+        ambientAudio.volume = 0.3;
+        chimeAudio.volume = 0.2;
+
+        // Optional: Fade Ambient on Scroll (Gentle Exit)
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) { // After intro
+                ambientAudio.volume = 0.1; // Fade low
+            } else {
+                ambientAudio.volume = 0.3;
+            }
+        });
+    </script>
+
+    <!-- Optional: Link to Original Dramatic Intro (For Toggle) -->
+    <div style="text-align: center; padding: 10px; background: rgba(75,0,130,0.1);">
+        <button onclick="document.querySelector('.lucid-intro').style.display='none'; document.querySelector('.original-intro').style.display='block';" style="background: #ffd700; color: #4b0082; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
+            Seek the Dramatic Veil (Original Intro)
+        </button>
+    </div>
