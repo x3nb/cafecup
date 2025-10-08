@@ -1,0 +1,111 @@
+    <!-- Inside the <div id="interview" class="interview"> Section (Replace Existing) -->
+    <div id="interview" class="interview">
+        <h2 style="color: #e6e6fa; text-shadow: 0 0 5px #6495ED;">🌙 STAR & Miki's Realm Interview: No Ordinary Quest 🌙</h2>
+        <p style="color: #808080; font-style: italic; margin-bottom: 20px;">
+            <em>STAR:</em> Heir, this is no ordinary quest—the realms respond to your true spark. Choose answers carefully, as they weave your path through the eternal estates. <em>Miki:</em> Riff with honesty; your rhythm reveals the right realm!
+        </p>
+        <div id="progressBar" style="width: 100%; height: 5px; background: #808080; border-radius: 5px; margin: 10px 0; overflow: hidden;">
+            <div id="progressFill" style="width: 0%; height: 100%; background: #6495ED; transition: width 0.3s; border-radius: 5px;"></div>
+        </div>
+        <p id="progressText" style="color: #808080; font-size: 0.9em;">Question 1 of 4 – Breathe and reflect.</p>
+        
+        <form id="realmQuiz">
+            <!-- Questions with Fade-In Animation for Pacing -->
+            <div class="question" style="opacity: 0; animation: fadeInQuestion 1s ease-in forwards; margin: 15px 0;">
+                <label>1. Preferred Pace: What tempo calls to your soul—gentle brews or vibrant vibes?</label><br>
+                <input type="radio" name="pace" value="calm" id="calm"> Calm & Reflective (Coffee Realms)<br>
+                <input type="radio" name="pace" value="energetic" id="energetic"> Energetic & Expressive (Music Realms)<br>
+            </div>
+            
+            <div class="question" style="opacity: 0; animation: fadeInQuestion 1s ease-in 0.5s forwards; margin: 15px 0;">
+                <label>2. Creative Spark: Do visions of stories or symphonies stir your depths?</label><br>
+                <input type="radio" name="creative" value="stories" id="stories"> Stories & Secrets (Veil Realms)<br>
+                <input type="radio" name="creative" value="sounds" id="sounds"> Sounds & Rhythms (Harmony Realms)<br>
+            </div>
+            
+            <div class="question" style="opacity: 0; animation: fadeInQuestion 1s ease-in 1s forwards; margin: 15px 0;">
+                <label>3. Social Shade: Seek solitary shadows or kin-knit connections?</label><br>
+                <input type="radio" name="social" value="solitary" id="solitary"> Solitary Sanctuary (Recluse Paths)<br>
+                <input type="radio" name="social" value="kin" id="kin"> Kin & Collective (Tribe Bonds)<br>
+            </div>
+            
+            <div class="question" style="opacity: 0; animation: fadeInQuestion 1s ease-in 1.5s forwards; margin: 15px 0;">
+                <label>4. Adventure Flavor: Gentle drifts through mists or bold rifts into the unknown?</label><br>
+                <select name="adventure" style="padding: 5px; border-radius: 5px; border: 1px solid #6495ED;">
+                    <option value="gentle">Gentle Drifts (Cozy Quests)</option>
+                    <option value="bold">Bold Rifts (Epic Echoes)</option>
+                </select>
+            </div>
+
+            <button type="submit" class="important" style="margin-top: 20px;">🌟 Submit Choices – Veil Your Path</button>
+            <button type="button" id="escapeBtn" class="important" style="background: #808080; margin-left: 10px;">🚪 Escape Quest (Choose Later)</button>
+        </form>
+        <p id="suggestion" style="color: #6495ED; font-weight: bold; display: none; margin-top: 20px;">
+            Your choices have unveiled: <span id="suggestedRealm"></span> 🌟 Explore wisely—no path is final.
+        </p>
+    </div>
+
+    <!-- Updated CSS (Add to <head> for Quest Animations) -->
+    <style>
+        /* Existing styles + ... */
+        @keyframes fadeInQuestion {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .question:nth-child(1) { animation-delay: 0s; }
+        .question:nth-child(2) { animation-delay: 0.5s; }
+        .question:nth-child(3) { animation-delay: 1s; }
+        .question:nth-child(4) { animation-delay: 1.5s; }
+    </style>
+
+    <!-- Updated JS (Enhance Submit for Progress & Careful Choice Feedback) -->
+    <script>
+        // Existing load/escape code + ...
+        
+        // Interview Submit with Progress & Quest Feedback
+        let currentQuestion = 0;
+        const questions = document.querySelectorAll('.question');
+        questions.forEach((q, index) => {
+            q.style.animationDelay = `${index * 0.5}s`;
+        });
+
+        document.getElementById('realmQuiz').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            let score = 0;
+            if (data.pace === 'calm' || data.creative === 'stories' || data.adventure === 'gentle' || data.social === 'solitary') score += 1; // Tally careful choices
+            const suggested = score >= 2 ? 'Chari\'s Coffee Realm (A sanctuary for thoughtful souls)' : 'Miki\'s Music Realm (Where bold sparks symphony)';
+            progress = { completed: true, suggested };
+            localStorage.setItem('realmProgress', JSON.stringify(progress));
+            document.getElementById('suggestedRealm').textContent = suggested;
+            document.getElementById('suggestion').style.display = 'block';
+            // Update progress to full
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('progressText').textContent = 'Quest Complete – Paths Unveiled.';
+            // Hide form, show realms (existing code)
+            setTimeout(() => {
+                document.getElementById('interview').classList.add('hidden');
+                document.getElementById('realmsSection').style.display = 'block';
+                document.querySelectorAll('.realm-btn').forEach(btn => btn.disabled = false);
+            }, 1500); // Gentle delay for reflection
+        });
+
+        // Escape: Partial progress, quest reminder
+        document.getElementById('escapeBtn').addEventListener('click', () => {
+            document.getElementById('progressFill').style.width = '50%'; // Halfway feel
+            document.getElementById('progressText').textContent = 'Quest Paused – Return to choose carefully.';
+            // Existing escape logic...
+            alert('The quest lingers, heir—your path awaits when ready. Some realms remain veiled.'); // Soft reminder
+        });
+
+        // Progress Bar Update (On radio/select change for interactivity)
+        document.querySelectorAll('input[type="radio"], select').forEach(input => {
+            input.addEventListener('change', () => {
+                currentQuestion = Math.max(...Array.from(questions).map((q, i) => q.querySelector('input:checked') || q.querySelector('select').value ? i + 1 : 0));
+                const percent = (currentQuestion / 4) * 100;
+                document.getElementById('progressFill').style.width = `${percent}%`;
+                document.getElementById('progressText').textContent = `Question ${currentQuestion} of 4 – Your choices matter.`;
+            });
+        });
+    </script>
