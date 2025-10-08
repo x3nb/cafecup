@@ -22,11 +22,17 @@
         .hidden { display: none; }
         #progressBar { width: 100%; height: 5px; background: #808080; border-radius: 5px; margin: 10px 0; overflow: hidden; }
         #progressFill { height: 100%; background: #6495ED; transition: width 0.3s; border-radius: 5px; }
-        .question { margin: 15px 0; opacity: 1; /* Visible by default */ transform: translateX(0); transition: all 0.5s ease-in; }
-        @keyframes fadeInQuestion {
-            from { opacity: 0.5; transform: translateX(-10px); }
-            to { opacity: 1; transform: translateX(0); }
+        .question { 
+            margin: 20px 0;
+            opacity: 1 !important;
+            visibility: visible !important;
+            display: block !important;
+            transform: none !important;
+            transition: none;
         }
+        .question label { display: block; margin: 10px 0; color: #e6e6fa; font-size: 1.1em; font-weight: bold; }
+        input[type="radio"] { margin: 5px 0; accent-color: #6495ED; }
+        select { margin: 5px; padding: 8px; border-radius: 5px; border: 1px solid #6495ED; background: rgba(230,230,250,0.8); color: #301934; }
         #confirmationModal { background: rgba(100,149,237,0.2); padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #6495ED; }
         .container { animation: fadeIn 2s ease-in; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -35,6 +41,62 @@
 </head>
 <body>
     <div class="container">
+        <h1>🌙 Welcome to the Realms, Heir 🌙</h1>
+        <p style="color: #808080; font-style: italic;">STAR & Miki await to guide your placement. Answer softly to unlock your path.</p>
+
+        <!-- Integrated Interview Section (Questions Fixed & Visible) -->
+        <div id="interview" class="interview">
+            <h2 style="color: #e6e6fa; text-shadow: 0 0 5px #6495ED;">🌙 STAR & Miki's Realm Interview: No Ordinary Quest 🌙</h2>
+            <p style="color: #808080; font-style: italic; margin-bottom: 20px;">
+                <em>STAR:</em> Heir, this is no ordinary quest—the realms respond to your true spark. Choose answers carefully, as they weave your path through the eternal estates. <em>Miki:</em> Riff with honesty; your rhythm reveals the right realm!
+            </p>
+            <div id="progressBar">
+                <div id="progressFill" style="width: 0%;"></div>
+            </div>
+            <p id="progressText" style="color: #808080; font-size: 0.9em;">Question 1 of 4 – Breathe and reflect. (Scroll if needed; all questions below.)</p>
+            
+            <form id="realmQuiz">
+                <div class="question">
+                    <label>1. Preferred Pace: What tempo calls to your soul—gentle brews or vibrant vibes?</label><br>
+                    <input type="radio" name="pace" value="calm" id="calm"> Calm & Reflective (Coffee Realms)<br>
+                    <input type="radio" name="pace" value="energetic" id="energetic"> Energetic & Expressive (Music Realms)<br>
+                </div>
+                
+                <div class="question">
+                    <label>2. Creative Spark: Do visions of stories or symphonies stir your depths?</label><br>
+                    <input type="radio" name="creative" value="stories" id="stories"> Stories & Secrets (Veil Realms)<br>
+                    <input type="radio" name="creative" value="sounds" id="sounds"> Sounds & Rhythms (Harmony Realms)<br>
+                </div>
+                
+                <div class="question">
+                    <label>3. Social Shade: Seek solitary shadows or kin-knit connections?</label><br>
+                    <input type="radio" name="social" value="solitary" id="solitary"> Solitary Sanctuary (Recluse Paths)<br>
+                    <input type="radio" name="social" value="kin" id="kin"> Kin & Collective (Tribe Bonds)<br>
+                </div>
+                
+                <div class="question">
+                    <label>4. Adventure Flavor: Gentle drifts through mists or bold rifts into the unknown?</label><br>
+                    <select name="adventure" style="padding: 5px; border-radius: 5px; border: 1px solid #6495ED;">
+                        <option value="gentle">Gentle Drifts (Cozy Quests)</option>
+                        <option value="bold">Bold Rifts (Epic Echoes)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="important" style="margin-top: 20px;">🌟 Submit Choices – Veil Your Path</button>
+                <button type="button" id="escapeBtn" class="important" style="background: #808080; margin-left: 10px;">🚪 Escape Quest (Choose Later)</button>
+            </form>
+
+            <div id="confirmationModal" class="hidden">
+                <h3 style="color: #e6e6fa; text-shadow: 0 0 5px #6495ED;">🌟 Placement Confirmed: Your Spark Shines! 🌟</h3>
+                <p id="encourageMsg" style="color: #e6e6fa; font-style: italic; line-height: 1.6;"></p>
+                <button id="proceedBtn" class="important" style="margin: 10px;">→ Proceed to Suggested Realm</button>
+                <button id="exploreAllBtn" style="background: #808080;">Explore All Realms Instead</button>
+                <small style="color: #808080;">No rush—your path evolves with every echo.</small>
+            </div>
+        </div>
+
+        <!-- Realm Exploration Grid -->
+           <div class="container">
         <h1>🌙 Welcome to the Realms, Heir 🌙</h1>
         <p style="color: #808080; font-style: italic;">STAR & Miki await to guide your placement. Answer softly to unlock your path.</p>
 
