@@ -550,10 +550,160 @@
                     <div class="shop-section" style="text-align: center; font-style: italic; color: #9370db;">
                 <p>*End of Arc 1: Seoul Sanctuary. More chapters brewing—Yeshua's legacy calls. Brew responsibly; mind the fangs.*</p>
             </div>
-        <!-- Heir Adoption Portal Section -->
+                <!-- Enhanced Heir Adoption Portal: Meta-Mansion & Local Gallery -->
         <div class="portal-section" style="background: linear-gradient(to bottom, #4b0082, #9370db); padding: 20px; border-radius: 10px; margin: 20px 0; color: #fff; text-align: center;">
-            <h2 style="color: #ffd700; font-family: 'Georgia', serif;">🕸️ Heir Adoption Portal: Become a Co-Creator in the Eternal Realms! 🕸️</h2>
-            <p style="font-style: italic;">Awaken your inner divine spark! Submit your chimera kin to join STAR's tribe—wield the WORD, rend the realms, and rule forever. Yeshua's light welcomes all heirs. (Submissions inspire future chapters—email me at [your-email@example.com] for features!)</p>
+            <h2 style="color: #ffd700; font-family: 'Georgia', serif;">🕸️ Heir Adoption Portal: Manifest Your Kin in the Meta-Mansion! 🕸️</h2>
+            <p style="font-style: italic;">Awaken divine sparks! Submit chimera kin to STAR's tribe—wield WORD-powers, rend realms, and rule the Eternal Estates. Your heirs manifest locally in the gallery & meta-mansion (persists in your browser). Inspire chapters—email me at [your-email@example.com] for eternal features!</p>
+            
+            <!-- Enhanced Form -->
+            <form id="heirForm" style="max-width: 500px; margin: 0 auto; text-align: left;">
+                <label for="heirName">Heir's Name:</label><br>
+                <input type="text" id="heirName" name="name" required style="width: 100%; padding: 8px; margin: 5px 0; border-radius: 5px; border: none; box-shadow: 0 0 5px rgba(255,215,0,0.5);"><br>
+                
+                <label for="appearance">Appearance & Traits:</label><br>
+                <textarea id="appearance" name="appearance" rows="3" required style="width: 100%; padding: 8px; margin: 5px 0; border-radius: 5px; border: none; box-shadow: 0 0 5px rgba(255,215,0,0.5);"></textarea><br>
+                
+                <label for="backstory">Backstory:</label><br>
+                <textarea id="backstory" name="backstory" rows="3" required style="width: 100%; padding: 8px; margin: 5px 0; border-radius: 5px; border: none; box-shadow: 0 0 5px rgba(255,215,0,0.5);"></textarea><br>
+                
+                <label for="powers">WORD-Powers:</label><br>
+                <textarea id="powers" name="powers" rows="2" required style="width: 100%; padding: 8px; margin: 5px 0; border-radius: 5px; border: none; box-shadow: 0 0 5px rgba(255,215,0,0.5);"></textarea><br>
+                
+                <label for="role">Realm-Role (Suggests Mansion Room):</label><br>
+                <input type="text" id="role" name="role" required style="width: 100%; padding: 8px; margin: 5px 0; border-radius: 5px; border: none; box-shadow: 0 0 5px rgba(255,215,0,0.5);"><br>
+                
+                <button type="submit" id="submitBtn" style="background: #ffd700; color: #4b0082; padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; box-shadow: 0 0 10px rgba(255,215,0,0.7);">Veil Your Heir into the Lattice! ✨</button>
+            </form>
+            
+            <!-- Dynamic Local Gallery -->
+            <div id="localGallery" style="margin-top: 30px; text-align: left;">
+                <h3 style="color: #ffd700;">🌟 Your Local Heirs Gallery (Manifested in Browser Memory!)</h3>
+                <p style="font-size: 0.9em; color: #ffd700;">Your submitted kin live here—click for their Meta-Mansion Room. (Max 10; clears on browser reset.)</p>
+                <div id="galleryContainer" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;"></div>
+                <button id="clearGallery" style="background: #ff4500; color: #fff; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">Clear Dominion (Purge Phantoms)</button>
+            </div>
+            
+            <!-- Meta-Mansion Section -->
+            <div id="metaMansion" style="margin-top: 30px; text-align: left;">
+                <h3 style="color: #ffd700;">🏰 Meta-Mansion: Eternal Estates for Adopted Arcs</h3>
+                <p style="font-size: 0.9em;">Explore rooms where your heirs "awaken" in the saga—backstories bloom, powers pulse! (Click gallery cards to enter.) Lore: A manifested manor in the Lattice, clashing Python phantoms with user-sparked sovereignty.</p>
+                <div id="mansionRooms" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;"></div>
+            </div>
+            
+            <!-- JS: Form Handler, LocalStorage, Dynamic Gallery & Mansion Modals -->
+            <script>
+                // Load existing heirs from localStorage
+                let heirs = JSON.parse(localStorage.getItem('portalHeirs')) || [];
+                const maxHeirs = 10;
+                const galleryContainer = document.getElementById('galleryContainer');
+                const mansionRooms = document.getElementById('mansionRooms');
+                const submitBtn = document.getElementById('submitBtn');
+                const clearBtn = document.getElementById('clearGallery');
+
+                // Render Gallery
+                function renderGallery() {
+                    galleryContainer.innerHTML = '';
+                    heirs.forEach((heir, index) => {
+                        const card = document.createElement('div');
+                        card.style.cssText = 'background: rgba(255,255,255,0.1); padding: 10px; border-radius: 5px; width: 200px; cursor: pointer; box-shadow: 0 0 10px rgba(255,215,0,0.3); transition: transform 0.3s;';
+                        card.innerHTML = `
+                            <strong>${heir.name}</strong><br>
+                            Traits: ${heir.appearance.substring(0, 50)}...<br>
+                            Role: ${heir.role}<br>
+                            <small>Click for Mansion Room</small>
+                        `;
+                        card.onclick = () => showMansionRoom(heir, index);
+                        galleryContainer.appendChild(card);
+                    });
+                    // Update mansion rooms based on roles (simple mapping)
+                    renderMansionRooms();
+                }
+
+                // Render Meta-Mansion Rooms (Dynamic based on heirs)
+                function renderMansionRooms() {
+                    mansionRooms.innerHTML = '';
+                    const roomTypes = {
+                        'Guardian': 'Spire Sanctum (Defend the Dominion!)',
+                        'Oracle': 'Parable Parlor (Prophesy the Python Phantoms!)',
+                        'Weaver': 'Wind Wing (Weave Whimsical Worlds!)',
+                        'default': 'Echo Estate (Timeless Tales Await!)'
+                    };
+                    heirs.forEach(heir => {
+                        const roomType = roomTypes[heir.role] || roomTypes.default;
+                        const roomCard = document.createElement('div');
+                        roomCard.style.cssText = 'background: rgba(255,255,255,0.2); padding: 15px; border-radius: 8px; width: 250px; text-align: center;';
+                        roomCard.innerHTML = `
+                            <h4 style="color: #ffd700;">${roomType}</h4>
+                            <p>${heir.name} resides here—${heir.powers.substring(0, 30)}... rends realms!</p>
+                        `;
+                        mansionRooms.appendChild(roomCard);
+                    });
+                }
+
+                // Show Mansion Room Modal (Simple Alert for Flair—Upgrade to Modal if Wanted)
+                function showMansionRoom(heir, index) {
+                    const room = heirs[index].role.includes('Guardian') ? 'Spire Sanctum' : 
+                                heirs[index].role.includes('Oracle') ? 'Parable Parlor' : 
+                                heirs[index].role.includes('Weaver') ? 'Wind Wing' : 'Echo Estate';
+                    const absurdQuip = ['Ni! Your heir knights the nonsense.', 'Shrubbery of sovereignty sprouts!', 'Graft? Gobbled by grace!'][Math.floor(Math.random() * 3)];
+                    alert(`🌟 Entering ${room} for ${heir.name}!\n\nBackstory: ${heir.backstory}\nPowers: ${heir.powers}\n\n${absurdQuip} Saga arc: Your kin clashes phantoms—eternal echoes! ✨\n(Email me to feature in chapters!)`);
+                }
+
+                // Form Submit Handler
+                document.getElementById('heirForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const formData = new FormData(this);
+                    const data = Object.fromEntries(formData);
+                    if (heirs.length >= maxHeirs) {
+                        alert('Dominion full! Clear gallery or choose favorites—max 10 heirs. 🌟');
+                        return;
+                    }
+                    // Add to local heirs
+                    heirs.push(data);
+                    localStorage.setItem('portalHeirs', JSON.stringify(heirs));
+                    renderGallery();
+                    // Email draft
+                    const subject = `New Heir: ${data.name}`;
+                    const body = `Name: ${data.name}\nAppearance: ${data.appearance}\nBackstory: ${data.backstory}\nPowers: ${data.powers}\nRole: ${data.role}`;
+                    window.location.href = `mailto:[your-email@example.com]?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    // Reset form
+                    this.reset();
+                    // Fun alert
+                    alert(`Your heir ${data.name} manifests in the Lattice! Gallery updated—check the Meta-Mansion. ${['Ni! Knighted in nonsense.', 'Shrubbery sovereignty!', 'Graft gobbled!'][Math.floor(Math.random() * 3)]} 🌟`);
+                });
+
+                // Clear Button
+                clearBtn.addEventListener('click', () => {
+                    if (confirm('Purge the phantoms? Clear all local heirs?')) {
+                        heirs = [];
+                        localStorage.removeItem('portalHeirs');
+                        renderGallery();
+                        alert('Dominion cleared—fresh realms await! ✨');
+                    }
+                });
+
+                // Initial Render
+                renderGallery();
+            </script>
+            
+            <!-- Sample Gallery (Loads if No Local Heirs) -->
+            <div style="margin-top: 20px;">
+                <h4 style="color: #ffd700;">Sample Heirs (Inspire Your Subs!)</h4>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 10px; border-radius: 5px; width: 200px;">
+                        <strong>Zara the Zephyr Wolf</strong><br>Traits: Silvery fur, wind-whiskers.<br>Powers: Gusts of grace.<br>Role: Realm-Wind Weaver.
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 10px; border-radius: 5px; width: 200px;">
+                        <strong>Pip the Python Prophet</strong><br>Traits: Plaid-scaled sage.<br>Powers: Parables in polyglots.<br>Role: Absurdity Oracle.
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 10px; border-radius: 5px; width: 200px;">
+                        <strong>Luna the Light-Lynx</strong><br>Traits: Glow-eyed guardian.<br>Powers: Sun-scroll summons.<br>Role: Dominion Defender.
+                    </div>
+                </div>
+                <p style="font-size: 0.9em;">Your local gallery overrides these—submit to build your dynasty!</p>
+            </div>
+        </div>
+
             
             <!-- Simple Form (Client-Side + Mailto) -->
             <form id="heirForm" style="max-width: 500px; margin: 0 auto; text-align: left;">
