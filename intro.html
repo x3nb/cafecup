@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComfortCafe Quest: Chimera Chronicles</title>
+    <style>
+        body { background: linear-gradient(to bottom, #301934, #4b0082); color: #808080; font-family: 'Georgia', serif; margin: 0; padding: 20px; text-align: center; }
+        .container { max-width: 600px; margin: 0 auto; background: rgba(48,25,52,0.8); padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(100,149,237,0.3); }
+        h1 { color: #e6e6fa; text-shadow: 0 0 5px #6495ED; }
+        p { color: #e6e6fa; line-height: 1.6; font-style: italic; }
+        button { background: #6495ED; color: #fff; padding: 12px 24px; border: none; border-radius: 15px; margin: 10px; transition: all 0.3s; font-family: 'Georgia', serif; }
+        button:hover { background: #FFFF00; color: #000; box-shadow: 0 0 10px #FFFF00; }
+        button.important { border: 2px solid #FFFF00; }
+        .scripture { color: #ffd700; font-size: 0.9em; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐱 Welcome to the Chimera Quest: Eternal Estates 🐱</h1>
+        <p>In shadowed labs, chimera cats—fusions of fur, fang, and forgotten dreams—escaped the scientists' grasp. Now, they find sanctuary in Yeshua's comforting embrace, weaving realms of harmony, music, and mystic brews. As a wandering heir, your choices shape this haven: Will you riff with Miki, brew with Chari, or veil visions with STAR? Milo whispers of The Way (Tao and Truth entwined), guiding kin to peace.</p>
+        <p class="scripture"><em>"I am the way, the truth, and the life." — John 14:6 (Yeshua watches, ever-present.)</em></p>
+        <p style="color: #808080;">This is no ordinary quest—explore realms, claim knowledge, earn accolades. Ready to begin?</p>
+        <button class="important" onclick="startQuest()">YES: Enter the Interview (Find Your Realm)</button>
+        <button onclick="window.location.href='index.html'">NO: Return to Awakening</button>
+        <!-- Subtle Links: Tease Broader Game -->
+        <p style="color: #808080; font-size: 0.9em; margin-top: 20px;">Later: <a href="quests.html" style="color: #6495ED;">Quests</a> | <a href="languages.html" style="color: #6495ED;">Languages</a> | <a href="academies.html" style="color: #6495ED;">Academies (Earn Certificates)</a></p>
+    </div>
+    <script>
+        const progress = JSON.parse(localStorage.getItem('realmProgress'));
+        if (progress?.completed) { window.location.href = 'realms.html'; } // Skip if done
+        function startQuest() {
+            // Chime if audio
+            window.location.href = 'realms.html';
+        }
+    </script>
+</body>
+</html>
