@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComfortCafe Realms: Find Your Eternal Estate</title>
+    <style>
+        body { background: linear-gradient(to bottom, #301934, #4b0082); color: #808080; font-family: 'Georgia', serif; margin: 0; padding: 20px; text-align: center; }
+        .container { max-width: 800px; margin: 0 auto; background: rgba(48,25,52,0.8); padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(100,149,237,0.3); }
+        h1, h2, h3 { color: #e6e6fa; text-shadow: 0 0 5px #6495ED; }
+        button { background: #6495ED; color: #fff; padding: 10px 20px; border: none; border-radius: 15px; cursor: pointer; margin: 10px; transition: all 0.3s; font-family: 'Georgia', serif; }
+        button:hover { background: #FFFF00; color: #000; box-shadow: 0 0 10px #FFFF00; }
+        button:disabled { background: #808080; color: #fff; cursor: not-allowed; }
+        button.important { border: 2px solid #FFFF00; }
+        .important:hover { background: #FFFF00 !important; color: #000 !important; box-shadow: 0 0 15px #FFFF00 !important; transform: scale(1.05); }
+        .interview { background: rgba(100,149,237,0.1); padding: 20px; border-radius: 10px; margin: 20px 0; }
+        label { display: block; margin: 10px 0; color: #e6e6fa; }
+        input[type="radio"], select { margin: 5px; padding: 5px; border-radius: 5px; border: 1px solid #6495ED; }
+        .realm-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 30px; }
+        .realm-btn { width: 200px; padding: 15px; background: rgba(128,128,128,0.5); color: #e6e6fa; border-radius: 10px; text-decoration: none; display: block; transition: all 0.3s; }
+        .realm-btn:hover:not(:disabled) { background: #6495ED; color: #000; box-shadow: 0 0 10px #6495ED; }
+        .hidden { display: none; }
+        #progressBar { width: 100%; height: 5px; background: #808080; border-radius: 5px; margin: 10px 0; overflow: hidden; }
+        #progressFill { height: 100%; background: #6495ED; transition: width 0.3s; border-radius: 5px; }
+        .question { margin: 15px 0; opacity: 1; /* Visible by default */ transform: translateX(0); transition: all 0.5s ease-in; }
+        @keyframes fadeInQuestion {
+            from { opacity: 0.5; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        #confirmationModal { background: rgba(100,149,237,0.2); padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #6495ED; }
+        .container { animation: fadeIn 2s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        p { line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌙 Welcome to the Realms, Heir 🌙</h1>
+        <p style="color: #808080; font-style: italic;">STAR & Miki await to guide your placement. Answer softly to unlock your path.</p>
+
+        <!-- Interview Section -->
+        <div id="interview" class="interview">
+            <h2 style="color: #e6e6fa; text-shadow: 0 0 5px #6495ED;">🌙 STAR & Miki's Realm Interview: No Ordinary Quest 🌙</h2>
+            <p style="color: #808080; font-style: italic; margin-bottom: 20px;">
+                <em>STAR:</em> Heir, this is no ordinary quest—the realms respond to your true spark. Choose answers carefully, as they weave your path through the eternal estates. <em>Miki:</em> Riff with honesty; your rhythm reveals the right realm!
+            </p>
+            <div id="progressBar">
+                <div id="progressFill" style="width: 0%;"></div>
+            </div>
+            <p id="progressText" style="color: #808080; font-size: 0.9em;">Question 1 of 4 – Breathe and reflect. (All questions visible below.)</p>
+            
+            <form id="realmQuiz">
+                <div class="question" style="animation: fadeInQuestion 0.5s ease-in;">
+                    <label>1. Preferred Pace: What tempo calls to your soul—gentle brews or vibrant vibes?</label><br>
+                    <input type="radio" name="pace" value="calm" id="calm"> Calm & Reflective (Coffee Realms)<br>
+                    <input type="radio" name="pace" value="energetic" id="energetic"> Energetic & Expressive (Music Realms)<br>
+                </div>
+                
+                <div class="question" style="animation: fadeInQuestion 0.5s ease-in 0.2s;">
+                    <label>2. Creative Spark: Do visions of stories or symphonies stir your depths?</label><br>
+                    <input type="radio" name="creative" value="stories" id="stories"> Stories & Secrets (Veil Realms)<br>
+                    <input type="radio" name="creative" value="sounds" id="sounds"> Sounds & Rhythms (Harmony Realms)<br>
+                </div>
+                
+                <div class="question" style="animation: fadeInQuestion 0.5s ease-in 0.4s;">
+                    <label>3. Social Shade: Seek solitary shadows or kin-knit connections?</label><br>
+                    <input type="radio" name="social" value="solitary" id="solitary"> Solitary Sanctuary (Recluse Paths)<br>
+                    <input type="radio" name="social" value="kin" id="kin"> Kin & Collective (Tribe Bonds)<br>
+                </div>
+                
+                <div class="question" style="animation: fadeInQuestion 0.5s ease-in 0.6s;">
+                    <label>4. Adventure Flavor: Gentle drifts through mists or bold rifts into the unknown?</label><br>
+                    <select name="adventure" style="padding: 5px; border-radius: 5px; border: 1px solid #6495ED;">
+                        <option value="gentle">Gentle Drifts (Cozy Quests)</option>
+                        <option value="bold">Bold Rifts (Epic Echoes)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="important" style="margin-top: 20px;">🌟 Submit Choices – Veil Your Path</button>
+                <button type="button" id="escapeBtn" class="important" style="background: #808080; margin-left: 10px;">🚪 Escape Quest (Choose Later)</button>
+            </form>
+
+            <!-- Enhanced Confirmation Modal (Hidden Initially) -->
+            <div id="confirmationModal" class="hidden">
+                <h3 style="color: #e6e6fa; text-shadow: 0 0 5px #6495ED;">🌟 Placement Confirmed: Your Spark Shines! 🌟</h3>
+                <p id="encourageMsg" style="color: #e6e6fa; font-style: italic; line-height: 1.6;"></p>
+                <button id="proceedBtn" class="important" style="margin: 10px;">→ Proceed to Suggested Realm</button>
+                <button id="exploreAllBtn" style="background: #808080;">Explore All Realms Instead</button>
+                <small style="color: #808080;">No rush—your path evolves with every echo.</small>
+            </div>
+        </div>
+
+        <!-- Realm Exploration Grid -->
+        <div id="realmsSection" class="hidden">
+            <h2>Explore the Eternal Realms</h2>
+            <p style="color: #808080;">Each kin's domain awaits—unlocked by your quest spark.</p>
+            <div class="realm-grid">
+                <a href="star-realm.html" class="realm-btn" style="background: #6495ED;">STAR's Veil Realm<br>(Lore & Visions - Always Open)</a>
+                <a href="miki-realm.html" class="realm-btn" id="mikiBtn" disabled>Miki's Music Realm<br>(Riffs & Downloads - Locked)</a>
+                <a href="chari-realm.html" class="realm-btn" id="chariBtn" disabled>Chari's Coffee Realm<br>(Brews & Comfort - Locked)</a>
+                <a href="hans-realm.html" class="realm-btn" id="hansBtn" disabled>Hans's Harmony Realm<br>(Polyglot Hymns - Locked)</a>
+            </div>
+            <button id="backToIndex" style="background: #808080;">← Back to Arrival</button>
+        </div>
+    </div>
+
+    <!-- Music Embed (Chime on Submit/Escape/Proceed) -->
+    <audio id="portalChime" preload="auto" style="display: none;">
+        <source src="music/ethereal-chime.mp3" type="audio/mpeg">
+        <source src="music/ethereal-chime.ogg" type="audio/ogg">
+    </audio>
+
+    <script>
+        const chimeAudio = document.getElementById('portalChime');
+        let progress = JSON.parse(localStorage.getItem('realmProgress')) || { completed: false, suggested: '' };
+        let currentQuestion = 0;
+        let suggestedRealm = ''; // For modal
+
+        // Force Questions Visible on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.question').forEach(q => {
+                q.style.opacity = '1';
+                q.style.transform = 'translateX(0)';
+            });
+        });
+
+        // Load: Hide Interview if Completed
+        if (progress.completed) {
+            document.getElementById('interview').classList.add('hidden');
+            document.getElementById('realmsSection').classList.remove('hidden');
+            document.querySelectorAll('.realm-btn').forEach(btn => btn.disabled = false);
+        } else {
+            document.getElementById('realmsSection').classList.add('hidden');
+        }
+
+        // Progress Bar Updates on Choices
+        document.querySelectorAll('input[type="radio"], select').forEach(input => {
+            input.addEventListener('change', () => {
+                const answered = Array.from(document.querySelectorAll('.question')).filter(q => 
+                    q.querySelector('input:checked') || q.querySelector('select').value !== 'gentle' // Default
+                ).length;
+                currentQuestion = answered;
+                const percent = (currentQuestion / 4) * 100;
+                document.getElementById('progressFill').style.width = `${percent}%`;
+                document.getElementById('progressText').textContent = `Answered ${currentQuestion} of 4 – Your choices matter, heir.`;
+            });
+        });
+
+        // Submit: Calculate, Save, Show Modal
+        document.getElementById('realmQuiz').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            let score = 0;
+            if (data.pace === 'calm') score += 1;
+            if (data.creative === 'stories') score += 1;
+            if (data.adventure === 'gentle') score += 1;
+            if (data.social === 'solitary') score += 1;
+            suggestedRealm = score >= 2 ? 'Chari\'s Coffee Realm (A sanctuary for thoughtful souls)' : 'Miki\'s Music Realm (Where bold sparks symphony)';
+            progress = { completed: true, suggested: suggestedRealm };
+            localStorage.setItem('realmProgress', JSON.stringify(progress));
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('progressText').textContent = 'Quest Complete – Paths Unveiled.';
+            chimeAudio.volume = 0.2; chimeAudio.play();
+
+            // Encouraging Message for Modal
+            const encourageMsg = score >= 2 
+                ? `<em>STAR:</em> Well woven, thoughtful heir—${suggestedRealm} welcomes your calm reflections. Start in the Brew Nook for cozy quests! Your choices honor the veil.`
+                : `<em>Miki:</em> Bold riff, expressive soul—${suggestedRealm} pulses with your vibe. Dive into the Riff Workshop for free echoes! Your spark symphonies eternal.`;
+            document.getElementById('encourageMsg').innerHTML = encourageMsg;
+            document.getElementById('confirmationModal').classList.remove('hidden');
+
+            // Hide form after delay for reflection
+            setTimeout(() => {
+                document.querySelector('form').style.display = 'none';
+            }, 500);
+        });
+
+        // Proceed Button: Redirect to Suggested Realm
+        document.getElementById('proceedBtn').addEventListener('click', () => {
+            chimeAudio.volume = 0.2; chimeAudio.play();
+            const realmUrl = suggestedRealm.includes('Coffee') ? 'chari-realm.html' : 'miki-realm.html';
+            window.location.href = realmUrl;
+        });
+
+        // Explore All: Show Grid
+        document.getElementById('exploreAllBtn').addEventListener('click', () => {
+            document.getElementById('confirmationModal').classList.add('hidden');
+            document.getElementById('realmsSection').classList.remove('hidden');
+            document.querySelectorAll('.realm-btn').forEach(btn => btn.disabled = false);
+        });
+
+        // Escape: Partial Progress, Lighter Modal
+        document.getElementById('escapeBtn').addEventListener('click', () => {
+            document.getElementById('progressFill').style.width = '50%';
+            document.getElementById('progressText').textContent = 'Quest Paused – Return to choose carefully.';
+            progress.completed = true; // Partial unlock
+            localStorage.setItem('realmProgress', JSON.stringify(progress));
+            chimeAudio.volume = 0.2; chimeAudio.play();
+
+            // Lighter Encouraging Message
+            const lightEncourage = `<em>STAR:</em> Paths pause gracefully, heir—your spark endures. Why not drift to STAR's Veil Realm for timeless lore while you reflect? No choice is lost.`;
+            document.getElementById('encourageMsg').innerHTML = lightEncourage;
+            document.getElementById('proceedBtn').textContent = '→ Proceed to STAR\'s Veil Realm';
+            document.getElementById('proceedBtn').onclick = () => { window.location.href = 'star-realm.html'; };
+            document.getElementById('confirmationModal').classList.remove('hidden');
+
+            // Unlock basics only
+            document.getElementById('mikiBtn').disabled = true;
+            document.getElementById('chariBtn').disabled = true;
+            document.getElementById('hansBtn').disabled = true;
+
+            setTimeout(() => {
+                document.querySelector('form').style.display = 'none';
+            }, 500);
+        });
+
+        // Back to Index
+        document.getElementById('backToIndex').addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
