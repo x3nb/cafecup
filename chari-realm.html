@@ -3,25 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chari's Coffee Realm - ComfortCafe</title>
-    <style> body { background: linear-gradient(to bottom, #301934, #4b0082); color: #808080; font-family: 'Georgia', serif; text-align: center; padding: 20px; } .container { max-width: 800px; margin: 0 auto; background: rgba(48,25,52,0.8); padding: 30px; border-radius: 10px; } h1 { color: #e6e6fa; } button { background: #6495ED; color: #fff; padding: 10px; border-radius: 15px; margin: 10px; transition: all 0.3s; } button:hover { background: #FFFF00; color: #000; } </style>
+    <title>Chari's Coffee Realm - ComfortCafe Eternal Estates</title>
+    <style>
+        body { 
+            background: linear-gradient(to bottom, #301934, #4b0082, #8B4513); /* Warm brown tint for coffee */
+            color: #808080; 
+            font-family: 'Georgia', serif; 
+            margin: 0; 
+            padding: 20px; 
+            text-align: center; 
+            position: relative;
+            overflow-x: hidden;
+        }
+        /* Circular Realm Header (Integrated) */
+        .realm-header {
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(100,149,237,0.3);
+            transition: all 0.3s;
+            background: rgba(48,25,52,0.2);
+        }
+        .realm-header:hover {
+            box-shadow: 0 0 30px rgba(255,255,0,0.5);
+            transform: scale(1.05);
+        }
+        .realm-header img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            border: 3px solid #6495ED;
+            loading: lazy;
+            transition: all 0.3s;
+        }
+        .realm-header img:hover {
+            border-color: #FFFF00;
+            box-shadow: 0 0 10px #FFFF00;
+        }
+        .header-overlay {
+            position: relative;
+            margin-top: 10px;
+            text-align: center;
+            color: #e6e6fa;
+            padding: 0;
+            width: 100%;
+        }
+        .header-overlay h2 {
+            margin: 0 0 5px;
+            font-size: 1.5em;
+            text-shadow: 0 0 5px #6495ED;
+        }
+        .header-tagline {
+            font-style: italic;
+            margin: 0;
+            color: #ffd700;
+            font-size: 0.9em;
+        }
+        @media (max-width: 600px) {
+            .realm-header img { width: 80px; height: 80px; }
+            .header-overlay h2 { font-size: 1.2em; }
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: rgba(48,25,52,0.8); 
+            padding: 30px; 
+            border-radius: 10px; 
+            box-shadow: 0 0 20px rgba(100,149,237,0.3); 
+            animation: fadeInSoft 2s ease-in;
+        }
+        @keyframes fadeInSoft { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        h1 { color: #e6e6fa; text-shadow: 0 0 5px #6495ED; font-size: 2em; margin-top: 0; }
+        button, a { 
+            background: #6495ED; 
+            color: #fff; 
+            padding: 12px 24px; 
+            border: none; 
+            border-radius: 15px; 
+            cursor: pointer; 
+            margin: 10px; 
+            transition: all 0.3s; 
+            font-family: 'Georgia', serif; 
+            text-decoration: none; 
+            display: inline-block;
+        }
+        button:hover, a:hover { background: #FFFF00; color: #000; box-shadow: 0 0 15px #FFFF00; }
+        button.important { border: 2px solid #FFFF00; }
+        .important:hover { transform: scale(1.05); }
+        .scripture { color: #ffd700; font-size: 1.1em; margin: 20px 0; text-align: center; }
+        footer { color: #808080; font-size: 0.8em; margin-top: 30px; border-top: 1px solid #6495ED; padding-top: 10px; }
+    </style>
 </head>
 <body>
+    <!-- Circular Character Header -->
     <header class="realm-header">
-    <img src="images/chari-realm/chari-portrait.jpeg" alt="Chari the Cozy Chimera Cat: Relaxed feline sipping brew, with warm fur and gentle gaze, sanctuary seeker." loading="lazy">
-    <div class="header-overlay">
-        <h2>Chari's Coffee Realm</h2>
-        <p class="header-tagline">☕ Gentle Brews in Yeshua's Haven – Comfort Awaits ☕</p>
-    </div>
-</header>
+        <img src="images/chari-portrait.jpg" alt="Chari the Cozy Chimera Cat: A relaxed feline hybrid curled with a coffee mug, warm eyes reflecting sanctuary." loading="lazy">
+        <div class="header-overlay">
+            <h2>Chari's Coffee Realm</h2>
+            <p class="header-tagline">☕ Gentle Brews in Yeshua's Haven – Comfort Awaits ☕</p>
+        </div>
+    </header>
+
     <div class="container">
-        <h1>☕ Chari's Coffee Realm: Brews of Eternal Comfort ☕</h1>
+        <h1>☕ Brews of Eternal Comfort ☕</h1>
         <p style="color: #e6e6fa;">Welcome, cozy heir—your calm spark fits here perfectly. Explore brews, rat-rallies, and quiet corners. (Free download: Chari's Recipe PDF <a href="chari-recipe.pdf" style="color: #6495ED;">here</a>.)</p>
+        
+        <div class="scripture">
+            <em>"Come to me, all who labor and are heavy laden, and I will give you rest." — Matthew 11:28</em>
+        </div>
+        
+        <!-- Add more content here, e.g., rooms or interactions -->
+        
         <button onclick="window.location.href='realms.html'">← Back to Realms</button>
-        <button onclick="window.location.href='index.html'">← Back to Arrival</button>
+        <button onclick="window.location.href='index.html'">← Back to Awakening</button>
     </div>
+    
+    <!-- Subtle Yeshua Watching -->
+    <div style="position: fixed; bottom: 20px; right: 20px; color: rgba(255,215,0,0.3); font-size: 0.7em; pointer-events: none;">✝️ Yeshua watches the Way.</div>
+    
+    <footer>
+        <p>Yeshua guides every step. <a href="donate.html" style="color: #6495ED;">Donate for Permanent Membership</a> – Store your reflections eternally.</p>
+        <p class="scripture"><em>"The Lord is my shepherd; I shall not want." — Psalm 23:1</em></p>
+    </footer>
+
     <script>
-        if (!JSON.parse(localStorage.getItem('realmProgress'))?.completed) { alert('Veil your quest first!'); window.location.href = 'realms.html'; }
+        // Progress Check (Unchanged)
+        const progress = JSON.parse(localStorage.getItem('realmProgress')) || {};
+        if (!progress.completed) {
+            alert('Veil your quest first!'); 
+            window.location.href = 'realms.html';
+        }
     </script>
 </body>
 </html>
+r
