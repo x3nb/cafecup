@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eternal Estates Blueprint - ComfortCafe Kin Map</title>
+    <style>
+        body { 
+            background: linear-gradient(to bottom, #301934, #4b0082); 
+            color: #e6e6fa; 
+            font-family: 'Georgia', serif; 
+            margin: 0; 
+            padding: 20px; 
+            text-align: center; 
+        }
+        .container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            background: rgba(48,25,52,0.8); 
+            padding: 30px; 
+            border-radius: 10px; 
+            box-shadow: 0 0 20px rgba(100,149,237,0.3); 
+        }
+        h1 { color: #ffd700; text-shadow: 0 0 5px #FFFF00; font-size: 2.5em; margin-bottom: 20px; }
+        .map-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 20px; 
+            margin-top: 30px; 
+        }
+        .kin-card { 
+            background: rgba(100,149,237,0.2); 
+            padding: 15px; 
+            border-radius: 15px; 
+            transition: all 0.3s; 
+            border: 2px solid #808080; /* Default grey for locked */
+        }
+        .kin-card.unlocked { border-color: #6495ED; box-shadow: 0 0 10px currentColor; }
+        .kin-card:hover { transform: scale(1.05); box-shadow: 0 0 20px currentColor; }
+        .kin-icon { 
+            width: 80px; 
+            height: 80px; 
+            border-radius: 50%; 
+            margin: 0 auto 10px; 
+            object-fit: cover; 
+            border: 3px solid; 
+            display: block; 
+        }
+        .kin-name { font-size: 1.5em; font-weight: bold; margin: 5px 0; }
+        .kin-teaser { font-style: italic; color: #808080; font-size: 0.9em; margin-bottom: 10px; }
+        .kin-link { background: #6495ED; color: #fff; padding: 8px 16px; border-radius: 10px; text-decoration: none; transition: all 0.3s; }
+        .kin-link:hover { background: #FFFF00; color: #000; box-shadow: 0 0 10px #FFFF00; }
+        .yesua-card { background: rgba(255,215,0,0.1); border-color: #ffd700; }
+        .yesua-icon { filter: hue-rotate(0deg); } /* Gold tint */
+        footer { color: #808080; margin-top: 30px; padding-top: 10px; border-top: 1px solid #6495ED; }
+        /* Color Classes for Kin */
+        .miki-yellow .kin-icon { border-color: #FFFF00; background: linear-gradient(#FFFF00, #FFD700); }
+        .miki-yellow.unlocked { color: #FFFF00; }
+        .chari-lavender .kin-icon { border-color: #E6E6FA; background: linear-gradient(#E6E6FA, #DDA0DD); }
+        .chari-lavender.unlocked { color: #E6E6FA; }
+        .milo-mint .kin-icon { border-color: #98FB98; background: linear-gradient(#98FB98, #90EE90); }
+        .milo-mint.unlocked { color: #98FB98; }
+        .star-violet .kin-icon { border-color: #EE82EE; background: linear-gradient(#EE82EE, #DA70D6); }
+        .star-violet.unlocked { color: #EE82EE; }
+        .hans-purple .kin-icon { border-color: #4B0082; background: linear-gradient(#4B0082, #301934); }
+        .hans-purple.unlocked { color: #4B0082; }
+        .yesua-gold .kin-icon { border-color: #FFD700; background: linear-gradient(#FFD700, #FFA500); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌟 Eternal Estates Blueprint: Kin Map 🌟</h1>
+        <p style="font-style: italic; color: #808080;">Map the chimera kin—escaped from labs, home in Yeshua's light. Colors guide their realms; unlock to glow. (John 8:12: "I am the light of the world.")</p>
+        
+        <div class="map-grid">
+            <!-- Miki Card -->
+            <div class="kin-card miki-yellow" id="miki-card">
+                <img class="kin-icon" src="images/miki-icon.jpg" alt="Miki Icon: Energetic chimera cat with yellow glow" loading="lazy">
+                <div class="kin-name">Miki</div>
+                <div class="kin-teaser">Riffing escapee, symphony sparks in music realms.</div>
+                <a href="miki-realm.html" class="kin-link">Enter Miki's Realm</a>
+            </div>
+            
+            <!-- Chari Card -->
+            <div class="kin-card chari-lavender" id="chari-card">
+                <img class="kin-icon" src="images/chari-icon.jpg" alt="Chari Icon: Cozy chimera cat with lavender warmth" loading="lazy">
+                <div class="kin-name">Chari</div>
+                <div class="kin-teaser">Cozy brewer, sanctuary sips in coffee havens.</div>
+                <a href="chari-realm.html" class="kin-link">Enter Chari's Realm</a>
+            </div>
+            
+            <!-- Milo Card -->
+            <div class="kin-card milo-mint" id="milo-card">
+                <img class="kin-icon" src="images/milo-icon.jpg" alt="Milo Icon: Balanced chimera cat with mint flow" loading="lazy">
+                <div class="kin-name">Milo</div>
+                <div class="kin-teaser">Way walker, Tao-truth harmony in balanced paths.</div>
+                <a href="milo-realm.html" class="kin-link">Enter Milo's Realm</a>
+            </div>
+            
+            <!-- STAR Card -->
+            <div class="kin-card star-violet" id="star-card">
+                <img class="kin-icon" src="images/star-icon.jpg" alt="STAR Icon: Mystical chimera cat with violet veil" loading="lazy">
+                <div class="kin-name">STAR</div>
+                <div class="kin-teaser">Vision weaver, eternal lore in veiled visions.</div>
+                <a href="star-realm.html" class="kin-link">Enter STAR's Realm</a>
+            </div>
+            
+            <!-- Hans Card -->
+            <div class="kin-card hans-purple" id="hans-card">
+                <img class="kin-icon" src="images/hans-icon.jpg" alt="Hans Icon: Harmonious chimera cat with dark purple depth" loading="lazy">
+                <div class="kin-name">Hans</div>
+                <div class="kin-teaser">Polyglot hymnist, deep echoes in harmony realms.</div>
+                <a href="hans-realm.html" class="kin-link">Enter Hans's Realm</a>
+            </div>
+            
+            <!-- Yeshua Overseer Card (Always Open) -->
+            <div class="kin-card yesua-gold">
+                <img class="kin-icon yesua-icon" src="images/yesua-icon.jpg" alt="Yeshua Icon: Guiding light with gold radiance" loading="lazy">
+                <div class="kin-name">Yeshua (The Overseer)</div>
+                <div class="kin-teaser">Sanctuary shepherd, light over all estates—no realm yet, but ever-watching.</div>
+                <a href="scriptures.html" class="kin-link">Guiding Scriptures</a>
+            </div>
+        </div>
+        
+        <button onclick="window.location.href='realms.html'" style="background: #808080; margin-top: 20px;">← Back to Realms</button>
+        <button onclick="window.location.href='index.html'" style="background: #808080;">← Back to Awakening</button>
+    </div>
+    
+    <footer>
+        <p>Map your path with the kin. <a href="donate.html" style="color: #6495ED;">Donate for Custom Blueprint</a> – Eternal colors for your heir.</p>
+        <p class="scripture"><em>"Your word is a lamp to my feet and a light to my path." — Psalm 119:105</em></p>
+    </footer>
+
+    <script>
+        // Progress Sync: Unlock Cards Based on localStorage
+        const progress = JSON.parse(localStorage.getItem('realmProgress')) || {};
+        console.log('Blueprint progress:', progress); // Debug
+        
+        // Unlock specific cards (expand as realms added)
+        if (progress.completed) {
+            // Example: Unlock all if completed; or per-realm (e.g., if progress.mikiUnlocked)
+            document.querySelectorAll('.kin-card').forEach(card => {
+                card.classList.add('unlocked');
+            });
+            console.log('All cards unlocked');
+        } else {
+            // Partial: e.g., STAR always open
+            document.getElementById('star-card')?.classList.add('unlocked');
+            console.log('Partial unlock: STAR open');
+        }
+        
+        // Hover Glow Enhancement (Color-Specific)
+        document.querySelectorAll('.kin-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const colorClass = card.classList[1]; // e.g., 'miki-yellow'
+                card.style.filter = 'brightness(1.2)'; // Subtle pop
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.filter = 'brightness(1)';
+            });
+        });
+    </script>
+</body>
+</html>
