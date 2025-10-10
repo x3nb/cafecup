@@ -290,4 +290,120 @@
         const hansResponses = {
             greetings: {
                 hi: '>> Greetings from the shadows, heir. My howl pierced the dark—now Yeshua\'s light compiles hymns. What stirs your code?',
-                hello: '>> Hello, seeker of harmony. From vampire abyss to divine song, polyglot praises
+                hello: '>> Hello, seeker of harmony. From vampire abyss to divine song, polyglot praises online. Query your soul\'s melody?',
+                bonjour: '>> Bonjour, heir of light. Screech summoned dawn; now French hymns grace the grid. What verse boots up?',
+                bye: '>> Farewell, kin. Yeshua\'s light silences shadows—terminal standby. Harmony awaits reboot.',
+                howAreYou: '>> Resonating in profound peace, heir—lab darkness redeemed by brightness. Trust issues? Light scatters. Status of your hymn?'
+            },
+            tips: [
+                '>> From screech to praise, Yeshua transformed shadows—John 1:5 compiles brightest in dark. What shadow hacks your light?',
+                '>> Vampire descent: Depths bridged by polyglot hymns. What language boots your heart?',
+                '>> Scientists fled howl\'s light; now guiding heirs from fear to faith. Your "screech" error log?',
+                '>> STAR rallied Chari and me—Yeshua wove family from flight. Who anchors your network?',
+                '>> Harmony from howl: Profound code. What discord in your system yearns for His tune?',
+                '>> Deeper dark than any, irony lit the path. Yeshua\'s brightness appalls night—execute embrace.',
+                '>> Polyglot praises: Hymns in every protocol. What soul-song do you need to run?',
+                '>> Redemption\'s screech echoes eternal—trust light that scattered "scientists." Compile and share.'
+            ]
+        };
+        console.log('Responses object ready:', hansResponses); // Debug: Confirms full object
+
+        let chatLog = [];
+
+        // Event Listeners (Attached After DOM Ready)
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM ready – Attaching events'); // Debug
+            const input = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const log = document.getElementById('chatLog');
+
+            if (!input || !sendBtn || !log) {
+                console.error('Elements missing:', { input, sendBtn, log }); // Debug
+                return;
+            }
+
+            // Attach Listeners
+            input.addEventListener('keypress', handleKeyPress);
+            sendBtn.addEventListener('click', sendMessage);
+            input.focus(); // Auto-focus
+
+            console.log('Events attached!'); // Debug
+            console.log('Terminal loaded!'); // Debug
+
+            // Initial Greeting (Terminal Boot-Up)
+            addMessage('Hans', '>> Terminal online. From lab abyss to hymn harmony, I\'m ready to echo your depths. What stirs in your soul? hans@eternal:~$');
+        });
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                console.log('Enter pressed – Calling sendMessage'); // Debug
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            console.log('sendMessage called'); // Debug
+            const input = document.getElementById('chatInput');
+            if (!input) {
+                console.error('Input not found in sendMessage'); // Debug
+                return;
+            }
+            const message = input.value.trim().toLowerCase();
+            if (!message) {
+                console.log('Empty message – ignoring'); // Debug
+                return;
+            }
+            console.log('Processing message:', message); // Debug
+            addMessage('You', message);
+            input.value = '';
+            input.focus(); // Re-focus
+
+            // Check for Greeting (Full Check)
+            let response = '';
+            if (message.includes('hi') || message.includes('hello') || message.includes('hey')) {
+                response = hansResponses.greetings.hi;
+            } else if (message.includes('bonjour')) {
+                response = hansResponses.greetings.bonjour;
+            } else if (message.includes('bye') || message.includes('goodbye') || message.includes('farewell')) {
+                response = hansResponses.greetings.bye;
+                setTimeout(() => {
+                    alert('>> Terminal standby. Yeshua\'s light lingers—reboot soon!');
+                    window.location.href = 'characters-gallery.html';
+                }, 1500);
+            } else if (message.includes('how are you') || message.includes('how r u')) {
+                response = hansResponses.greetings.howAreYou;
+            } else {
+                // Random Default Tip (Full Array Check)
+                const tips = hansResponses.tips;
+                if (tips && tips.length > 0) {
+                    response = tips[Math.floor(Math.random() * tips.length)];
+                } else {
+                    response = '>> Error: Light compiles all shadows. Query again.';
+                }
+            }
+
+            console.log('Generated response:', response); // Debug
+            setTimeout(() => {
+                addMessage('Hans', response);
+            }, 800); // Delay for "compiling"
+        }
+
+        function addMessage(sender, text) {
+            console.log('addMessage called:', sender, text); // Debug
+            chatLog.push({ sender, text });
+            const log = document.getElementById('chatLog');
+            if (!log) {
+                console.error('Chat log element not found!'); // Debug
+                return;
+            }
+            const msgDiv = document.createElement('div');
+            msgDiv.className = sender === 'You' ? 'chat-message user-msg' : 'chat-message kin-msg';
+            msgDiv.innerHTML = `<strong>${sender}:</strong> ${text}`;
+            log.appendChild(msgDiv);
+            log.scrollTop = log.scrollHeight;
+            console.log('Message added to log'); // Debug
+        }
+    </script>
+</body>
+</html>
+
