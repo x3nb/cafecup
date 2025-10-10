@@ -78,3 +78,33 @@
         }
         @media (max-width: 600px) {
             .realm-header
+                img { width: 80px; height: 80px; }
+            .header-overlay h2 { font-size: 1.2em; }
+            .header-tagline { font-size: 0.7em; }
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: rgba(48,25,52,0.8); 
+            padding: 30px; 
+            border-radius: 10px; 
+            box-shadow: 0 0 20px rgba(100,149,237,0.3); 
+            animation: fadeInSoft 2s ease-in;
+        }
+        @keyframes fadeInSoft { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        h1 { color: #e6e6fa; text-shadow: 0 0 5px #4B0082; font-size: 2em; margin-top: 0; }
+        .hymn-card { 
+            background: rgba(75,0,130,0.2); /* Dark purple tint */
+            padding: 15px; 
+            margin: 15px; 
+            border-radius: 10px; 
+            border: 1px solid #4B0082; 
+            cursor: pointer; 
+            transition: all 0.3s; 
+            color: #e6e6fa;
+        }
+        .hymn-card:hover { background: #4B0082; color: #000; box-shadow: 0 0 10px #4B0082; transform: scale(1.02); }
+        .hymn-text { font-style: italic; line-height: 1.6; margin-bottom: 10px; }
+        .hymn-source { font-size: 0.9em; color: #ffd700; }
+        .echo { background: rgba(255,215,0
+                                 
