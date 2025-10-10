@@ -6,7 +6,7 @@
     <title>Chimera Comfort Cafe Realms: Eternal Estates Map</title>
     <style>
         body { 
-            background: linear-gradient(to bottom, #301934, #4b0082); /* Deep purple-indigo */
+            background: linear-gradient(to bottom, #301934, #4b0082); /* Deep purple-indigo ombre */
             color: #808080; 
             font-family: 'Georgia', serif; 
             margin: 0; 
@@ -14,26 +14,24 @@
             text-align: center; 
             position: relative;
             overflow-x: hidden;
-            /* Subtle starry overlay for majesty */
-            background-image: radial-gradient(2px 2px at 20px 30px, #FFD700, transparent), radial-gradient(2px 2px at 40px 70px, rgba(255,255,0,0.8), transparent);
+            /* Subtle starry ombre aura overlay */
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255,215,0,0.1) 1px, transparent 1px),
+                radial-gradient(circle at 80% 70%, rgba(238,130,238,0.1) 1px, transparent 1px);
+            background-size: 100px 100px, 150px 150px;
             background-repeat: repeat;
-            background-size: 50px 50px;
-            animation: twinkle 4s linear infinite;
         }
-        @keyframes twinkle { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
         .container { 
             max-width: 1000px; 
             margin: 0 auto; 
             background: rgba(48,25,52,0.8); 
             padding: 30px; 
             border-radius: 10px; 
-            box-shadow: 0 0 30px rgba(100,149,237,0.5); /* Majestic glow */
-            animation: fadeInMajestic 3s ease-in;
+            box-shadow: 0 0 30px rgba(100,149,237,0.5); /* Majestic aura glow */
         }
-        @keyframes fadeInMajestic { from { opacity: 0; transform: scale(0.95) rotateY(10deg); } to { opacity: 1; transform: scale(1) rotateY(0); } }
         h1 { color: #e6e6fa; text-shadow: 0 0 10px #FFD700; font-size: 3em; margin-bottom: 10px; font-weight: bold; }
         h2 { color: #ffd700; text-shadow: 0 0 5px #FFFF00; }
-        /* Interview Section (Unchanged, but majestic polish) */
+        /* Interview Section (Unchanged, majestic polish) */
         .interview { background: rgba(100,149,237,0.1); padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 0 15px rgba(255,215,0,0.3); }
         .question { 
             margin: 20px 0;
@@ -51,19 +49,26 @@
         button { background: #6495ED; color: #fff; padding: 10px 20px; border: none; border-radius: 15px; cursor: pointer; margin: 10px; transition: all 0.3s; font-family: 'Georgia', serif; box-shadow: 0 0 10px rgba(100,149,237,0.5); }
         button:hover { background: #FFFF00; color: #000; box-shadow: 0 0 20px #FFFF00; transform: scale(1.05); }
         button:disabled { background: #808080; color: #fff; cursor: not-allowed; box-shadow: none; }
-        button.important { border: 2px solid #FFFF00; animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { box-shadow: 0 0 10px #FFFF00; } 50% { box-shadow: 0 0 20px #FFFF00; } }
+        button.important { border: 2px solid #FFFF00; }
         .important:hover { background: #FFFF00 !important; color: #000 !important; transform: scale(1.1); }
         .hidden { display: none; }
         #confirmationModal { background: rgba(100,149,237,0.2); padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid #6495ED; box-shadow: 0 0 15px #FFD700; }
-        /* Majestic Map Section */
-        .map-section { margin-top: 40px; position: relative; height: 600px; min-height: 500px; }
+        /* Majestic Aura Map Section (No Breathing/Grid – Ombre Radial) */
+        .map-section { 
+            margin-top: 40px; 
+            position: relative; 
+            height: 600px; 
+            min-height: 500px; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: inset 0 0 50px rgba(75,0,130,0.3); /* Ombre inner aura */
+        }
         .map-hub { 
             position: absolute; 
             top: 50%; 
             left: 50%; 
             transform: translate(-50%, -50%); 
-            background: linear-gradient(#FFD700, #FFA500); /* Gold light for Yeshua */
+            background: radial-gradient(circle, #FFD700, #FFA500, #FF8C00); /* Gold ombre aura for Yeshua */
             border-radius: 50%; 
             width: 150px; 
             height: 150px; 
@@ -71,12 +76,10 @@
             flex-direction: column; 
             align-items: center; 
             justify-content: center; 
-            box-shadow: 0 0 30px #FFD700; 
-            animation: glowHub 3s ease-in-out infinite alternate; 
+            box-shadow: 0 0 30px #FFD700, inset 0 0 20px rgba(255,255,255,0.5); /* Steady majestic aura */
             z-index: 10;
         }
-        @keyframes glowHub { 0% { box-shadow: 0 0 20px #FFD700; } 100% { box-shadow: 0 0 40px #FFD700, 0 0 60px #FFA500; } }
-        .hub-icon { width: 80px; height: 80px; border-radius: 50%; background: #fff; margin-bottom: 5px; display: flex; align-items: center; justify-content: center; font-size: 2em; }
+        .hub-icon { width: 80px; height: 80px; border-radius: 50%; background: #fff; margin-bottom: 5px; display: flex; align-items: center; justify-content: center; font-size: 2em; box-shadow: 0 0 10px #FFD700; }
         .hub-name { font-size: 1.2em; color: #301934; font-weight: bold; text-shadow: 0 0 5px #FFD700; }
         .kin-portal { 
             position: absolute; 
@@ -88,44 +91,53 @@
             align-items: center; 
             justify-content: center; 
             cursor: pointer; 
-            transition: all 0.5s; 
+            transition: all 0.5s ease; /* Smooth ombre fade */
             border: 2px solid #808080; /* Locked grey */
-            box-shadow: 0 0 10px rgba(128,128,128,0.5); 
-            animation: glitch 0.1s infinite; /* Subtle glitch for locked */
+            box-shadow: 0 0 10px rgba(128,128,128,0.5); /* Subtle locked aura */
             z-index: 5;
         }
         .kin-portal.unlocked { 
             border-color: currentColor; 
-            box-shadow: 0 0 20px currentColor; 
-            animation: none; 
+            box-shadow: 0 0 20px currentColor, inset 0 0 15px rgba(255,255,255,0.2); /* Aura glow with inner ombre */
         }
         .kin-portal:hover { 
             transform: scale(1.2) rotate(5deg); 
-            box-shadow: 0 0 30px currentColor, inset 0 0 20px rgba(255,255,0,0.3); 
-            animation: portalOpen 0.5s ease-out; 
+            box-shadow: 0 0 30px currentColor, 0 0 50px rgba(255,255,0,0.3); /* Aura expands on hover */
+            animation: glitchPortal 0.3s ease-out; /* Glitchy rift, but brief/no breathing */
         }
-        @keyframes portalOpen { 0% { transform: scale(1) rotate(0); opacity: 1; } 50% { transform: scale(1.3) rotate(10deg); opacity: 0.8; } 100% { transform: scale(1.2) rotate(5deg); opacity: 1; } }
-        @keyframes glitch { 0%, 100% { transform: translate(0); } 20% { transform: translate(-2px, 2px); } 40% { transform: translate(-2px, -2px); } 60% { transform: translate(2px, 2px); } 80% { transform: translate(2px, -2px); } }
-        .portal-icon { width: 60px; height: 60px; border-radius: 50%; margin-bottom: 5px; background: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.5em; }
+        @keyframes glitchPortal { 0%, 100% { transform: scale(1.2) rotate(5deg); } 10%, 30%, 50% { transform: scale(1.25) rotate(7deg) translateX(2px); } 20%, 40% { transform: scale(1.15) rotate(3deg) translateX(-2px); } }
+        .portal-icon { width: 60px; height: 60px; border-radius: 50%; margin-bottom: 5px; background: radial-gradient(circle, currentColor, darken(currentColor, 20%)); display: flex; align-items: center; justify-content: center; font-size: 1.5em; box-shadow: 0 0 10px currentColor; }
         .portal-name { font-size: 0.9em; color: #e6e6fa; font-weight: bold; text-shadow: 0 0 3px currentColor; white-space: nowrap; }
         .portal-teaser { font-size: 0.7em; color: #808080; margin-top: 2px; }
-        /* Color Associations */
-        .star-violet { color: #EE82EE; background: linear-gradient(45deg, #EE82EE, #DA70D6); }
-        .milo-mint { color: #98FB98; background: linear-gradient(45deg, #98FB98, #90EE90); }
-        .chari-lavender { color: #E6E6FA; background: linear-gradient(45deg, #E6E6FA, #DDA0DD); }
-        .hans-purple { color: #4B0082; background: linear-gradient(45deg, #4B0082, #301934); }
-        .miki-yellow { color: #FFFF00; background: linear-gradient(45deg, #FFFF00, #FFD700); }
-        /* Radial Positioning (Desktop) */
+        /* Color Associations with Ombre Auras */
+        .star-violet { color: #EE82EE; background: radial-gradient(circle, #EE82EE, #DA70D6); box-shadow: 0 0 15px #EE82EE; }
+        .milo-mint { color: #98FB98; background: radial-gradient(circle, #98FB98, #90EE90); box-shadow: 0 0 15px #98FB98; }
+        .chari-lavender { color: #E6E6FA; background: radial-gradient(circle, #E6E6FA, #DDA0DD); box-shadow: 0 0 15px #E6E6FA; }
+        .hans-purple { color: #4B0082; background: radial-gradient(circle, #4B0082, #301934); box-shadow: 0 0 15px #4B0082; }
+        .miki-yellow { color: #FFFF00; background: radial-gradient(circle, #FFFF00, #FFD700); box-shadow: 0 0 15px #FFFF00; }
+        /* Radial Positioning (Desktop – Ombre Flow) */
         .kin-portal:nth-child(1) { top: 20%; left: 20%; transform: rotate(72deg) translateY(-200px); } /* STAR */
         .kin-portal:nth-child(2) { top: 20%; right: 20%; transform: rotate(144deg) translateY(-200px); } /* Milo */
         .kin-portal:nth-child(3) { bottom: 20%; right: 20%; transform: rotate(216deg) translateY(200px); } /* Chari */
         .kin-portal:nth-child(4) { bottom: 20%; left: 20%; transform: rotate(288deg) translateY(200px); } /* Hans */
-        .kin-portal:nth-child(5) { top: 50%; right: 5%; transform: rotate(0deg) translateX(200px); } /* Miki - adjusted for 5 */
-        /* Mobile Stack */
+        .kin-portal:nth-child(5) { top: 50%; right: 5%; transform: rotate(0deg) translateX(200px); } /* Miki */
+        /* Mobile: Vertical Ombre Cascade (No Grid – Smooth Fade) */
         @media (max-width: 768px) {
-            .map-hub { position: static; transform: none; margin: 20px auto; }
-            .kin-portal { position: static; transform: none; margin: 10px auto; width: 100px; height: 100px; }
-            .map-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
+            .map-hub { position: static; transform: none; margin: 20px auto; width: 120px; height: 120px; }
+            .kin-portal { 
+                position: static; 
+                transform: none; 
+                margin: 15px auto; 
+                width: 100px; 
+                height: 100px; 
+                box-shadow: 0 0 20px currentColor; /* Aura persists */
+            }
+            .kin-portal:nth-child(1) { background: linear-gradient(to bottom, #EE82EE, #DA70D6); } /* Ombre fade per card */
+            .kin-portal:nth-child(2) { background: linear-gradient(to bottom, #98FB98, #90EE90); }
+            .kin-portal:nth-child(3) { background: linear-gradient(to bottom, #E6E6FA, #DDA0DD); }
+            .kin-portal:nth-child(4) { background: linear-gradient(to bottom, #4B0082, #301934); }
+            .kin-portal:nth-child(5) { background: linear-gradient(to bottom, #FFFF00, #FFD700); }
+            .map-section { height: auto; min-height: 400px; }
         }
         /* Interview Styles (Majestic Polish) */
         label { display: block; margin: 10px 0; color: #e6e6fa; text-shadow: 0 0 3px #FFD700; }
@@ -136,7 +148,7 @@
 <body>
     <div class="container">
         <h1>🌙 Chimera Comfort Cafe Realms: Majestic Map 🌙</h1>
-        <p style="color: #ffd700; font-style: italic; text-shadow: 0 0 5px #FFFF00;">Yeshua's light at the heart, kin portals orbiting eternal estates. Unlock the map through your quest—glitchy rifts await.</p>
+        <p style="color: #ffd700; font-style: italic; text-shadow: 0 0 5px #FFFF00;">Yeshua's light at the heart, kin auras orbiting eternal estates. Unlock the ombre portals through your quest—rifts of radiance await.</p>
 
         <!-- Interview Section (Fixed & Visible) -->
         <div id="interview" class="interview">
@@ -171,4 +183,27 @@
                 <div class="question">
                     <label>4. Adventure Flavor: Gentle drifts through mists or bold rifts into the unknown?</label><br>
                     <select name="adventure" style="padding: 5px; border-radius: 5px; border: 1px solid #6495ED;">
-                        <option value="gentle">Gentle Drifts (Cozy
+                        <option value="gentle">Gentle Drifts (Cozy Quests)</option>
+                        <option value="bold">Bold Rifts (Epic Adventures)</option>
+                    </select>
+                </div>
+                
+                <button type="button" id="submitBtn" class="important">🌟 Submit Choices & Unveil Map</button>
+                <button type="button" id="escapeBtn">🕸️ Escape Quest (Partial Map)</button>
+            </form>
+        </div>
+
+        <!-- Confirmation Modal -->
+        <div id="confirmationModal" class="hidden">
+            <h3 id="modalTitle">Your Path Unveiled</h3>
+            <p id="modalMessage"></p>
+            <button id="proceedBtn" class="important">Proceed to Suggested Realm</button>
+            <button id="exploreBtn">Explore All Realms (Aura Map)</button>
+        </div>
+
+        <!-- Majestic Aura Map Section -->
+        <div class="map-section">
+            <!-- Central Yeshua Hub -->
+            <div class="map-hub">
+                <div class="hub-icon">✝️</div>
+                <div class="tion value="gentle">Gentle Drifts (Cozy
