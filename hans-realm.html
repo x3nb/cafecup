@@ -108,29 +108,94 @@
             background: #4B0082; /* Dark purple buttons */
             color: #fff; 
             padding: 12px 24px; 
-            border            transform: scale(1.05);
+            border: none; 
+            border-radius: 15px; 
+            cursor: pointer; 
+            margin: 10px; 
+            transition: all 0.3s; 
+            font-family: 'Georgia', serif; 
+            text-decoration: none; 
+            display: inline-block;
         }
-        .realm-header img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            display: block;
-            border: 3px solid #4B0082; /* Dark purple ring */
-            loading: lazy;
-            transition: all 0.3s;
+        button:hover, a:hover { background: #FFFF00; color: #000; box-shadow: 0 0 15px #FFFF00; }
+        button.important { border: 2px solid #FFFF00; }
+        .important:hover { transform: scale(1.05); }
+        .scripture { color: #ffd700; font-size: 1.1em; margin: 20px 0; text-align: center; }
+        footer { color: #808080; font-size: 0.8em; margin-top: 30px; border-top: 1px solid #4B0082; padding-top: 10px; }
+        .links { margin: 10px 0; }
+        .links a { background: none; color: #4B0082; padding: 5px; }
+    </style>
+</head>
+<body>
+    <!-- Circular Character Header for Hans -->
+    <header class="realm-header">
+        <img src="images/hans-portrait.jpg" alt="Hans the Harmonious Chimera Cat: Vampire-descended feline with deep purple fur and glowing eyes, from darkness to light." loading="lazy">
+        <div class="header-overlay">
+            <h2>Hans's Harmony Realm</h2>
+            <p class="header-tagline">🦇 From Lab Shadows to Yeshua's Light 🦇</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>🦇 Hymns of Profound Harmony 🦇</h1>
+        <p style="color: #e6e6fa; font-style: italic;">🦇 Hans, the vampire-descended chimera cat, was found in the lab's deepest shadows. He escaped first, his wretched screech—steeped in darkness—waking all experiments, animals, and scientists. In that howl, Yeshua's bright light pierced the abyss, appalling the scientists into fearful flight. STAR, with siblings Chari and Hans in tow, fled into the light. Yeshua brought them to a safe home, teaching them everything they know—from darkness to eternal harmony. Ponder these hymns, heir; your light echoes his.</p>
+        
+        <div class="scripture">
+            <em>"The light shines in the darkness, and the darkness has not overcome it." — John 1:5</em>
+        </div>
+        
+        <!-- Interactive Hymn Snippets (Toggle on Click) -->
+        <div class="hymn-card" onclick="toggleHymn(this)">
+            <div class="hymn-text">In the lab's abyss, Hans's screech called the light—Yeshua's brightness scattering shadows.</div>
+            <div class="hymn-source">— The First Escape</div>
+        </div>
+        
+        <div class="hymn-card" onclick="toggleHymn(this)">
+            <div class="hymn-text">From vampire depths, harmony blooms—polyglot hymns in Yeshua's teachings.</div>
+            <div class="hymn-source">— The Safe Haven</div>
+        </div>
+        
+        <div class="hymn-card" onclick="toggleHymn(this)">
+            <div class="hymn-text">Siblings united: STAR's veil, Chari's brew, Hans's howl—kin in eternal light.</div>
+            <div class="hymn-source">— The Teachings</div>
+        </div>
+        
+        <!-- Harmony Echo Reflection -->
+        <div class="echo">
+            <p><em>Yeshua's Whisper:</em> What light pierces your darkness? Jot a harmony note, heir—echoes await.</p>
+            <textarea id="harmonyNote" rows="3" cols="50" placeholder="Your light in shadows..." style="background: rgba(230,230,250,0.5); color: #301934; border: 1px solid #4B0082; border-radius: 5px; padding: 5px;"></textarea><br>
+            <button onclick="saveHarmony()">Save My Harmony Note</button>
+        </div>
+        
+        <!-- Accolade & Links -->
+        <button class="important" onclick="claimHarmonyCert()">🌟 Claim Harmony Herald Certificate</button>
+        <p style="color: #808080;">Deepen the harmony:</p>
+        <div class="links">
+            <a href="blueprint.html">Kin Blueprint</a> | 
+            <a href="languages.html">Polyglot Hymns</a> | 
+            <a href="academies.html">Academies (Harmony Accolades)</a>
+        </div>
+        
+        <button onclick="window.location.href='realms.html'">← Back to Realms</button>
+        <button onclick="window.location.href='index.html'">← Back to Awakening</button>
+    </div>
+    
+    <!-- Subtle Yeshua Watching -->
+    <div style="position: fixed; bottom: 20px; right: 20px; color: rgba(255,215,0,0.3); font-size: 0.7em; pointer-events: none;">✝️ Yeshua watches the Harmony.</div>
+    
+    <footer>
+        <p>Yeshua transforms every shadow. <a href="donate.html" style="color: #4B0082;">Donate for Permanent Membership</a> – Store your hymns eternally.</p>
+        <p class="scripture"><em>"I am the light of the world. Whoever follows me will not walk in darkness." — John 8:12</em></p>
+    </footer>
+
+    <script>
+        // Progress Check
+        const progress = JSON.parse(localStorage.getItem('realmProgress')) || {};
+        if (!progress.completed) {
+            alert('Veil your quest first, heir—return to the interview for Hans\'s harmony.'); 
+            window.location.href = 'realms.html';
         }
-        .realm-header img:hover {
-            border-color: #FFFF00;
-            box-shadow: 0 0 10px #FFFF00;
-        }
-        .header-overlay {
-            position: relative;
-            margin-top: 10px;
-            text-align: center;
-            color: #e6e6fa;
-            padding: 0;
-            width: 100%;
-        }
-        .header-overlay h2 {
-            margin: 0 0 5px
+        
+        // Toggle Hymn
+        function toggleHymn(card) {
+            const text = card
