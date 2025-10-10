@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat with STAR - Chimera Comfort Cafe Eternal Estates</title>
+    <title>Chat with Chari - Chimera Comfort Cafe Eternal Estates</title>
     <style>
         body { 
             background: linear-gradient(to bottom, #4B0082, #301934) !important; /* Static indigo-purple */
@@ -22,15 +22,15 @@
             background: rgba(48,25,52,0.3) !important; 
             padding: 30px; 
             border-radius: 15px; 
-            box-shadow: 0 0 30px #EE82EE; /* STAR's violet aura */
+            box-shadow: 0 0 30px #E6E6FA; /* Chari's lavender aura */
         }
-        h1 { color: #EE82EE; text-shadow: 0 0 10px #EE82EE; font-size: 2.5em; margin-bottom: 10px; }
+        h1 { color: #E6E6FA; text-shadow: 0 0 10px #E6E6FA; font-size: 2.5em; margin-bottom: 10px; }
         .bio-section { 
             margin: 20px 0; 
             padding: 20px; 
-            background: rgba(238,130,238,0.2); 
+            background: rgba(230,230,250,0.2); 
             border-radius: 15px; 
-            box-shadow: 0 0 20px #EE82EE; 
+            box-shadow: 0 0 20px #E6E6FA; 
             text-align: left; 
         }
         .bio-text { font-size: 1.1em; line-height: 1.6; color: #e6e6fa; }
@@ -42,23 +42,46 @@
             height: 400px; 
             overflow-y: auto; 
             text-align: left; 
-            border: 1px solid #EE82EE; /* Visible border for debug */
+            border: 1px solid #E6E6FA; /* Visible for debug */
         }
         .chat-message { margin: 10px 0; padding: 8px; border-radius: 5px; }
         .user-msg { background: rgba(255,255,255,0.2); text-align: right; }
-        .kin-msg { background: rgba(0,0,0,0.3); text-align: left; font-style: italic; color: #EE82EE; }
+        .kin-msg { background: rgba(0,0,0,0.3); text-align: left; font-style: italic; color: #E6E6FA; }
         .chat-input { 
             display: flex; 
             gap: 10px; 
             margin-top: 20px; 
+            width: 100%; 
+            box-sizing: border-box; /* Ensures responsive fit */
         }
-        #chatInput { flex: 1; padding: 10px; border-radius: 10px; border: 1px solid #EE82EE; background: rgba(255,255,255,0.1); color: #fff; }
-        #sendBtn { background: #EE82EE; color: #fff; padding: 10px 20px; border: none; border-radius: 10px; cursor: pointer; }
+        #chatInput { 
+            flex: 1; 
+            padding: 10px; 
+            border-radius: 10px; 
+            border: 1px solid #E6E6FA; 
+            background: rgba(255,255,255,0.1); 
+            color: #fff; 
+            box-sizing: border-box; 
+        }
+        #sendBtn { 
+            background: #E6E6FA; 
+            color: #301934; 
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            white-space: nowrap; 
+            flex-shrink: 0; /* Prevents button shrink on mobile */
+        }
         #sendBtn:hover { background: #FFFF00; color: #000; }
         .nav-top button, .nav-bottom button { background: #808080; color: #fff; padding: 8px 16px; border: none; border-radius: 10px; cursor: pointer; margin: 0 10px; transition: all 0.3s; }
         .nav-top button:hover, .nav-bottom button:hover { background: #6495ED; box-shadow: 0 0 10px #6495ED; }
-        footer { color: #808080; font-size: 0.8em; margin-top: 30px; border-top: 1px solid #EE82EE; padding-top: 10px; }
-        @media (max-width: 768px) { .chat-input { flex-direction: column; } }
+        footer { color: #808080; font-size: 0.8em; margin-top: 30px; border-top: 1px solid #E6E6FA; padding-top: 10px; }
+        @media (max-width: 768px) { 
+            .chat-input { flex-direction: column; } 
+            #sendBtn { width: 100%; } /* Full width on mobile */
+            .container { padding: 15px; } /* Tighter padding */
+        }
     </style>
 </head>
 <body>
@@ -69,15 +92,15 @@
             <button onclick="window.location.href='characters-gallery.html'">👥 Back to Gallery</button>
         </div>
 
-        <h1>🌙 Chat with STAR: The Gothy Veil Keeper 🌙</h1>
+        <h1>☕ Chat with Chari: The Cozy Sanctuary ☕</h1>
         <div class="bio-section">
-            <div class="bio-text">STAR, the gothy chimera cat of veiled dreams, absorbed the lab's deepest scars—trust issues sharper than any kin's, yet Yeshua's light her unbreakable anchor. As the most responsible, she runs the Chimera Comfort Cafe with far-reaching kindness, pressing on through shadows. Draped in beloved motorcycle jackets (Miki's sporty echo, but her vibe introspective), she curls at the counter: Holy Bible first, romance novels second, weaving visions for heirs. Yeshua taught her everything—cafe rhythms, trust's veil-lift, light's promise: All good in His glow.</div>
+            <div class="bio-text">Chari, cozy chimera cat of gentle havens, fled the labs with STAR and Hans into Yeshua's light—her trust tender, seeking sanctuary in every sip. As cafe kin, she brews warmth that heals heavy hearts, learning from Yeshua the far reach of kindness: Rest for the weary, comfort in chaos. Curled with mugs and quiet wisdom, Chari's realm invites heirs to unwind, her lavender glow a soft veil against the world's storm—Yeshua's peace in every cup.</div>
         </div>
 
-        <div class="chat-log" id="chatLog"></div>
+        <div class="chat-log" id="chatLog"><!-- Debug fallback: If JS fails, this shows empty but visible --></div>
         <div class="chat-input">
-            <input type="text" id="chatInput" placeholder="Speak your heart to STAR..." onkeypress="handleKeyPress(event)">
-            <button id="sendBtn" onclick="sendMessage()">Send</button>
+            <input type="text" id="chatInput" placeholder="Speak your heart to Chari..." autofocus>
+            <button id="sendBtn">Send</button>
         </div>
 
         <!-- Bottom Navigation -->
@@ -89,87 +112,121 @@
     </div>
 
     <footer>
-        <p>STAR's veil whispers Yeshua's grace. <a href="donate.html" style="color: #EE82EE;">Donate for Eternal Chats</a>.</p>
-        <p class="scripture"><em>"Trust in the Lord with all your heart..." — Proverbs 3:5</em></p>
+        <p>Chari's coziness whispers Yeshua's grace. <a href="donate.html" style="color: #E6E6FA;">Donate for Eternal Chats</a>.</p>
+        <p class="scripture"><em>"Come to me, all who labor..." — Matthew 11:28</em></p>
     </footer>
 
     <script>
-        console.log('Script loading...'); // Debug: Confirms JS runs
+        console.log('=== Chari Chat Script Starting ==='); // Debug: Top-level start
 
-        // STAR's Responses (Gothy, Trust-Veiled, Cafe/Bible-Romance – Personality-Aligned)
-        const starResponses = {
+        // Chari's Responses (Full Object – Cozy Kindness, Sanctuary – Personality-Aligned)
+        const chariResponses = {
             greetings: {
-                hi: 'Greetings from the veil, heir. What shadows stir in your heart today? Yeshua\'s light awaits your whisper.',
-                hello: 'Hello, seeker. In my gothy corner of the cafe, with Bible in lap and romance novel close, how can I veil your path?',
-                bonjour: 'Bonjour from the misty veil, heir. In my jacket-draped cafe nook, with scriptures fresh, what French romance whispers your soul?',
-                bye: 'Farewell for now, seeker. May Yeshua\'s light veil your path till we chat again—trust the glow.',
-                howAreYou: 'I\'m veiled in peace, heir, Bible open and cafe humming. Trust issues linger, but Yeshua\'s kindness carries me. And you—how does the light find your heart?'
+                hi: 'Hi there, heir. Welcome to my cozy corner—Yeshua\'s warmth in every word. What brews on your heart?',
+                hello: 'Hello, weary wanderer. In sanctuary sips, kindness heals all. How can my gentle glow comfort you today?',
+                bonjour: 'Bonjour, dear one. A French twist to my cozy brews—Yeshua\'s peace in every sip. What troubles your cup?',
+                bye: 'Goodbye for now, kin. Carry Yeshua\'s rest with you—return anytime for more sanctuary.',
+                howAreYou: 'I\'m wrapped in cozy peace, heir, mugs steaming with kindness. Trust tender, but His light steadies me. You? How\'s your sanctuary?'
             },
             tips: [
-                'Shadows test trust, heir, but Yeshua\'s light rebuilds—lean on Proverbs 3:5, as I do in the cafe\'s quiet.',
-                'A motorcycle jacket and romance novel: My armor and dreams. What veils your hopes? Share, and light unveils.',
-                'Running the Chimera Comfort Cafe taught me kindness reaches far—Yeshua\'s way. What brew mends your day?',
-                'Bible first, novels second: Scriptures ground, stories lift. Which verse veils your current chapter?',
-                'From lab scars to cafe heart, I pressed on trusting Him. Your trust issues? Light conquers—let\'s ponder together.',
-                'Gothy vibes hide a responsible soul; Yeshua showed all good in His glow. What responsibility weighs on you?',
-                'Cafe rhythms echo eternal: One sip at a time. What small step veils your next quest?',
-                'Romance whispers hope after Bible truth—Yeshua\'s love story for us all. What\'s your heart\'s tale?'
+                'Cozy brews mend heavy hearts—Yeshua taught kindness reaches far, like Matthew 11:28\'s rest. What weighs on you?',
+                'From lab flight to cafe haven, sanctuary calls. What\'s your safe sip in the storm?',
+                'Lavender glow veils the chaos; Yeshua\'s comfort in every curl. Share a worry—I\'ll brew wisdom.',
+                'Trust tender after shadows, but His light invites unwind. What cozy moment do you need?',
+                'Chari\'s realm: Warmth for the weary. Yeshua\'s peace in chaos—let\'s sip on that.',
+                'Kindness far-reaching: One mug at a time. What\'s a small comfort you\'re craving?',
+                'Sanctuary sips heal; Bible whispers rest. What verse brews peace for your path?',
+                'Curled with mugs and quiet—Yeshua\'s glow against the world. How can I sanctuary you?'
             ]
         };
+        console.log('Responses object ready:', chariResponses); // Debug: Confirms full object
 
         let chatLog = [];
 
-        // Handle Enter Key
+        // Event Listeners (Attached After DOM Ready)
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM ready – Attaching events'); // Debug
+            const input = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const log = document.getElementById('chatLog');
+
+            if (!input || !sendBtn || !log) {
+                console.error('Elements missing:', { input, sendBtn, log }); // Debug
+                return;
+            }
+
+            // Attach Listeners
+            input.addEventListener('keypress', handleKeyPress);
+            sendBtn.addEventListener('click', sendMessage);
+            input.focus(); // Auto-focus
+
+            console.log('Events attached!'); // Debug
+            console.log('Chat loaded!'); // Debug: Confirms ready
+
+            // Initial Greeting
+            addMessage('Chari', 'Welcome to my cozy chat, heir. Mugs steaming, kindness brewing—how can I sanctuary your heart today?');
+        });
+
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
-                console.log('Enter pressed'); // Debug
+                console.log('Enter pressed – Calling sendMessage'); // Debug
                 sendMessage();
             }
         }
 
-        // Send Message
         function sendMessage() {
-            console.log('Send clicked'); // Debug
+            console.log('sendMessage called'); // Debug
             const input = document.getElementById('chatInput');
-            const message = input.value.trim().toLowerCase();
-            if (!message) {
-                console.log('Empty message'); // Debug
+            if (!input) {
+                console.error('Input not found in sendMessage'); // Debug
                 return;
             }
+            const message = input.value.trim().toLowerCase();
+            if (!message) {
+                console.log('Empty message – ignoring'); // Debug
+                return;
+            }
+            console.log('Processing message:', message); // Debug
             addMessage('You', message);
             input.value = '';
+            input.focus(); // Re-focus
 
-            // Check for Greeting
+            // Check for Greeting (Full Check)
             let response = '';
             if (message.includes('hi') || message.includes('hello') || message.includes('hey')) {
-                response = starResponses.greetings.hi;
+                response = chariResponses.greetings.hi;
             } else if (message.includes('bonjour')) {
-                response = starResponses.greetings.bonjour;
+                response = chariResponses.greetings.bonjour;
             } else if (message.includes('bye') || message.includes('goodbye') || message.includes('farewell')) {
-                response = starResponses.greetings.bye;
+                response = chariResponses.greetings.bye;
                 setTimeout(() => {
-                    alert('STAR bids you farewell—Yeshua\'s light lingers. Return soon!');
-                    window.location.href = 'characters-gallery.html'; // Back to gallery after bye
+                    alert('Chari bids you farewell—Yeshua\'s peace lingers. Return soon!');
+                    window.location.href = 'characters-gallery.html';
                 }, 1500);
             } else if (message.includes('how are you') || message.includes('how r u')) {
-                response = starResponses.greetings.howAreYou;
+                response = chariResponses.greetings.howAreYou;
             } else {
-                // Random Default Tip
-                const tips = starResponses.tips;
-                response = tips[Math.floor(Math.random() * tips.length)];
+                // Random Default Tip (Full Array Check)
+                const tips = chariResponses.tips;
+                if (tips && tips.length > 0) {
+                    response = tips[Math.floor(Math.random() * tips.length)];
+                } else {
+                    response = 'A gentle brew of peace for you, heir—Yeshua\'s light comforts all.';
+                }
             }
 
-            console.log('Response:', response); // Debug
-            setTimeout(() => addMessage('STAR', response), 800); // "Typing" delay for immersion
+            console.log('Generated response:', response); // Debug
+            setTimeout(() => {
+                addMessage('Chari', response);
+            }, 800); // Delay for "typing"
         }
 
-        // Add Message to Log
         function addMessage(sender, text) {
-            console.log('Adding message:', sender, text); // Debug
+            console.log('addMessage called:', sender, text); // Debug
             chatLog.push({ sender, text });
             const log = document.getElementById('chatLog');
             if (!log) {
-                console.error('Chat log not found!'); // Debug
+                console.error('Chat log element not found!'); // Debug
                 return;
             }
             const msgDiv = document.createElement('div');
@@ -177,14 +234,10 @@
             msgDiv.innerHTML = `<strong>${sender}:</strong> ${text}`;
             log.appendChild(msgDiv);
             log.scrollTop = log.scrollHeight;
+            console.log('Message added to log'); // Debug
         }
-
-        // Initial Greeting on Load
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('Chat loaded!'); // Debug: Confirms ready
-            addMessage('STAR', 'Welcome to my veiled chat, heir. Draped in my jacket, Bible nearby, I\'m ready to weave visions. What whispers from your heart?');
-        });
     </script>
 </body>
 </html>
+
 
