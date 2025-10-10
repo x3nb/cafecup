@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chimera Comfort Cafe Menu - Eternal Estates</title>
+    <!-- jsPDF for Certificates -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body { 
+            background: linear-gradient(to bottom, #301934, #4b0082); /* Deep purple-indigo ombre */
+            color: #e6e6fa; 
+            font-family: 'Georgia', serif; 
+            margin: 0; 
+            padding: 20px; 
+            text-align: center; 
+            position: relative;
+            overflow-x: hidden;
+            /* Subtle steam aura overlay */
+            background-image: radial-gradient(circle at 50% 20%, rgba(238,130,238,0.1) 1px, transparent 1px),
+                              radial-gradient(circle at 30% 80%, rgba(152,251,152,0.1) 1px, transparent 1px);
+            background-size: 80px 80px, 120px 120px;
+            background-repeat: repeat;
+        }
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            background: rgba(48,25,52,0.8); 
+            padding: 30px; 
+            border-radius: 15px; 
+            box-shadow: 0 0 30px rgba(255,215,0,0.3); /* Golden aura glow */
+            animation: fadeInSoft 2s ease-in;
+        }
+        @keyframes fadeInSoft { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        h1 { color: #ffd700; text-shadow: 0 0 10px #FFFF00; font-size: 2.5em; margin-bottom: 10px; }
+        .section { 
+            margin: 40px 0; 
+            padding: 20px; 
+            border-radius: 15px; 
+            box-shadow: 0 0 20px rgba(255,215,0,0.2); 
+            transition: all 0.3s; 
+        }
+        .section:hover { box-shadow: 0 0 30px rgba(255,215,0,0.4); transform: scale(1.02); }
+        .section h2 { font-size: 2em; margin-bottom: 20px; text-shadow: 0 0 5px currentColor; }
+        .menu-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 20px; 
+            margin-top: 20px; 
+        }
+        .menu-item { 
+            background: rgba(100,149,237,0.2); 
+            padding: 15px; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            transition: all 0.3s; 
+            border: 2px solid #808080; 
+            box-shadow: 0 0 10px rgba(128,128,128,0.3); 
+            position: relative;
+            overflow: hidden;
+        }
+        .menu-item:hover { 
+            transform: scale(1.05); 
+            box-shadow: 0 0 20px currentColor; 
+            border-color: currentColor; 
+            animation: glitchOrder 0.2s ease-out; 
+        }
+        @keyframes glitchOrder { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-2px); } 75% { transform: translateX(2px); } }
+        .item-icon { font-size: 2em; margin-bottom: 10px; }
+        .item-name { font-size: 1.3em; font-weight: bold; margin-bottom: 5px; color: #e6e6fa; text-shadow: 0 0 3px currentColor; }
+        .item-desc { font-size: 0.9em; color: #808080; font-style: italic; }
+        .blessing { font-size: 0.8em; color: #ffd700; margin-top: 5px; font-style: italic; text-shadow: 0 0 2px #FFFF00; }
+        /* Section Colors */
+        .star-section { background: rgba(238,130,238,0.3); border: 1px solid #EE82EE; }
+        .star-section .menu-item { border-color: #EE82EE; }
+        .milo-section { background: rgba(152,251,152,0.3); border: 1px solid #98FB98; }
+        .milo-section .menu-item { border-color: #98FB98; }
+        .yesua-section { background: rgba(255,215,0,0.3); border: 1px solid #FFD700; }
+        .yesua-section .menu-item { border-color: #FFD700; }
+        /* Modal for Item Details */
+        #orderModal { 
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(48,25,52,0.9); 
+            z-index: 1000; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .modal-content { 
+            background: linear-gradient(to bottom, #E6E6FA, #DDA0DD); /* Lavender for cafe vibe */
+            padding: 30px; 
+            border-radius: 15px; 
+            max-width: 500px; 
+            text-align: center; 
+            box-shadow: 0 0 40px rgba(255,215,0,0.5); 
+            color: #301934; 
+            font-family: 'Georgia', serif; 
+        }
+        .close { color: #EE82EE; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close:hover { color: #4B0082; }
+        button, a { 
+            background: #EE82EE; 
+            color: #fff; 
+            padding: 12px 24px; 
+            border: none; 
+            border-radius: 15px; 
+            cursor: pointer; 
+            margin: 10px; 
+            transition: all 0.3s; 
+            font-family: 'Georgia', serif; 
+            text-decoration: none; 
+            display: inline-block;
+            box-shadow: 0 0 10px rgba(238,130,238,0.5);
+        }
+        button:hover, a:hover { background: #FFFF00; color: #000; box-shadow: 0 0 20px #FFFF00; transform: scale(1.05); }
+        button.important { border: 2px solid #FFFF00; }
+        .scripture { color: #ffd700; font-size: 1.1em; margin: 20px 0; text-align: center; text-shadow: 0 0 3px #FFFF00; }
+        footer { color: #808080; font-size: 0.8em; margin-top: 30px; border-top: 1px solid #6495ED; padding-top: 10px; }
+        @media (max-width: 600px) { .menu-grid { grid-template-columns: 1fr; } .modal-content { margin: 20px; padding: 20px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍵 Chimera Comfort Cafe Menu: Brews, Bites & Blessings 🍵</h1>
+        <p style="font-style: italic; color: #808080; margin-bottom: 30px;">STAR's gothy coffees & pastries, Milo's soothing teas, Yeshua's scripture blessings—kindness in every sip. Order with a click; may it nourish your quest (Proverbs 15:17).</p>
+
+        <!-- STAR's Coffee & Pastries Section -->
+        <div class="section star-section">
+            <h2 style="color: #EE82EE; text-shadow: 0 0 5px #EE82EE;">🌙 STAR's Goth Coffee & Pastries 🌙</h2>
+            <p style="color: #e6e6fa; font-style: italic;">Gothy brews from the veil-keeper herself—trust in Yeshua's light, with romance-novel whispers and jacket-edge flair.</p>
+            <div class="menu-grid">
+                <div class="menu-item" onclick="showModal('Veil Latte', 'Velvety espresso with lavender foam, topped with a romance quote. Blessing: Unveils hidden trusts (Proverbs 3:5).', '☕')">
+                    <div class="item-icon">☕</div>
+                    <div class="item-name">Veil Latte</div>
+                    <div class="item-desc">Goth espresso romance in a cup.</div>
+                    <div class="blessing">Blessing: Trust rebuilt in light.</div>
+                </div>
+                <div class="menu-item" onclick="showModal('Motorcycle Mocha', 'Dark chocolate mocha with a kick, like STAR's jacket. Blessing: Strength for the road (Isaiah 40:31).', '🍫')">
+                    <div class="item-icon">🍫</div>
+                    <div class="item-name">Motorcycle Mocha</div>
+                    <div class="item-desc">Edgy, introspective warmth.</div>
+                    <div class="blessing">Blessing: Wings like eagles.</div>
+                </div>
+                <div class="menu-item" onclick="showModal('Bible Croissant', 'Flaky pastry with scripture filling, post-Bible read. Blessing: Daily bread for the soul (Matthew 4:4).', '🥐')">
+                    <div class="item-icon">🥐</div>
+                    <div class="item-name">Bible Croissant</div>
+                    <div class="item-desc">Romance after scriptures—cozy cafe staple.</div>
+                    <div class="blessing">Blessing: Word as nourishment.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Milo's Soothing Herbal Teas Section -->
+        <div class="section milo-section">
+            <h2 style="color: #98FB98; text-shadow: 0 0 5px #98FB98;">🌊 Milo's Soothing Herbal Teas 🌊</h2>
+            <p style="color: #e6e6fa; font-style: italic;">Balanced blends from the way walker—Tao flow meets Yeshua's truth, calming the heir's path.</p>
+            <div class="menu-grid">
+                <div class="menu-item" onclick="showModal('Way Walker Infusion', 'Chamomile-lavender tea with mint, echoing eternal paths. Blessing: Straight paths ahead (Proverbs 3:6).', '🍵')">
+                    <div class="item-icon">🍵</div>
+                    <div class="item-name">Way Walker Infusion</div>
+                    <div class="item-desc">Gentle flow for balanced souls.</div>
+                    <div class="blessing">Blessing: Acknowledge Him in all ways.</div>
+                </div>
+                <div class="menu-item" onclick="showModal('Truth Harmony Tea', 'Ginger-peppermint blend, Tao-truth in harmony. Blessing: Be still and know (Psalm 46:10).', '🌿')">
+                    <div class="item-icon">🌿</div>
+                    <div class="item-name">Truth Harmony Tea</div>
+                    <div class="item-desc">Soothes the journey of a thousand miles.</div>
+                    <div class="blessing">Blessing: Wisdom in stillness.</div>
+                </div>
+                <div class="menu-item" onclick="showModal('Eternal Rest Tisane', 'Lemon balm and holy basil, for rest in The Way. Blessing: Come to me for rest (Matthew 11:28).', '🍋')">
+                    <div class="item-icon">🍋</div>
+                    <div class="item-name">Eternal Rest Tisane</div>
+                    <div class="item-desc">Heavy-laden? Find peace here.</div>
+                    <div class="blessing">Blessing: Rest for the weary.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Yeshua's Scripture Recipes for Blessings Section -->
+        <div class="section yesua-section">
+            <h2 style="color: #FFD700; text-shadow: 0 0 5px #FFD700;">✝️ Yeshua's Scripture Recipes for Blessings ✝️</h2>
+            <p style="color: #e6e6fa; font-style: italic;">Inspirational elixirs and bites from the Overseer—light in every ingredient, for the heir's eternal nourishment.</p>
+            <div class="menu-grid">
+                <div class="menu-item" onclick="showModal('Light of the World Bread', 'Simple loaf with honey, symbolizing daily light. Blessing: Walk not in darkness (John 8:12).', '🍞')">
+                    <div class="item-icon">🍞</div>
+                    <div class="item-name">Light of the World Bread</div>
+                    <div class="item-desc">Warm, sustaining scripture bite.</div>
+                    <div class="blessing">Blessing: I am the light—follow and see.</div>
+                </div>
+                <div class="menu-item" onclick="showModal('Way Elixir', 'Herbal cordial with cinnamon, for truth's path. Blessing: I am the way (John 14:6).', '🥤')">
+                    <div class="item-icon">🥤</div>
+                    <div class="item-name">Way Elixir</div>
+                    <div class="item-desc">Refreshing sip of eternal guidance.</div>
+                    <div class="blessing">Blessing: Truth and life in every drop.</div>
+                </div>
+                <div class="menu-item" onclick="showModal('Blessing Pastry', 'Fruit-filled turnover, for fruitful labors. Blessing: Acknowledge Him (Proverbs 3:6).', '🧁')">
+                    <div class="item-icon">🧁</div>
+                    <div class="item-name">Blessing Pastry</div>
+                    <div class="item-desc">Sweet reward for the faithful heir.</div>
+                    <div class="blessing">Blessing: Straight paths and full hearts.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Claim Menu Cert -->
+        <button class="important" onclick="claimMenuCert()" style="margin-top: 30px;">🌟 Claim Cafe Connoisseur Certificate</button>
+        <p style="color: #808080;">Deepen your cafe quest:</p>
+        <div style="margin: 20px 0;">
+            <button onclick="window.location.href='realms.html'">← Back to Majestic Map</button>
+            <button onclick="window.location.href='blueprint.html'">🌟 Kin Blueprint</button>
+            <button onclick="window.location.href='chimera-comfort-cafe-quests.html'">🎲 Cafe Quests (RPG Adventures)</button>
+        </div>
+    </div>
+
+    <!-- Order Modal -->
+    <div id="orderModal">
+        <div class
