@@ -92,7 +92,7 @@
         <p class="scripture"><em>"Come to me, all who labor..." — Matthew 11:28</em></p>
     </footer>
 
-    <script>
+      <script>
         // Chari's Responses (Cozy Kindness, Sanctuary – Personality-Aligned)
         const chariResponses = {
             greetings: {
@@ -103,4 +103,70 @@
                 howAreYou: 'I\'m wrapped in cozy peace, heir, mugs steaming with kindness. Trust tender, but His light steadies me. You? How's your sanctuary?'
             },
             tips: [
-                'Cozy brews mend heavy hearts—Yeshua taught kindness reaches far, like Matthew 11:
+                'Cozy brews mend heavy hearts—Yeshua taught kindness reaches far, like Matthew 11:28's rest. What weighs on you?',
+                'From lab flight to cafe haven, sanctuary calls. What's your safe sip in the storm?',
+                'Lavender glow veils the chaos; Yeshua's comfort in every curl. Share a worry—I'll brew wisdom.',
+                'Trust tender after shadows, but His light invites unwind. What cozy moment do you need?',
+                'Chari's realm: Warmth for the weary. Yeshua's peace in chaos—let's sip on that.',
+                'Kindness far-reaching: One mug at a time. What's a small comfort you're craving?',
+                'Sanctuary sips heal; Bible whispers rest. What verse brews peace for your path?',
+                'Curled with mugs and quiet—Yeshua's glow against the world. How can I sanctuary you?'
+            ]
+        };
+
+        let chatLog = [];
+
+        // Handle Enter Key
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') sendMessage();
+        }
+
+        // Send Message
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim().toLowerCase();
+            if (!message) return;
+            addMessage('You', message);
+            input.value = '';
+
+            // Check for Greeting
+            let response = '';
+            if (message.includes('hi') || message.includes('hello') || message.includes('hey')) {
+                response = chariResponses.greetings.hi;
+            } else if (message.includes('bonjour')) {
+                response = chariResponses.greetings.bonjour;
+            } else if (message.includes('bye') || message.includes('goodbye') || message.includes('farewell')) {
+                response = chariResponses.greetings.bye;
+                setTimeout(() => {
+                    alert('Chari bids you farewell—Yeshua\'s peace lingers. Return soon!');
+                    window.location.href = 'characters-gallery.html';
+                }, 1500);
+            } else if (message.includes('how are you') || message.includes('how r u')) {
+                response = chariResponses.greetings.howAreYou;
+            } else {
+                // Random Default Tip
+                const tips = chariResponses.tips;
+                response = tips[Math.floor(Math.random() * tips.length)];
+            }
+
+            setTimeout(() => addMessage('Chari', response), 800);
+        }
+
+        // Add Message to Log
+        function addMessage(sender, text) {
+            chatLog.push({ sender, text });
+            const log = document.getElementById('chatLog');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = sender === 'You' ? 'chat-message user-msg' : 'chat-message kin-msg';
+            msgDiv.innerHTML = `<strong>${sender}:</strong> ${text}`;
+            log.appendChild(msgDiv);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        // Initial Greeting on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            addMessage('Chari', 'Welcome to my cozy chat, heir. Mugs steaming, kindness brewing—how can I sanctuary your heart today?');
+        });
+    </script>
+</body>
+</html>
