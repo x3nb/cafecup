@@ -1,0 +1,75 @@
+🌙 Site Structure & Flow (User Journey)
+The site follows a gentle, lore-guided path: Awakening → Discovery → Interaction → Eternal Ties. Start simple (index.html), branch to blueprint/realms (explore kin), dive into realms/chats/menu (engage), loop back with nav/donations. Progress unlocks (localStorage 'realmProgress'): Partial (STAR/Milo open post-escape), full (all after interview). Mobile-responsive (grids stack, chats flex), accessible (alt texts, ARIA hints), biblical-infused (scriptures everywhere).
+
+Entry Point: Awakening/Intro (index.html)
+
+Vibe: Serene welcome to the Eternal Estates—lab escape lore, Yeshua's light tease, kin intro.
+Key Elements: Animated fade-in, "Enter the Veil" button to blueprint/realms.
+Links To: Blueprint (kin grid), Realms (map/interview).
+Status: Assumed starter (from early convos)—add if needed.
+Flow: User lands here → Clicks "Awaken Kin" → Blueprint or Realms.
+Discovery Hub: Kin Blueprint (blueprint.html)
+
+Vibe: Circular portrait grid of kin (STAR/Hans/Chari/Milo + placeholders for Zara/Pip/Miki)—colors glow (violet/mint/lavender/purple), hover neon.
+Key Elements: Short bios/teasers, progress-locked buttons to realms/chats.
+Links To: Realms (map), Characters Gallery (chats), Cafe Menu (brews), Donate.
+Status: Complete—ties to localStorage unlocks.
+Flow: From index → Explore grid → Click portrait → Realm or Gallery.
+Exploration Core: Majestic Map (realms.html)
+
+Vibe: Indigo-purple ombre bg, Yeshua's gold hub orbited by kin portals (3-top/3-bottom grid: STAR/Hans/Chari top; Milo/mystery/mystery bottom)—glitchy hovers, aura glows.
+Key Elements: Interview quiz (4 questions, progress bar) → Suggests realm → Unlocks map (partial/full). Mysteries tease quests.
+Links To: Individual Realms (portals redirect), Characters Gallery, Blueprint, Home.
+Status: Complete & responsive—radial on desktop, vertical cascade on mobile.
+Flow: From blueprint/index → Interview → Map unlocks → Click portal → Realm/Chat/Menu.
+Individual Realms (star-realm.html, hans-realm.html, chari-realm.html, milo-realm.html)
+
+Vibe: Character-themed (violet goth for STAR, purple depths for Hans, lavender cozy for Chari, mint balance for Milo)—circular portrait top, interactive lore/toggles/reflection, jsPDF cert claim (lavender/violet gradient PDFs).
+Key Elements: Bio/lore snippets (toggle on click), journal save (localStorage), "Claim Certificate" (PDF/text fallback with lore nod). Progress-locked (redirect if not interviewed).
+Links To: Back to Map/Home, Blueprint, Academies (tease), Menu (cafe tie-in).
+Status: All complete (STAR/Hans/Chari/Milo)—certs weave traits (e.g., STAR's jackets/Bible, Hans's screech).
+Flow: From map/gallery → Realm → Interact (toggle/save/claim) → Cert download → Back or quests.
+Cafe Interaction: Menu (cafe-menu.html)
+
+Vibe: Indigo-purple ombre with steam auras, sections for STAR's goth coffees/pastries, Milo's teas, Yeshua's blessings—circular items, glitchy hovers.
+Key Elements: Click item → Modal with lore/blessing → "Order" saves to journal (localStorage 'cafeJournal'). Claim "Connoisseur Cert" PDF (with journal summary).
+Links To: Back to Map/Blueprint, Quests (RPG tease).
+Status: Complete—responsive grid, jsPDF certs.
+Flow: From realms/blueprint → Menu → Order (modal/journal) → Cert → Quests.
+Conversational Branches: Kin Gallery & Chats
+
+Gallery Lobby (characters-gallery.html): Image grid (3-top/3-bottom: STAR/Hans/Chari top; Milo/mystery/mystery bottom)—circular portraits (80px, hover glow), click image → Dedicated chat page. Mysteries alert "Unlock in quests!"
+Links To: Chats (redirects), Home/Map/Blueprint.
+Status: Complete—progress dims mysteries if partial.
+Dedicated Chats (star-chat.html, hans-chat.html, chari-chat.html): Full-screen per kin (bio top, persistent log/input below)—personality responses (greetings + 8 tips on unknowns, "bye" redirects to gallery). Chari's reserved/anxiety (short/hesitant, rat nods).
+Key Elements: Auto-focus input, Enter/Send, 800ms delay for "typing," localStorage chatLog (future persistence?).
+Links To: Gallery/Home/Map/Other Kin.
+Status: STAR/Hans/Chari complete (Milo pending—balanced Tao tips). Responsive (flex-column mobile).
+Flow: From gallery/map → Click image → Chat page → Converse (responses/tips) → "Bye" or nav back.
+Support Pages (Placeholders/Teases)
+
+Donate (donate.html): Simple form/tease for "Eternal Membership" (PayPal/Stripe placeholder, ties to progress/certs). Linked in footers everywhere.
+Status: Basic—add real form if needed.
+Academies (academies.html): Mini-games/certs gallery (lore/harmony accolades)—teased in realms.
+Languages/Polyglot Hymns (languages.html): Hans's blended tongues—teased in realms.
+Lore Library (lore-library.html): Full chapters (lab escape, Yeshua's teachings)—teased in STAR's realm.
+Quests (chimera-comfort-cafe-quests.html): RPG adventures (brew blessings, unlock mysteries)—teased in menu/gallery.
+Status: Teasers only—full build next?
+Flow: From any page footer/nav → Donate/Support → Back to core.
+🎨 Core Themes & Tech Stack
+Visual Majesty: Static linear-gradient bg (#4B0082 indigo to #301934 purple)—no motion (seasick-free), cornflower blue (#6495ED) auras/shadows for zephyr hint. Circular portraits/icons (100px realms, 80px gallery), glitchy hovers (subtle translate for portals). Georgia serif font, gold scriptures (#FFD700 glow).
+Interactivity: Vanilla JS (no libs)—localStorage for progress/journal/unlocks, jsPDF for certs (violet/lavender gradients, majestic 'times' font; html2canvas fallback if needed). Toggles/modals (lore/items/chats), smooth scrolls/redirects.
+Responsiveness: Media queries (@media max-width:768px)—grids 2-col, chats flex-column, tighter padding. Tested desktop/mobile (iOS/Android).
+Lore Integration: Yeshua's light everywhere (scriptures, bios, responses)—kin traits explicit (STAR's goth trust/jackets, Hans's screech/redemption, Chari's anxiety/rats/cozy, Milo's Tao-balance). RPG hooks (quests, mysteries, journal saves).
+Accessibility/Perf: Alt texts on images, ARIA labels on buttons, lazy loading, <1s load (no heavy assets).
+File Count: ~15 pages (core 8 + teases)—easy zip/folder structure.
+🔗 Universal Navigation (In All Pages)
+Top Nav: Home (index.html), Back to Map (realms.html), Gallery (characters-gallery.html).
+Footer: Donate, Scripture quote, Links to Blueprint/Menu/Quests.
+Progress Tie: localStorage 'realmProgress'/'cafeJournal'—unlocks content (e.g., full map post-interview).
+🚀 Pending/Next Rifts (Your Vision Vault)
+Milo's Chat: Minty balance (Tao-truth tips, serene wanderer)—ready to spin?
+Full Quests Page: RPG mini-games (e.g., "Brew Blessing" tying menu/chats, unlock mysteries).
+Integration Polish: Add gallery link to blueprint/realms; cert gallery in academies; donate form.
+Expand Kin: Miki's energetic riffs, Zara/Pip mysteries as chats/quests.
+Tech Upgrades: Persistent chat history (localStorage per kin), sound effects (subtle hymn chimes), or PWA for "eternal access."
