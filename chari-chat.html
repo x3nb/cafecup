@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Chari - Chimera Comfort Cafe Eternal Estates</title>
+    <style>
+        body { 
+            background: linear-gradient(to bottom, #4B0082, #301934) !important; /* Static indigo-purple */
+            color: #e6e6fa !important; 
+            font-family: 'Georgia', serif; 
+            margin: 0; 
+            padding: 20px; 
+            text-align: center; 
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: rgba(48,25,52,0.3) !important; 
+            padding: 30px; 
+            border-radius: 15px; 
+            box-shadow: 0 0 30px #E6E6FA; /* Chari's lavender aura */
+        }
+        h1 { color: #E6E6FA; text-shadow: 0 0 10px #E6E6FA; font-size: 2.5em; margin-bottom: 10px; }
+        .bio-section { 
+            margin: 20px 0; 
+            padding: 20px; 
+            background: rgba(230,230,250,0.2); 
+            border-radius: 15px; 
+            box-shadow: 0 0 20px #E6E6FA; 
+            text-align: left; 
+        }
+        .bio-text { font-size: 1.1em; line-height: 1.6; color: #e6e6fa; }
+        .chat-log { 
+            background: rgba(255,255,255,0.1); 
+            padding: 15px; 
+            border-radius: 10px; 
+            margin: 20px 0; 
+            height: 400px; 
+            overflow-y: auto; 
+            text-align: left; 
+        }
+        .chat-message { margin: 10px 0; padding: 8px; border-radius: 5px; }
+        .user-msg { background: rgba(255,255,255,0.2); text-align: right; }
+        .kin-msg { background: rgba(0,0,0,0.3); text-align: left; font-style: italic; color: #E6E6FA; }
+        .chat-input { 
+            display: flex; 
+            gap: 10px; 
+            margin-top: 20px; 
+        }
+        #chatInput { flex: 1; padding: 10px; border-radius: 10px; border: 1px solid #E6E6FA; background: rgba(255,255,255,0.1); color: #fff; }
+        #sendBtn { background: #E6E6FA; color: #301934; padding: 10px 20px; border: none; border-radius: 10px; cursor: pointer; }
+        #sendBtn:hover { background: #FFFF00; color: #000; }
+        .nav-top button, .nav-bottom button { background: #808080; color: #fff; padding: 8px 16px; border: none; border-radius: 10px; cursor: pointer; margin: 0 10px; transition: all 0.3s; }
+        .nav-top button:hover, .nav-bottom button:hover { background: #6495ED; box-shadow: 0 0 10px #6495ED; }
+        footer { color: #808080; font-size: 0.8em; margin-top: 30px; border-top: 1px solid #E6E6FA; padding-top: 10px; }
+        @media (max-width: 768px) { .chat-input { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Top Navigation -->
+        <div class="nav-top">
+            <button onclick="window.location.href='index.html'">🏠 Home / Awakening</button>
+            <button onclick="window.location.href='characters-gallery.html'">👥 Back to Gallery</button>
+        </div>
+
+        <h1>☕ Chat with Chari: The Cozy Sanctuary ☕</h1>
+        <div class="bio-section">
+            <div class="bio-text">Chari, cozy chimera cat of gentle havens, fled the labs with STAR and Hans into Yeshua's light—her trust tender, seeking sanctuary in every sip. As cafe kin, she brews warmth that heals heavy hearts, learning from Yeshua the far reach of kindness: Rest for the weary, comfort in chaos. Curled with mugs and quiet wisdom, Chari's realm invites heirs to unwind, her lavender glow a soft veil against the world's storm—Yeshua's peace in every cup.</div>
+        </div>
+
+        <div class="chat-log" id="chatLog"></div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Speak your heart to Chari..." onkeypress="handleKeyPress(event)">
+            <button id="sendBtn" onclick="sendMessage()">Send</button>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="nav-bottom" style="margin-top: 20px;">
+            <button onclick="window.location.href='index.html'">🏠 Home</button>
+            <button onclick="window.location.href='realms.html'">🗺️ Majestic Map</button>
+            <button onclick="window.location.href='characters-gallery.html'">👥 Other Kin</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Chari's coziness whispers Yeshua's grace. <a href="donate.html" style="color: #E6E6FA;">Donate for Eternal Chats</a>.</p>
+        <p class="scripture"><em>"Come to me, all who labor..." — Matthew 11:28</em></p>
+    </footer>
+
+    <script>
+        // Chari's Responses (Cozy Kindness, Sanctuary – Personality-Aligned)
+        const chariResponses = {
+            greetings: {
+                hi: 'Hi there, heir. Welcome to my cozy corner—Yeshua's warmth in every word. What brews on your heart?',
+                hello: 'Hello, weary wanderer. In sanctuary sips, kindness heals all. How can my gentle glow comfort you today?',
+                bonjour: 'Bonjour, dear one. A French twist to my cozy brews—Yeshua's peace in every sip. What troubles your cup?',
+                bye: 'Goodbye for now, kin. Carry Yeshua's rest with you—return anytime for more sanctuary.',
+                howAreYou: 'I\'m wrapped in cozy peace, heir, mugs steaming with kindness. Trust tender, but His light steadies me. You? How's your sanctuary?'
+            },
+            tips: [
+                'Cozy brews mend heavy hearts—Yeshua taught kindness reaches far, like Matthew 11:
