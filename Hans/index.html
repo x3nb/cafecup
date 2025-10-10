@@ -79,7 +79,7 @@
       
         @media (max-width: 600px) {
             .realm-header
-                img { width: 80px; height: 80px; }
+             img { width: 80px; height: 80px; }
             .header-overlay h2 { font-size: 1.2em; }
             .header-tagline { font-size: 0.7em; }
         }
@@ -108,7 +108,7 @@
         .hymn-text { font-style: italic; line-height: 1.6; margin-bottom: 10px; }
         .hymn-source { font-size: 0.9em; color: #ffd700; }
         .echo { background: rgba(255,215,0
-                                 ,0.1); padding: 10px; border-radius: 5px; margin: 20px; color: #e6e6fa; }
+       ,0.1); padding: 10px; border-radius: 5px; margin: 20px; color: #e6e6fa; }
         button, a { 
             background: #4B0082; /* Dark purple buttons */
             color: #fff; 
@@ -312,26 +312,4 @@
 
 Heir of the Eternal Estates,
 You have echoed Hans's Harmony Realm.
-From lab shadows and wretched screech to Yeshua's light,
-Your hymns align the kin in profound harmony.
-
-Your Harmony Echo: ${harmony.substring(0, 100) + (harmony.length > 100 ? '...' : '')}
-
-Signed: Hans & The Kin
-Date: ${new Date().toLocaleDateString()}
-
-"The light shines in the darkness, and the darkness has not overcome it." — John 1:5`;
-            const blob = new Blob([certText], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            alert('Certificate echoed (text fallback)! Download your harmony accolade.');
-        }
-    </script>
-</body>
-</html>                           
+From lab
