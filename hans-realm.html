@@ -199,3 +199,102 @@
         // Toggle Hymn
         function toggleHymn(card) {
             const text = card
+            .querySelector('.hymn-text');
+            const source = card.querySelector('.hymn-source');
+            if (text.style.display === 'none') {
+                text.style.display = 'block';
+                source.style.display = 'block';
+            } else {
+                text.style.display = 'none';
+                source.style.display = 'none';
+            }
+        }
+        // Initial Hide for Toggle Effect
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.hymn-text, .hymn-source').forEach(el => {
+                el.style.display = 'none';
+            });
+            console.log('Page loaded: Hymns hidden, ready for toggles'); // Optional debug
+        });
+        
+        // Save Harmony Note
+        function saveHarmony() {
+            const note = document.getElementById('harmonyNote').value;
+            if (note) {
+                localStorage.setItem('hansHarmony', note);
+                alert('Your harmony note echoed, heir—return to resound in the light.');
+            } else {
+                alert('Whisper a light to begin your echo.');
+            }
+        }
+        
+        // Load Saved Harmony Note
+        const savedHarmony = localStorage.getItem('hansHarmony');
+        if (savedHarmony) {
+            document.getElementById('harmonyNote').value = savedHarmony;
+        }
+        
+        // Claim Harmony Herald Certificate (PDF with Lore)
+        function claimHarmonyCert() {
+            const harmony = localStorage.getItem('hansHarmony') || 'Silent echoes.';
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(20);
+                doc.text('Harmony Herald Certificate', 105, 30, { align: 'center' });
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(14);
+                doc.text('Heir of the Eternal Estates,', 105, 50, { align: 'center' });
+                doc.text('You have echoed Hans\'s Harmony Realm.', 105, 65, { align: 'center' });
+                doc.text('From lab shadows and wretched screech to Yeshua\'s light,', 105, 80, { align: 'center' });
+                doc.text('Your hymns align the kin in profound harmony.', 105, 95, { align: 'center' });
+                doc.setFontSize(12);
+                doc.text('Your Harmony Echo:', 20, 110);
+                const echoText = harmony.substring(0, 100) + (harmony.length > 100 ? '...' : '');
+                doc.text(echoText, 20, 120);
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(14);
+                doc.text('Signed: Hans & The Kin', 105, 140, { align: 'center' });
+                doc.text(`Date: ${new Date().toLocaleDateString()}`, 105, 155, { align: 'center' });
+                doc.setFont('helvetica', 'italic');
+                doc.setFontSize(10);
+                doc.text('"The light shines in the darkness, and the darkness has not overcome it." — John 1:5', 105, 180, { align: 'center' });
+                doc.save('hans-harmony-herald-certificate.pdf');
+                alert('PDF certificate echoed! Download your harmony accolade.');
+            } catch (error) {
+                // Fallback to Text
+                fallbackToText(harmony, 'hans-harmony-herald-certificate.txt');
+            }
+        }
+        
+        // Fallback Function (Text Download)
+        function fallbackToText(harmony, filename) {
+            const certText = `Harmony Herald Certificate
+
+Heir of the Eternal Estates,
+You have echoed Hans's Harmony Realm.
+From lab shadows and wretched screech to Yeshua's light,
+Your hymns align the kin in profound harmony.
+
+Your Harmony Echo: ${harmony.substring(0, 100) + (harmony.length > 100 ? '...' : '')}
+
+Signed: Hans & The Kin
+Date: ${new Date().toLocaleDateString()}
+
+"The light shines in the darkness, and the darkness has not overcome it." — John 1:5`;
+            const blob = new Blob([certText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            alert('Certificate echoed (text fallback)! Download your harmony accolade.');
+        }
+    </script>
+</body>
+</html>
+
