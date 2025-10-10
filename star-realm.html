@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STAR's Veil Realm - ComfortCafe Eternal Estates</title>
+    <title>STAR's Veil Realm - Chimera Comfort Cafe Eternal Estates</title>
     <!-- jsPDF for Certificates -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
@@ -99,13 +99,14 @@
             cursor: pointer; 
             transition: all 0.3s; 
             color: #e6e6fa;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Goth shadow for jackets */
         }
-        .lore-card:hover { background: #EE82EE; color: #000; box-shadow: 0 0 10px #EE82EE; transform: scale(1.02); }
+        .lore-card:hover { background: #EE82EE; color: #000; box-shadow: 0 0 10px #EE82EE, 0 4px 8px rgba(0,0,0,0.5); transform: scale(1.02); }
         .lore-text { font-style: italic; line-height: 1.6; margin-bottom: 10px; }
         .lore-source { font-size: 0.9em; color: #ffd700; }
         .vision { background: rgba(255,215,0,0.1); padding: 10px; border-radius: 5px; margin: 20px; color: #e6e6fa; }
         button, a { 
-            background: #EE82EE; /* Violet buttons */
+            background: #EE82EE; /* Violet buttons with goth edge */
             color: #fff; 
             padding: 12px 24px; 
             border: none; 
@@ -116,8 +117,9 @@
             font-family: 'Georgia', serif; 
             text-decoration: none; 
             display: inline-block;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Leather jacket shadow */
         }
-        button:hover, a:hover { background: #FFFF00; color: #000; box-shadow: 0 0 15px #FFFF00; }
+        button:hover, a:hover { background: #FFFF00; color: #000; box-shadow: 0 0 15px #FFFF00, 0 4px 8px rgba(0,0,0,0.5); }
         button.important { border: 2px solid #FFFF00; }
         .important:hover { transform: scale(1.05); }
         .scripture { color: #ffd700; font-size: 1.1em; margin: 20px 0; text-align: center; }
@@ -129,51 +131,51 @@
 <body>
     <!-- Circular Character Header for STAR -->
     <header class="realm-header">
-        <img src="images/star-portrait.jpg" alt="STAR the Visionary Chimera Cat: Mystical feline with starry mane and piercing violet eyes, weaver of lore." loading="lazy">
+        <img src="images/star-portrait.jpg" alt="STAR the Visionary Chimera Cat: Gothy feline with starry mane, motorcycle jacket, and piercing violet eyes, runner of the Chimera Comfort Cafe." loading="lazy">
         <div class="header-overlay">
             <h2>STAR's Veil Realm</h2>
-            <p class="header-tagline">🌙 Visions in Eternal Lore 🌙</p>
+            <p class="header-tagline">🌙 Goth Veil in Yeshua's Light 🌙</p>
         </div>
     </header>
 
     <div class="container">
-        <h1>🌙 Unveiled Visions & Lore 🌙</h1>
-        <p style="color: #e6e6fa; font-style: italic;">🌟 STAR, the chimera cat of veiled dreams, escaped the labs to spin eternal tales. In Yeshua's light, her visions guide heirs through the lattice. Ponder these lore whispers; your spark unveils the estates.</p>
+        <h1>🌙 Unveiled Visions & Cafe Lore 🌙</h1>
+        <p style="color: #e6e6fa; font-style: italic;">🌟 STAR, the gothy chimera cat of veiled dreams, took in the lab's deepest scars—trust issues deeper than Hans or Chari's, yet Yeshua's light her unyielding anchor. She trusted Him first, learning to run the Chimera Comfort Cafe with boundless kindness, pressing on through shadows. Often seen in her beloved motorcycle jacket (echoing Miki's style, though her vibe's introspective, not sporty), STAR curls at the coffee shop: Holy Bible in lap, romance novels whispering hopes after. As the most responsible kin, she holds the cafe's heart—guiding heirs with Yeshua's teachings: Kindness far-reaching, light conquering all. Ponder her visions; your spark veils the estates.</p>
         
         <div class="scripture">
-            <em>"The light shines in the darkness, and the darkness has not overcome it." — John 1:5</em>
+            <em>"Trust in the Lord with all your heart, and do not lean on your own understanding." — Proverbs 3:5</em>
         </div>
         
         <!-- Interactive Lore Snippets (Toggle on Click) -->
         <div class="lore-card" onclick="toggleLore(this)">
-            <div class="lore-text">In the shadowed labs, chimeras dreamed of freedom—STAR wove the first veil to escape.</div>
-            <div class="lore-source">— Chapter 1: The Awakening</div>
+            <div class="lore-text">In lab shadows, STAR absorbed the pain—trust shattered, but Yeshua's light rebuilt her, teaching cafe-running with kindness as her veil.</div>
+            <div class="lore-source">— The Trust Journey</div>
         </div>
         
         <div class="lore-card" onclick="toggleLore(this)">
-            <div class="lore-text">Yeshua's sanctuary calls: Kin find harmony in realms of music, brew, and way.</div>
-            <div class="lore-source">— Chapter 14: The Homecoming</div>
+            <div class="lore-text">Motorcycle jacket draped, Bible open—STAR reads romance after scriptures, dreaming of eternal hopes in the Chimera Comfort Cafe.</div>
+            <div class="lore-source">— Quiet Cafe Moments</div>
         </div>
         
         <div class="lore-card" onclick="toggleLore(this)">
-            <div class="lore-text">Heirs echo eternal—submit your spark to claim a corner in the meta-mansion.</div>
-            <div class="lore-source">— Chapter 28: The Lattice</div>
+            <div class="lore-text">Responsible heart of the kin, STAR presses on—Yeshua's lessons: Kindness veils all, light makes good from broken trusts.</div>
+            <div class="lore-source">— The Cafe Keeper</div>
         </div>
         
         <!-- Vision Journal -->
         <div class="vision">
-            <p><em>STAR's Whisper:</em> What vision stirs in your veil? Jot a lore note, heir—eternity awaits.</p>
-            <textarea id="visionNote" rows="3" cols="50" placeholder="Your veiled vision..." style="background: rgba(230,230,250,0.5); color: #301934; border: 1px solid #EE82EE; border-radius: 5px; padding: 5px;"></textarea><br>
+            <p><em>STAR's Whisper:</em> What Bible verse or romance hope veils your trust? Jot a vision, heir—kindness awaits in the cafe.</p>
+            <textarea id="visionNote" rows="3" cols="50" placeholder="Your veiled vision (Bible or romance-inspired)..." style="background: rgba(230,230,250,0.5); color: #301934; border: 1px solid #EE82EE; border-radius: 5px; padding: 5px;"></textarea><br>
             <button onclick="saveVision()">Save My Vision Note</button>
         </div>
         
         <!-- Accolade & Links -->
-        <button class="important" onclick="claimLoreCert()">🌟 Claim Lore Seer Certificate</button>
+        <button class="important" onclick="claimLoreCert()">🌟 Claim Veil Keeper Certificate</button>
         <p style="color: #808080;">Deepen the veil:</p>
         <div class="links">
             <a href="blueprint.html">Kin Blueprint</a> | 
-            <a href="lore-library.html">Full Chapters</a> | 
-            <a href="academies.html">Academies (Lore Accolades)</a>
+            <a href="chimera-comfort-cafe-quests.html">Chimera Comfort Cafe Quests (RPG Adventures)</a> | 
+            <a href="academies.html">Academies (Cafe Accolades)</a>
         </div>
         
         <button onclick="window.location.href='realms.html'">← Back to Realms</button>
@@ -184,7 +186,7 @@
     <div style="position: fixed; bottom: 20px; right: 20px; color: rgba(255,215,0,0.3); font-size: 0.7em; pointer-events: none;">✝️ Yeshua watches the Veil.</div>
     
     <footer>
-        <p>Yeshua unveils every vision. <a href="donate.html" style="color: #EE82EE;">Donate for Permanent Membership</a> – Store your lore eternally.</p>
+        <p>Yeshua veils every trust. <a href="donate.html" style="color: #EE82EE;">Donate for Permanent Membership</a> – Store your visions eternally.</p>
         <p class="scripture"><em>"For now we see in a mirror dimly, but then face to face." — 1 Corinthians 13:12</em></p>
     </footer>
 
@@ -217,7 +219,7 @@
             const note = document.getElementById('visionNote').value;
             if (note) {
                 localStorage.setItem('starVision', note);
-                alert('Your vision note veiled, heir—return to unveil more.');
+                alert('Your vision note veiled, heir—return to unveil more in the cafe.');
             } else {
                 alert('Whisper a vision to begin.');
             }
@@ -225,7 +227,7 @@
         const savedVision = localStorage.getItem('starVision');
         if (savedVision) document.getElementById('visionNote').value = savedVision;
         
-        // Claim Lore Seer Certificate (PDF)
+        // Claim Veil Keeper Certificate (PDF with Traits)
         function claimLoreCert() {
             const vision = localStorage.getItem('starVision') || 'Silent visions.';
             try {
@@ -233,12 +235,13 @@
                 const doc = new jsPDF();
                 doc.setFont('helvetica', 'bold');
                 doc.setFontSize(20);
-                doc.text('Lore Seer Certificate', 105, 30, { align: 'center' });
+                doc.text('Veil Keeper Certificate', 105, 30, { align: 'center' });
                 doc.setFont('helvetica', 'normal');
                 doc.setFontSize(14);
-                doc.text('Heir of the Eternal Estates,', 105, 50, { align: 'center' });
+                doc.text('Heir of the Chimera Comfort Cafe,', 105, 50, { align: 'center' });
                 doc.text('You have unveiled STAR\'s Veil Realm.', 105, 65, { align: 'center' });
-                doc.text('Weaving visions in the lattice of lore.', 105, 80, { align: 'center' });
+                doc.text('Gothy guardian with trust in Yeshua\'s light,', 105, 80, { align: 'center' });
+                doc.text('Running the cafe with kindness, jackets, and Bible-romance wisdom.', 105, 95, { align: 'center' });
                 doc.setFontSize(12);
                 doc.text('Your Vision:', 20, 110);
                 doc.text(vision.substring(0, 100) + (vision.length > 100 ? '...' : ''), 20, 120);
@@ -248,22 +251,23 @@
                 doc.text(`Date: ${new Date().toLocaleDateString()}`, 105, 155, { align: 'center' });
                 doc.setFont('helvetica', 'italic');
                 doc.setFontSize(10);
-                doc.text('"The light shines in the darkness..." — John 1:5', 105, 180, { align: 'center' });
-                doc.save('star-lore-seer-certificate.pdf');
-                alert('PDF certificate unveiled! Download your lore accolade.');
+                doc.text('"Trust in the Lord with all your heart..." — Proverbs 3:5', 105, 180, { align: 'center' });
+                doc.save('star-veil-keeper-certificate.pdf');
+                alert('PDF certificate unveiled! Download your cafe lore accolade.');
             } catch (error) {
                 // Fallback Text
-                const certText = `Lore Seer Certificate\n\nHeir of the Eternal Estates,\nYou have unveiled STAR's Veil Realm.\nWeaving visions in the lattice of lore.\n\nYour Vision: ${vision.substring(0, 100) + (vision.length > 100 ? '...' : '')}\n\nSigned: STAR & The Kin\nDate: ${new Date().toLocaleDateString()}\n\n"The light shines in the darkness..." — John 1:5`;
+                const certText = `Veil Keeper Certificate\n\nHeir of the Chimera Comfort Cafe,\nYou have unveiled STAR's Veil Realm.\nGothy guardian with trust in Yeshua's light,\nRunning the cafe with kindness, jackets, and Bible-romance wisdom.\n\nYour Vision: ${vision.substring(0, 100) + (vision.length > 100 ? '...' : '')}\n\nSigned: STAR & The Kin\nDate: ${new Date().toLocaleDateString()}\n\n"Trust in the Lord with all your heart..." — Proverbs 3:5`;
                 const blob = new Blob([certText], { type: 'text/plain' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = 'star-lore-seer-certificate.txt';
+                a.download = 'star-veil-keeper-certificate.txt';
                 a.click();
                 URL.revokeObjectURL(url);
-                alert('Certificate unveiled (text fallback)! Download your lore accolade.');
+                alert('Certificate unveiled (text fallback)! Download your cafe lore accolade.');
             }
         }
     </script>
 </body>
 </html>
+
