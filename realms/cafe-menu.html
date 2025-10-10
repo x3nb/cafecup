@@ -216,6 +216,104 @@
         </div>
     </div>
 
+           </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Yeshua blesses every brew. <a href="donate.html" style="color: #6495ED;">Donate for Premium Recipes</a> – Eternal cafe access for heirs.</p>
+        <p class="scripture"><em>"Taste and see that the Lord is good; blessed is the one who takes refuge in him." — Psalm 34:8</em></p>
+    </footer>
+
     <!-- Order Modal -->
     <div id="orderModal">
-        <div class
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title"></h3>
+            <div class="item-icon" id="modal-icon"></div>
+            <p id="modal-desc"></p>
+            <p class="blessing" id="modal-blessing"></p>
+            <button onclick="orderItem()" style="background: #FFD700; color: #301934;">Order & Bless (Save to Journal)</button>
+            <button onclick="closeModal()" style="background: #808080;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Cafe Journal (localStorage for RPG Persistence)
+        let cafeJournal = JSON.parse(localStorage.getItem('cafeJournal')) || [];
+
+        // Show Modal for Menu Item
+        function showModal(name, desc, icon, blessing) {
+            document.getElementById('modal-title').textContent = name;
+            document.getElementById('modal-icon').innerHTML = icon;
+            document.getElementById('modal-desc').textContent = desc;
+            document.getElementById('modal-blessing').textContent = blessing;
+            document.getElementById('orderModal').style.display = 'flex';
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('orderModal').style.display = 'none';
+        }
+
+        // Order Item (Save to Journal)
+        function orderItem() {
+            const title = document.getElementById('modal-title').textContent;
+            const desc = document.getElementById('modal-desc').textContent;
+            const blessing = document.getElementById('modal-blessing').textContent;
+            const entry = { title, desc, blessing, date: new Date().toLocaleDateString() };
+            cafeJournal.push(entry);
+            localStorage.setItem('cafeJournal', JSON.stringify(cafeJournal));
+            alert(`Ordered: ${title}! Blessing saved to your Cafe Journal—may Yeshua's light nourish you.`);
+            closeModal();
+        }
+
+        // Close Modal on Outside Click
+        window.onclick = function(event) {
+            const modal = document.getElementById('orderModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Claim Cafe Connoisseur Certificate (PDF with Journal)
+        function claimMenuCert() {
+            const journalSummary = cafeJournal.length > 0 ? `Journal Entries: ${cafeJournal.length} blessings ordered (e.g., ${cafeJournal[cafeJournal.length - 1].title}).` : 'Begin ordering to fill your journal!';
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                doc.setFont('times', 'bold'); // Majestic serif
+                doc.setFontSize(20);
+                doc.text('Cafe Connoisseur Certificate', 105, 30, { align: 'center' });
+                doc.setFont('times', 'normal');
+                doc.setFontSize(14);
+                doc.text('Heir of the Chimera Comfort Cafe,', 105, 50, { align: 'center' });
+                doc.text('You have savored STAR\'s brews, Milo\'s teas, and Yeshua\'s blessings.', 105, 65, { align: 'center' });
+                doc.text('Kindness in every sip, light in every bite.', 105, 80, { align: 'center' });
+                doc.setFontSize(12);
+                doc.text(journalSummary, 20, 110);
+                doc.setFont('times', 'bold');
+                doc.setFontSize(14);
+                doc.text('Signed: The Kin & Yeshua\'s Light', 105, 140, { align: 'center' });
+                doc.text(`Date: ${new Date().toLocaleDateString()}`, 105, 155, { align: 'center' });
+                doc.setFont('times', 'italic');
+                doc.setFontSize(10);
+                doc.text('"Taste and see that the Lord is good..." — Psalm 34:8', 105, 180, { align: 'center' });
+                doc.save('cafe-connoisseur-certificate.pdf');
+                alert('PDF certificate brewed! Download your cafe accolade—share in quests.');
+            } catch (error) {
+                // Fallback Text
+                const certText = `Cafe Connoisseur Certificate\n\nHeir of the Chimera Comfort Cafe,\nYou have savored STAR's brews, Milo's teas, and Yeshua's blessings.\nKindness in every sip, light in every bite.\n\n${journalSummary}\n\nSigned: The Kin & Yeshua's Light\nDate: ${new Date().toLocaleDateString()}\n\n"Taste and see that the Lord is good..." — Psalm 34:8`;
+                const blob = new Blob([certText], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'cafe-connoisseur-certificate.txt';
+                a.click();
+                URL.revokeObjectURL(url);
+                alert('Certificate brewed (text fallback)! Download your cafe accolade.');
+            }
+        }
+    </script>
+</body>
+</html>
