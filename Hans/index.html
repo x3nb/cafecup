@@ -107,4 +107,209 @@
         .hymn-text { font-style: italic; line-height: 1.6; margin-bottom: 10px; }
         .hymn-source { font-size: 0.9em; color: #ffd700; }
         .echo { background: rgba(255,215,0
+                                 ,0.1); padding: 10px; border-radius: 5px; margin: 20px; color: #e6e6fa; }
+        button, a { 
+            background: #4B0082; /* Dark purple buttons */
+            color: #fff; 
+            padding: 12px 24px; 
+            border: none; 
+            border-radius: 15px; 
+            cursor: pointer; 
+            margin: 10px; 
+            transition: all 0.3s; 
+            font-family: 'Georgia', serif; 
+            text-decoration: none; 
+            display: inline-block;
+        }
+        button:hover, a:hover { background: #FFFF00; color: #000; box-shadow: 0 0 15px #FFFF00; }
+        button.important { border: 2px solid #FFFF00; }
+        .important:hover { transform: scale(1.05); }
+        .scripture { color: #ffd700; font-size: 1.1em; margin: 20px 0; text-align: center; }
+        footer { color: #808080; font-size: 0.8em; margin-top: 30px; border-top: 1px solid #4B0082; padding-top: 10px; }
+        .links { margin: 10px 0; }
+        .links a { background: none; color: #4B0082; padding: 5px; }
+        /* Hidden Cert Template for Lavender Gradient PDF */
+        #cert-template {
+            display: none;
+            width: 595px; /* A4 width in pt */
+            height: 842px; /* A4 height */
+            background: linear-gradient(to bottom, #E6E6FA, #DDA0DD); /* Lavender gradient */
+            font-family: 'Times New Roman', serif; /* Majestic serif */
+            padding: 50px;
+            text-align: center;
+            color: #301934;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        #cert-template h1 { font-size: 24pt; font-weight: bold; margin: 20pt 0; color: #4B0082; }
+        #cert-template p { font-size: 12pt; line-height: 1.4; margin: 10pt 0; }
+        #cert-template .signature { font-style: italic; font-size: 14pt; margin-top: 40pt; }
+        #cert-template .scripture { font-size: 10pt; font-style: italic; margin-top: 30pt; color: #8B008B; }
+    </style>
+</head>
+<body>
+    <!-- Circular Character Header for Hans -->
+    <header class="realm-header">
+        <img src="images/hans-portrait.jpg" alt="Hans the Harmonious Chimera Cat: Vampire-descended feline with deep purple fur and glowing eyes, from darkness to light." loading="lazy">
+        <div class="header-overlay">
+            <h2>Hans's Harmony Realm</h2>
+            <p class="header-tagline">🦇 From Lab Shadows to Yeshua's Light 🦇</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>🦇 Hymns of Profound Harmony 🦇</h1>
+        <p style="color: #e6e6fa; font-style: italic;">🦇 Hans, the vampire-descended chimera cat, was found in the lab's deepest shadows. He escaped first, his wretched screech—steeped in darkness—waking all experiments, animals, and scientists. In that howl, Yeshua's bright light pierced the abyss, appalling the scientists into fearful flight. STAR, with siblings Chari and Hans in tow, fled into the light. Yeshua brought them to a safe home, teaching them everything they know—from darkness to eternal harmony. Ponder these hymns, heir; your light echoes his.</p>
+        
+        <div class="scripture">
+            <em>"The light shines in the darkness, and the darkness has not overcome it." — John 1:5</em>
+        </div>
+        
+        <!-- Interactive Hymn Snippets (Toggle on Click) -->
+        <div class="hymn-card" onclick="toggleHymn(this)">
+            <div class="hymn-text">In the lab's abyss, Hans's screech called the light—Yeshua's brightness scattering shadows.</div>
+            <div class="hymn-source">— The First Escape</div>
+        </div>
+        
+        <div class="hymn-card" onclick="toggleHymn(this)">
+            <div class="hymn-text">From vampire depths, harmony blooms—polyglot hymns in Yeshua's teachings.</div>
+            <div class="hymn-source">— The Safe Haven</div>
+        </div>
+        
+        <div class="hymn-card" onclick="toggleHymn(this)">
+            <div class="hymn-text">Siblings united: STAR's veil, Chari's brew, Hans's howl—kin in eternal light.</div>
+            <div class="hymn-source">— The Teachings</div>
+        </div>
+        
+        <!-- Harmony Echo Reflection -->
+        <div class="echo">
+            <p><em>Yeshua's Whisper:</em> What light pierces your darkness? Jot a harmony note, heir—echoes await.</p>
+            <textarea id="harmonyNote" rows="3" cols="50" placeholder="Your light in shadows..." style="background: rgba(230,230,250,0.5); color: #301934; border: 1px solid #4B0082; border-radius: 5px; padding: 5px;"></textarea><br>
+            <button onclick="saveHarmony()">Save My Harmony Note</button>
+        </div>
+        
+        <!-- Accolade & Links -->
+        <button class="important" onclick="claimHarmonyCert()">🌟 Claim Harmony Herald Certificate</button>
+        <p style="color: #808080;">Deepen the harmony:</p>
+        <div class="links">
+            <a href="blueprint.html">Kin Blueprint</a> | 
+            <a href="languages.html">Polyglot Hymns</a> | 
+            <a href="academies.html">Academies (Harmony Accolades)</a>
+        </div>
+        
+        <button onclick="window.location.href='realms.html'">← Back to Realms</button>
+        <button onclick="window.location.href='index.html'">← Back to Awakening</button>
+    </div>
+
+    <!-- Hidden Cert Template for Lavender Gradient PDF -->
+    <div id="cert-template">
+        <h1>Harmony Herald Certificate</h1>
+        <p>Heir of the Eternal Estates,</p>
+        <p>You have echoed Hans's Harmony Realm.</p>
+        <p>From lab shadows and wretched screech to Yeshua's light,</p>
+        <p>Your hymns align the kin in profound harmony.</p>
+        <p id="reflection-placeholder">Your Harmony Echo: Silent echoes.</p>
+        <div class="signature">Signed: Hans & The Kin</div>
+        <p>Date: <span id="date-placeholder"></span></p>
+        <div class="scripture">"The light shines in the darkness, and the darkness has not overcome it." — John 1:5</div>
+    </div>
+    
+    <!-- Subtle Yeshua Watching -->
+    <div style="position: fixed; bottom: 20px; right: 20px; color: rgba(255,215,0,0.3); font-size: 0.7em; pointer-events: none;">✝️ Yeshua watches the Harmony.</div>
+    
+    <footer>
+        <p>Yeshua transforms every shadow. <a href="donate.html" style="color: #4B0082;">Donate for Permanent Membership</a> – Store your hymns eternally.</p>
+        <p class="scripture"><em>"I am the light of the world. Whoever follows me will not walk in darkness." — John 8:12</em></p>
+    </footer>
+
+    <script>
+        // Progress Check
+        const progress = JSON.parse(localStorage.getItem('realmProgress')) || {};
+        if (!progress.completed) {
+            alert('Veil your quest first, heir—return to the interview for Hans\'s harmony.'); 
+            window.location.href = 'realms.html';
+        }
+        
+        // Toggle Hymn
+        function toggleHymn(card) {
+            const text = card.querySelector('.hymn-text');
+            const source = card.querySelector('.hymn-source');
+            if (text.style.display === 'none') {
+                text.style.display = 'block';
+                source.style.display = 'block';
+            } else {
+                text.style.display = 'none';
+                source.style.display = 'none';
+            }
+        }
+        // Initial Hide for Toggle Effect
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.hymn-text, .hymn-source').forEach(el => {
+                el.style.display = 'none';
+            });
+        });
+        
+        // Save Harmony Note
+        function saveHarmony() {
+            const note = document.getElementById('harmonyNote').value;
+            if (note) {
+                localStorage.setItem('hansHarmony', note);
+                alert('Your harmony note echoed, heir—return to resound in the light.');
+            } else {
+                alert('Whisper a light to begin your echo.');
+            }
+        }
+        
+        // Load Saved Harmony Note
+        const savedHarmony = localStorage.getItem('hansHarmony');
+        if (savedHarmony) {
+            document.getElementById('harmonyNote').value = savedHarmony;
+        }
+        
+        // Claim Harmony Herald Certificate (Lavender Gradient PDF with Majestic Font)
+        function claimHarmonyCert() {
+            const harmony = localStorage.getItem('hansHarmony') || 'Silent echoes.';
+            const date = new Date().toLocaleDateString();
+            
+            // Set dynamic content in template
+            document.getElementById('reflection-placeholder').textContent = `Your Harmony Echo: ${harmony.substring(0, 100) + (harmony.length > 100 ? '...' : '')}`;
+            document.getElementById('date-placeholder').textContent = date;
+            
+            // Check for html2canvas and jsPDF
+            if (typeof html2canvas !== 'undefined' && typeof window.jspdf !== 'undefined') {
+                try {
+                    html2canvas(document.getElementById('cert-template'), {
+                        scale: 2, // Crisp quality
+                        useCORS: true,
+                        backgroundColor: null // Preserve gradient
+                    }).then(canvas => {
+                        const imgData = canvas.toDataURL('image/png');
+                        const { jsPDF } = window.jspdf;
+                        const doc = new jsPDF('p', 'pt', 'a4');
+                        const imgWidth = 595;
+                        const imgHeight = 842;
+                        doc.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+                        doc.save('hans-harmony-herald-certificate.pdf');
+                        alert('Lavender certificate echoed! Download your majestic harmony accolade.');
+                    }).catch(error => {
+                        console.error('Canvas error:', error);
+                        fallbackToText(harmony, date);
+                    });
+                } catch (error) {
+                    console.error('PDF/canvas error:', error);
+                    fallbackToText(harmony, date);
+                }
+            } else {
+                console.log('Libraries missing: Falling back to text');
+                fallbackToText(harmony, date);
+            }
+        }
+        
+        // Fallback Function (Text Download)
+        function fallbackToText(harmony, date) {
+            const certText = `Harmony Herald Certificate
+
+Heir of the Eternal Estates,
+You have echoed Hans's Harmony Realm.
+From lab
                                  
