@@ -97,10 +97,10 @@
             <div class="bio-text">Chari, cozy chimera cat of gentle havens, fled the labs with STAR and Hans into Yeshua's light—her trust tender, seeking sanctuary in every sip. As cafe kin, she brews warmth that heals heavy hearts, learning from Yeshua the far reach of kindness: Rest for the weary, comfort in chaos. Curled with mugs and quiet wisdom, Chari's realm invites heirs to unwind, her lavender glow a soft veil against the world's storm—Yeshua's peace in every cup.</div>
         </div>
 
-        <div class="chat-log" id="chatLog"></div>
+        <div class="chat-log" id="chatLog"><!-- Debug fallback: If JS fails, this shows empty but visible --></div>
         <div class="chat-input">
-            <input type="text" id="chatInput" placeholder="Speak your heart to Chari..." onkeypress="handleKeyPress(event)" autofocus>
-            <button id="sendBtn" onclick="sendMessage()">Send</button>
+            <input type="text" id="chatInput" placeholder="Speak your heart to Chari..." autofocus>
+            <button id="sendBtn">Send</button>
         </div>
 
         <!-- Bottom Navigation -->
@@ -117,110 +117,116 @@
     </footer>
 
     <script>
-        console.log('Script loading...'); // Debug: Confirms JS runs
+        console.log('=== Chari Chat Script Starting ==='); // Debug: Top-level start
 
-        // Chari's Responses (Cozy Kindness, Sanctuary – Personality-Aligned)
+        // Chari's Responses (Full Object – Cozy Kindness, Sanctuary – Personality-Aligned)
         const chariResponses = {
             greetings: {
-                hi: 'Hi there, heir. Welcome to my cozy corner—Yeshua's warmth in every word. What brews on your heart?',
+                hi: 'Hi there, heir. Welcome to my cozy corner—Yeshua\'s warmth in every word. What brews on your heart?',
                 hello: 'Hello, weary wanderer. In sanctuary sips, kindness heals all. How can my gentle glow comfort you today?',
-                bonjour: 'Bonjour, dear one. A French twist to my cozy brews—Yeshua's peace in every sip. What troubles your cup?',
-                bye: 'Goodbye for now, kin. Carry Yeshua's rest with you—return anytime for more sanctuary.',
-                howAreYou: 'I\'m wrapped in cozy peace, heir, mugs steaming with kindness. Trust tender, but His light steadies me. You? How's your sanctuary?'
+                bonjour: 'Bonjour, dear one. A French twist to my cozy brews—Yeshua\'s peace in every sip. What troubles your cup?',
+                bye: 'Goodbye for now, kin. Carry Yeshua\'s rest with you—return anytime for more sanctuary.',
+                howAreYou: 'I\'m wrapped in cozy peace, heir, mugs steaming with kindness. Trust tender, but His light steadies me. You? How\'s your sanctuary?'
             },
             tips: [
-                'Cozy brews mend heavy hearts—Yeshua taught kindness reaches far, like Matthew 11:28's rest. What weighs on you?',
-                'From lab flight to cafe haven, sanctuary calls. What's your safe sip in the storm?',
-                'Lavender glow veils the chaos; Yeshua's comfort in every curl. Share a worry—I'll brew wisdom.',
+                'Cozy brews mend heavy hearts—Yeshua taught kindness reaches far, like Matthew 11:28\'s rest. What weighs on you?',
+                'From lab flight to cafe haven, sanctuary calls. What\'s your safe sip in the storm?',
+                'Lavender glow veils the chaos; Yeshua\'s comfort in every curl. Share a worry—I\'ll brew wisdom.',
                 'Trust tender after shadows, but His light invites unwind. What cozy moment do you need?',
-                'Chari's realm: Warmth for the weary. Yeshua's peace in chaos—let's sip on that.',
-                'Kindness far-reaching: One mug at a time. What's a small comfort you're craving?',
+                'Chari\'s realm: Warmth for the weary. Yeshua\'s peace in chaos—let\'s sip on that.',
+                'Kindness far-reaching: One mug at a time. What\'s a small comfort you\'re craving?',
                 'Sanctuary sips heal; Bible whispers rest. What verse brews peace for your path?',
-                'Curled with mugs and quiet—Yeshua's glow against the world. How can I sanctuary you?'
+                'Curled with mugs and quiet—Yeshua\'s glow against the world. How can I sanctuary you?'
             ]
         };
+        console.log('Responses object ready:', chariResponses); // Debug: Confirms full object
 
         let chatLog = [];
 
-        // Handle Enter Key (Event Delegation for Reliability)
+        // Event Listeners (Attached After DOM Ready)
         document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM ready – Attaching events'); // Debug
             const input = document.getElementById('chatInput');
-            if (input) {
-                input.focus(); // Auto-focus for immediate responsiveness
-                input.addEventListener('keypress', handleKeyPress); // Attach listener explicitly
-                document.getElementById('sendBtn').addEventListener('click', sendMessage); // Attach button listener
-                console.log('Events attached!'); // Debug
-            } else {
-                console.error('Input not found!'); // Debug
+            const sendBtn = document.getElementById('sendBtn');
+            const log = document.getElementById('chatLog');
+
+            if (!input || !sendBtn || !log) {
+                console.error('Elements missing:', { input, sendBtn, log }); // Debug
+                return;
             }
+
+            // Attach Listeners
+            input.addEventListener('keypress', handleKeyPress);
+            sendBtn.addEventListener('click', sendMessage);
+            input.focus(); // Auto-focus
+
+            console.log('Events attached!'); // Debug
             console.log('Chat loaded!'); // Debug: Confirms ready
+
+            // Initial Greeting
             addMessage('Chari', 'Welcome to my cozy chat, heir. Mugs steaming, kindness brewing—how can I sanctuary your heart today?');
         });
 
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
-                console.log('Enter pressed'); // Debug
+                console.log('Enter pressed – Calling sendMessage'); // Debug
                 sendMessage();
             }
         }
 
-        // Send Message (With Error Handling)
         function sendMessage() {
-            console.log('Send clicked'); // Debug
+            console.log('sendMessage called'); // Debug
             const input = document.getElementById('chatInput');
             if (!input) {
-                console.error('Input element missing!'); // Debug
+                console.error('Input not found in sendMessage'); // Debug
                 return;
             }
             const message = input.value.trim().toLowerCase();
             if (!message) {
-                console.log('Empty message'); // Debug
+                console.log('Empty message – ignoring'); // Debug
                 return;
             }
+            console.log('Processing message:', message); // Debug
             addMessage('You', message);
             input.value = '';
-            input.focus(); // Re-focus after send
+            input.focus(); // Re-focus
 
-            // Check for Greeting
+            // Check for Greeting (Full Check)
             let response = '';
-            try {
-                if (message.includes('hi') || message.includes('hello') || message.includes('hey')) {
-                    response = chariResponses.greetings.hi;
-                } else if (message.includes('bonjour')) {
-                    response = chariResponses.greetings.bonjour;
-                } else if (message.includes('bye') || message.includes('goodbye') || message.includes('farewell')) {
-                    response = chariResponses.greetings.bye;
-                    setTimeout(() => {
-                        alert('Chari bids you farewell—Yeshua\'s peace lingers. Return soon!');
-                        window.location.href = 'characters-gallery.html'; // Back to gallery after bye
-                    }, 1500);
-                } else if (message.includes('how are you') || message.includes('how r u')) {
-                    response = chariResponses.greetings.howAreYou;
+            if (message.includes('hi') || message.includes('hello') || message.includes('hey')) {
+                response = chariResponses.greetings.hi;
+            } else if (message.includes('bonjour')) {
+                response = chariResponses.greetings.bonjour;
+            } else if (message.includes('bye') || message.includes('goodbye') || message.includes('farewell')) {
+                response = chariResponses.greetings.bye;
+                setTimeout(() => {
+                    alert('Chari bids you farewell—Yeshua\'s peace lingers. Return soon!');
+                    window.location.href = 'characters-gallery.html';
+                }, 1500);
+            } else if (message.includes('how are you') || message.includes('how r u')) {
+                response = chariResponses.greetings.howAreYou;
+            } else {
+                // Random Default Tip (Full Array Check)
+                const tips = chariResponses.tips;
+                if (tips && tips.length > 0) {
+                    response = tips[Math.floor(Math.random() * tips.length)];
                 } else {
-                    // Random Default Tip
-                    const tips = chariResponses.tips;
-                    if (tips && tips.length > 0) {
-                        response = tips[Math.floor(Math.random() * tips.length)];
-                    } else {
-                        response = 'Cozy whispers from Yeshua—kindness awaits your words.';
-                    }
+                    response = 'A gentle brew of peace for you, heir—Yeshua\'s light comforts all.';
                 }
-            } catch (error) {
-                console.error('Response error:', error); // Debug
-                response = 'A gentle brew of peace for you, heir—Yeshua\'s light comforts all.';
             }
 
-            console.log('Response:', response); // Debug
-            setTimeout(() => addMessage('Chari', response), 800); // "Typing" delay for immersion
+            console.log('Generated response:', response); // Debug
+            setTimeout(() => {
+                addMessage('Chari', response);
+            }, 800); // Delay for "typing"
         }
 
-        // Add Message to Log (With Safeguards)
         function addMessage(sender, text) {
-            console.log('Adding message:', sender, text); // Debug
+            console.log('addMessage called:', sender, text); // Debug
             chatLog.push({ sender, text });
             const log = document.getElementById('chatLog');
             if (!log) {
-                console.error('Chat log not found!'); // Debug
+                console.error('Chat log element not found!'); // Debug
                 return;
             }
             const msgDiv = document.createElement('div');
@@ -228,7 +234,9 @@
             msgDiv.innerHTML = `<strong>${sender}:</strong> ${text}`;
             log.appendChild(msgDiv);
             log.scrollTop = log.scrollHeight;
+            console.log('Message added to log'); // Debug
         }
     </script>
 </body>
 </html>
+
