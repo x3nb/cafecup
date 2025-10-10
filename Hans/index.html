@@ -1,0 +1,80 @@
+       <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hans's Harmony Realm - ComfortCafe Eternal Estates</title>
+    <!-- jsPDF for Certificates -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- html2canvas for Gradient/Image Rendering -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        body { 
+            background: linear-gradient(to bottom, #301934, #4b0082, #4B0082); /* Dark purple depths */
+            color: #808080; 
+            font-family: 'Georgia', serif; 
+            margin: 0; 
+            padding: 20px; 
+            text-align: center; 
+            position: relative;
+            overflow-x: hidden;
+        }
+        /* Circular Realm Header */
+        .realm-header {
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(100,149,237,0.3);
+            transition: all 0.3s;
+            background: rgba(48,25,52,0.2);
+        }
+        .realm-header:hover {
+            box-shadow: 0 0 30px rgba(255,255,0,0.5);
+            transform: scale(1.05);
+        }
+        .realm-header img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            border: 3px solid #4B0082; /* Dark purple ring */
+            loading: lazy;
+            transition: all 0.3s;
+        }
+        .realm-header img:hover {
+            border-color: #FFFF00;
+            box-shadow: 0 0 10px #FFFF00;
+        }
+        .header-overlay {
+            position: relative;
+            margin-top: 10px;
+            text-align: center;
+            color: #e6e6fa;
+            padding: 0;
+            width: 100%;
+        }
+        .header-overlay h2 {
+            margin: 0 0 5px;
+            font-size: 1.5em;
+            text-shadow: 0 0 5px #4B0082;
+        }
+        .header-tagline {
+            font-style: italic;
+            margin: 0;
+            color: #ffd700;
+            font-size: 0.8em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            word-wrap: break-word;
+        }
+        @media (max-width: 600px) {
+            .realm-header
