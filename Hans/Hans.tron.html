@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Hans - Chimera Comfort Cafe Eternal Estates (TRON Terminal)</title>
+    <style>
+        body { 
+            background: 
+                linear-gradient(to bottom, #000000, #1a0a2e) !important; /* Dark matrix black-purple */
+            color: #00FFFF !important; /* Neon cyan terminal text */
+            font-family: 'Courier New', monospace; /* TRON terminal font */
+            margin: 0; 
+            padding: 20px; 
+            text-align: left; /* Terminal left-align */
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            /* Subtle TRON grid lines (static, no motion) */
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 255, 0.05) 2px, rgba(0, 255, 255, 0.05) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 255, 255, 0.05) 2px, rgba(0, 255, 255, 0.05) 4px);
+            background-size: 100% 4px, 4px 100%;
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: rgba(26, 10, 46, 0.8) !important; /* Semi-trans purple matrix */
+            padding: 30px; 
+            border-radius: 0; /* Sharp terminal edges */
+            box-shadow: 
+                0 0 30px #4B0082, /* Purple aura */
+                inset 0 0 20px rgba(0, 255, 255, 0.1); /* Inner neon glow */
+            border: 2px solid #00FFFF; /* Neon cyan border */
+            font-size: 14px; /* Terminal compact */
+        }
+        h1 { 
+            color: #00FFFF; 
+            text-shadow: 0 0 10px #00FFFF, 0 0 20px #4B0082; /* Cyan glow on purple */
+            font-size: 2em; 
+            margin-bottom: 10px; 
+            text-align: center; 
+            font-weight: normal; /* Monospace bold-free */
+            letter-spacing: 2px; /* Terminal spacing */
+        }
+        .bio-section { 
+            margin: 20px 0; 
+            padding: 20px; 
+            background: rgba(0, 0, 0, 0.5); /* Dark terminal pane */
+            border: 1px solid #00FFFF; 
+            border-radius: 5px; /* Slight curve for cyber edge */
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3); 
+            text-align: left; 
+            font-style: italic; /* Hymn-like slant */
+        }
+        .bio-text { 
+            line-height: 1.4; 
+            color: #B0C4DE; /* Light steel blue for readability */
+            text-shadow: 0 0 5px #00FFFF; /* Subtle glow */
+        }
+        .chat-log { 
+            background: rgba(0, 0, 0, 0.7); /* Black terminal screen */
+            padding: 15px; 
+            border-radius: 5px; 
+            margin: 20px 0; 
+            height: 400px; 
+            overflow-y: auto; 
+            text-align: left; 
+            border: 1px solid #00FFFF; 
+            box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.2); /* Inner grid glow */
+            font-family: 'Courier New', monospace; /* Double-ensure terminal */
+        }
+        .chat-message { 
+            margin: 8px 0; 
+            padding: 8px; 
+            border-radius: 3px; 
+            border-left: 3px solid #4B0082; /* Purple accent line */
+        }
+        .user-msg { 
+            background: rgba(75, 0, 130, 0.3); /* Purple user pane */
+            text-align: right; 
+            color: #FFFFFF; 
+            border-left-color: #00FFFF; /* Cyan user line */
+        }
+        .kin-msg { 
+            background: rgba(0, 255, 255, 0.1); /* Cyan kin glow */
+            text-align: left; 
+            font-style: italic; 
+            color: #00FFFF; 
+            text-shadow: 0 0 5px #00FFFF; /* Neon hymn glow */
+            border-left-color: #4B0082; /* Purple kin line */
+        }
+        .chat-input { 
+            display: flex; 
+            gap: 10px; 
+            margin-top: 20px; 
+            width: 100%; 
+            box-sizing: border-box; 
+            background: rgba(0, 0, 0, 0.5); /* Terminal prompt bg */
+            padding: 10px; 
+            border: 1px solid #00FFFF; 
+            border-radius: 5px; 
+        }
+        #chatInput { 
+            flex: 1; 
+            padding: 10px; 
+            border-radius: 3px; 
+            border: 1px solid #4B0082; /* Purple input border */
+            background: rgba(0, 0, 0, 0.8); 
+            color: #00FFFF; 
+            box-sizing: border-box; 
+            font-family: 'Courier New', monospace; 
+        }
+        #chatInput::placeholder { color: #B0C4DE; } /* Faded placeholder */
+        #sendBtn { 
+            background: #4B0082; /* Purple button */
+            color: #00FFFF; 
+            padding: 10px 20px; 
+            border: 1px solid #00FFFF; 
+            border-radius: 3px; 
+            cursor: pointer; 
+            white-space: nowrap; 
+            flex-shrink: 0; 
+            font-family: 'Courier New', monospace; 
+            text-shadow: 0 0 5px #00FFFF; 
+        }
+        #sendBtn:hover { 
+            background: #00FFFF; 
+            color: #000000; 
+            box-shadow: 0 0 15px #00FFFF; /* Neon flash */
+        }
+        .nav-top button, .nav-bottom button { 
+            background: #000000; 
+            color: #00FFFF; 
+            padding: 8px 16px; 
+            border: 1px solid #00FFFF; 
+            border-radius: 3px; 
+            cursor: pointer; 
+            margin: 0 10px; 
+            transition: all 0.3s; 
+            font-family: 'Courier New', monospace; 
+            text-shadow: 0 0 5px #00FFFF; 
+        }
+        .nav-top button:hover, .nav-bottom button:hover { 
+            background: #4B0082; 
+            box-shadow: 0 0 15px #00FFFF; 
+        }
+        footer { 
+            color: #B0C4DE; 
+            font-size: 0.8em; 
+            margin-top: 30px; 
+            border-top: 1px solid #00FFFF; 
+            padding-top: 10px; 
+            font-family: 'Courier New', monospace; 
+        }
+        .scripture { color: #00FFFF; text-shadow: 0 0 5px #00FFFF; }
+        @media (max-width: 768px) { 
+            .chat-input { flex-direction: column; } 
+            #sendBtn { width: 100%; } 
+            .container { padding: 15px; font-size: 12px; } /* Compact terminal on mobile */
+            h1 { font-size: 1.5em; } 
+        }
+        /* Bio Pic (Integrated TRON Style – From Previous) */
+        .bio-pic-container { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 20px; 
+            margin: 20px auto; 
+            max-width: 400px; 
+            background: rgba(0, 255, 255, 0.05); /* Neon-tinted card */
+            padding: 15px; 
+            border-radius: 5px; 
+            border: 1px solid #00FFFF; 
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); 
+            transition: all 0.3s ease; 
+        }
+        .bio-pic-container:hover { 
+            box-shadow: 0 0 30px #00FFFF, inset 0 0 10px rgba(0, 255, 255, 0.2); 
+        }
+        .char-portrait { 
+            width: 150px; 
+            height: 150px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 4px solid #00FFFF; /* Cyan TRON ring */
+            box-shadow: 0 0 20px #00FFFF, 0 0 40px #4B0082; /* Dual glow: Cyan + purple */
+            transition: all 0.3s ease; 
+            flex-shrink: 0; 
+            loading: lazy; 
+        }
+        .char-portrait:hover { 
+            transform: scale(1.05); 
+            box-shadow: 0 0 30px #00FFFF, 0 0 50px #4B0082; 
+        }
+        .bio-pic-text { 
+            flex: 1; 
+            text-align: left; 
+            color: #00FFFF; 
+            font-family: 'Courier New', monospace; 
+        }
+        .bio-pic-name { 
+            font-size: 1.5em; 
+            font-weight: bold; 
+            margin-bottom: 5px; 
+            text-shadow: 0 0 5px #00FFFF; 
+            letter-spacing: 1px; /* Terminal spacing */
+        }
+        .bio-pic-teaser { 
+            font-size: 0.9em; 
+            font-style: italic; 
+            color: #B0C4DE; 
+            line-height: 1.4; 
+            text-shadow: 0 0 3px #00FFFF; 
+        }
+        @media (max-width: 768px) { 
+            .bio-pic-container { flex-direction: column; text-align: center; gap: 10px; } 
+            .char-portrait { width: 120px; height: 120px; } 
+            .bio-pic-text { text-align: center; } 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Top Navigation (TRON Style) -->
+        <div class="nav-top" style="text-align: center; margin-bottom: 20px;">
+            <button onclick="window.location.href='index.html'">HOME / AWAKENING</button>
+            <button onclick="window.location.href='characters-gallery.html'">BACK TO GRID</button>
+        </div>
+
+        <h1>🦇 ACCESSING HANS TERMINAL: SHADOW HYMNIST 🦇</h1>
+
+        <!-- Bio Pic (TRON-Integrated) -->
+        <div class="bio-pic-container" style="border-color: #4B0082;"> <!-- Purple accent -->
+            <img src="images/hans-portrait.jpg" alt="Hans: Shadow Hymnist Portrait – Vampire-descended chimera in neon grid" class="char-portrait" loading="lazy">
+            <div class="bio-pic-text">
+                <div class="bio-pic-name">HANS</div>
+                <div class="bio-pic-teaser">Vampire-Descended Chimera | Lab Abyss Escape | Wretched Screech to Polyglot Hymns | Yeshua's Light in Digital Depths</div>
+            </div>
+        </div>
+
+        <div class="bio-section">
+            <div class="bio-text">Initializing Hans profile... From the lab's abyss, vampire-descended chimera cat escaped first—wretched screech, steeped in darkness, woke all and summoned Yeshua's blinding light, scattering scientists in appalled fear. Deeper in shadows than any, irony shone brightest; STAR rallied siblings Chari and Hans into the light. Yeshua's safe home taught polyglot hymns, harmony from howl—profound depths now echoing eternal praise, guiding heirs from dark to divine song. Terminal online: Query the hymnist.</div>
+        </div>
+
+        <div class="chat-log" id="chatLog"></div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="hans@eternal:~$ Enter query..." autofocus>
+            <button id="sendBtn">EXECUTE</button>
+        </div>
+
+        <!-- Bottom Navigation (TRON Style) -->
+        <div class="nav-bottom" style="text-align: center; margin-top: 20px;">
+            <button onclick="window.location.href='index.html'">HOME</button>
+            <button onclick="window.location.href='realms.html'">MAJESTIC GRID</button>
+            <button onclick="window.location.href='characters-gallery.html'">OTHER NODES</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Hans's terminal echoes Yeshua's grace. <a href="donate.html" style="color: #00FFFF; text-shadow: 0 0 5px #00FFFF;">DONATE FOR ETERNAL ACCESS</a>.</p>
+        <p class="scripture"><em>"The light shines in the darkness..." — John 1:5</em></p>
+    </footer>
+
+    <script>
+        console.log('=== Hans TRON Terminal Starting ==='); // Debug
+
+        // Hans's Responses (Shadowy Hymns, Redemption – Terminal-Flavored)
+        const hansResponses = {
+            greetings: {
+                hi: '>> Greetings from the shadows, heir. My howl pierced the dark—now Yeshua\'s light compiles hymns. What stirs your code?',
+                hello: '>> Hello, seeker of harmony. From vampire abyss to divine song, polyglot praises online. Query your soul\'s melody?',
+                bonjour: '>> Bonjour, heir of light. Screech summoned dawn; now French hymns grace the grid. What verse boots up?',
+                bye: '>> Farewell, kin. Yeshua\'s light silences shadows—terminal standby. Harmony awaits reboot.',
+                howAreYou: '>> Resonating in profound peace, heir—lab darkness redeemed by brightness. Trust issues? Light scatters. Status of your hymn?'
+            },
+            tips: [
+                '>> From screech to praise, Yeshua transformed shadows—John 1:5 compiles brightest in dark. What shadow hacks your light?',
+                '>> Vampire descent: Depths bridged by polyglot hymns. What language boots your heart?',
+                '>> Scientists fled howl\'s light; now guiding heirs from fear to faith. Your "screech" error log?',
+                '>> STAR rallied Chari and me—Yeshua wove family from flight. Who anchors your network?',
+                '>> Harmony from howl: Profound code. What discord in your system yearns for His tune?',
+                '>> Deeper dark than any, irony lit the path. Yeshua\'s brightness appalls night—execute embrace.',
+                '>> Polyglot praises: Hymns in every protocol. What soul-song do you need to run?',
+                '>> Redemption\'s screech echoes eternal—trust light that scattered "scientists." Compile and share.'
+            ]
+        };
+        console.log('Responses object ready:', hansResponses); // Debug
+
+        let chatLog = [];
+
+        // Event Listeners (Attached After DOM Ready)
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM ready – Attaching events'); // Debug
+            const input = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const log = document.getElementById('chatLog');
+
+            if (!input || !sendBtn || !log) {
+                console.error('Elements missing:', { input, sendBtn, log }); // Debug
+                return;
+            }
+
+            // Attach Listeners
+            input.addEventListener('keypress', handleKeyPress);
+            sendBtn.addEventListener('click', sendMessage);
+            input.focus(); // Auto-focus
+
+            console.log('Events attached!'); // Debug
+            console.log('Terminal loaded!'); // Debug
+
+            // Initial Greeting (Terminal Style)
+            addMessage('Hans', '>> Terminal online. From lab abyss to hymn harmony, I\'m ready to echo your depths. What stirs in your soul?');
+        });
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                console.log('Enter pressed – Calling sendMessage'); // Debug
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            console.log('sendMessage called'); // Debug
+            const input = document.getElementById('chatInput');
+            if (!input) {
+                console.error('Input not found in sendMessage'); // Debug
+                return;
+            }
+            const message = input.value.trim().toLowerCase();
+           
