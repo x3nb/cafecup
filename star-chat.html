@@ -92,9 +92,81 @@
         <p class="scripture"><em>"Trust in the Lord with all your heart..." — Proverbs 3:5</em></p>
     </footer>
 
-    <script>
-        // STAR's Responses (From Previous – Gothy, Trust-Veiled, Cafe/Bible-Romance)
+      <script>
+        // STAR's Responses (Gothy, Trust-Veiled, Cafe/Bible-Romance – Personality-Aligned)
         const starResponses = {
             greetings: {
                 hi: 'Greetings from the veil, heir. What shadows stir in your heart today? Yeshua\'s light awaits your whisper.',
-                hello: 'Hello, seeker. In my gothy corner of the cafe
+                hello: 'Hello, seeker. In my gothy corner of the cafe, with Bible in lap and romance novel close, how can I veil your path?',
+                bonjour: 'Bonjour from the misty veil, heir. In my jacket-draped cafe nook, with scriptures fresh, what French romance whispers your soul?',
+                bye: 'Farewell for now, seeker. May Yeshua\'s light veil your path till we chat again—trust the glow.',
+                howAreYou: 'I\'m veiled in peace, heir, Bible open and cafe humming. Trust issues linger, but Yeshua\'s kindness carries me. And you—how does the light find your heart?'
+            },
+            tips: [
+                'Shadows test trust, heir, but Yeshua\'s light rebuilds—lean on Proverbs 3:5, as I do in the cafe\'s quiet.',
+                'A motorcycle jacket and romance novel: My armor and dreams. What veils your hopes? Share, and light unveils.',
+                'Running the Chimera Comfort Cafe taught me kindness reaches far—Yeshua\'s way. What brew mends your day?',
+                'Bible first, novels second: Scriptures ground, stories lift. Which verse veils your current chapter?',
+                'From lab scars to cafe heart, I pressed on trusting Him. Your trust issues? Light conquers—let\'s ponder together.',
+                'Gothy vibes hide a responsible soul; Yeshua showed all good in His glow. What responsibility weighs on you?',
+                'Cafe rhythms echo eternal: One sip at a time. What small step veils your next quest?',
+                'Romance whispers hope after Bible truth—Yeshua\'s love story for us all. What\'s your heart\'s tale?'
+            ]
+        };
+
+        let chatLog = [];
+
+        // Handle Enter Key
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') sendMessage();
+        }
+
+        // Send Message
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim().toLowerCase();
+            if (!message) return;
+            addMessage('You', message);
+            input.value = '';
+
+            // Check for Greeting
+            let response = '';
+            if (message.includes('hi') || message.includes('hello') || message.includes('hey')) {
+                response = starResponses.greetings.hi;
+            } else if (message.includes('bonjour')) {
+                response = starResponses.greetings.bonjour;
+            } else if (message.includes('bye') || message.includes('goodbye') || message.includes('farewell')) {
+                response = starResponses.greetings.bye;
+                setTimeout(() => {
+                    alert('STAR bids you farewell—Yeshua\'s light lingers. Return soon!');
+                    window.location.href = 'characters-gallery.html'; // Back to gallery after bye
+                }, 1500);
+            } else if (message.includes('how are you') || message.includes('how r u')) {
+                response = starResponses.greetings.howAreYou;
+            } else {
+                // Random Default Tip
+                const tips = starResponses.tips;
+                response = tips[Math.floor(Math.random() * tips.length)];
+            }
+
+            setTimeout(() => addMessage('STAR', response), 800); // "Typing" delay for immersion
+        }
+
+        // Add Message to Log
+        function addMessage(sender, text) {
+            chatLog.push({ sender, text });
+            const log = document.getElementById('chatLog');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = sender === 'You' ? 'chat-message user-msg' : 'chat-message kin-msg';
+            msgDiv.innerHTML = `<strong>${sender}:</strong> ${text}`;
+            log.appendChild(msgDiv);
+            log.scrollTop = log.scrollHeight;
+        }
+
+        // Initial Greeting on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            addMessage('STAR', 'Welcome to my veiled chat, heir. Draped in my jacket, Bible nearby, I\'m ready to weave visions. What whispers from your heart?');
+        });
+    </script>
+</body>
+</html>
