@@ -312,4 +312,26 @@
 
 Heir of the Eternal Estates,
 You have echoed Hans's Harmony Realm.
-From lab
+From lab  shadows and wretched screech to Yeshua's light,
+Your hymns align the kin in profound harmony.
+
+Your Harmony Echo: ${harmony.substring(0, 100) + (harmony.length > 100 ? '...' : '')}
+
+Signed: Hans & The Kin
+Date: ${date}
+
+"The light shines in the darkness, and the darkness has not overcome it." — John 1:5`;
+            const blob = new Blob([certText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'hans-harmony-herald-certificate.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            alert('Certificate echoed (text fallback)! Download your harmony accolade.');
+        }
+    </script>
+</body>
+</html>
