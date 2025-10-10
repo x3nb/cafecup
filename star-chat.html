@@ -42,6 +42,7 @@
             height: 400px; 
             overflow-y: auto; 
             text-align: left; 
+            border: 1px solid #EE82EE; /* Visible border for debug */
         }
         .chat-message { margin: 10px 0; padding: 8px; border-radius: 5px; }
         .user-msg { background: rgba(255,255,255,0.2); text-align: right; }
@@ -92,7 +93,9 @@
         <p class="scripture"><em>"Trust in the Lord with all your heart..." — Proverbs 3:5</em></p>
     </footer>
 
-      <script>
+    <script>
+        console.log('Script loading...'); // Debug: Confirms JS runs
+
         // STAR's Responses (Gothy, Trust-Veiled, Cafe/Bible-Romance – Personality-Aligned)
         const starResponses = {
             greetings: {
@@ -118,14 +121,21 @@
 
         // Handle Enter Key
         function handleKeyPress(event) {
-            if (event.key === 'Enter') sendMessage();
+            if (event.key === 'Enter') {
+                console.log('Enter pressed'); // Debug
+                sendMessage();
+            }
         }
 
         // Send Message
         function sendMessage() {
+            console.log('Send clicked'); // Debug
             const input = document.getElementById('chatInput');
             const message = input.value.trim().toLowerCase();
-            if (!message) return;
+            if (!message) {
+                console.log('Empty message'); // Debug
+                return;
+            }
             addMessage('You', message);
             input.value = '';
 
@@ -149,13 +159,19 @@
                 response = tips[Math.floor(Math.random() * tips.length)];
             }
 
+            console.log('Response:', response); // Debug
             setTimeout(() => addMessage('STAR', response), 800); // "Typing" delay for immersion
         }
 
         // Add Message to Log
         function addMessage(sender, text) {
+            console.log('Adding message:', sender, text); // Debug
             chatLog.push({ sender, text });
             const log = document.getElementById('chatLog');
+            if (!log) {
+                console.error('Chat log not found!'); // Debug
+                return;
+            }
             const msgDiv = document.createElement('div');
             msgDiv.className = sender === 'You' ? 'chat-message user-msg' : 'chat-message kin-msg';
             msgDiv.innerHTML = `<strong>${sender}:</strong> ${text}`;
@@ -165,8 +181,10 @@
 
         // Initial Greeting on Load
         document.addEventListener('DOMContentLoaded', () => {
+            console.log('Chat loaded!'); // Debug: Confirms ready
             addMessage('STAR', 'Welcome to my veiled chat, heir. Draped in my jacket, Bible nearby, I\'m ready to weave visions. What whispers from your heart?');
         });
     </script>
 </body>
 </html>
+
