@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with STAR - Chimera Comfort Cafe Eternal Estates</title>
+    <style>
+        body { 
+            background: linear-gradient(to bottom, #4B0082, #301934) !important; /* Static indigo-purple */
+            color: #e6e6fa !important; 
+            font-family: 'Georgia', serif; 
+            margin: 0; 
+            padding: 20px; 
+            text-align: center; 
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: rgba(48,25,52,0.3) !important; 
+            padding: 30px; 
+            border-radius: 15px; 
+            box-shadow: 0 0 30px #EE82EE; /* STAR's violet aura */
+        }
+        h1 { color: #EE82EE; text-shadow: 0 0 10px #EE82EE; font-size: 2.5em; margin-bottom: 10px; }
+        .bio-section { 
+            margin: 20px 0; 
+            padding: 20px; 
+            background: rgba(238,130,238,0.2); 
+            border-radius: 15px; 
+            box-shadow: 0 0 20px #EE82EE; 
+            text-align: left; 
+        }
+        .bio-text { font-size: 1.1em; line-height: 1.6; color: #e6e6fa; }
+        .chat-log { 
+            background: rgba(255,255,255,0.1); 
+            padding: 15px; 
+            border-radius: 10px; 
+            margin: 20px 0; 
+            height: 400px; 
+            overflow-y: auto; 
+            text-align: left; 
+        }
+        .chat-message { margin: 10px 0; padding: 8px; border-radius: 5px; }
+        .user-msg { background: rgba(255,255,255,0.2); text-align: right; }
+        .kin-msg { background: rgba(0,0,0,0.3); text-align: left; font-style: italic; color: #EE82EE; }
+        .chat-input { 
+            display: flex; 
+            gap: 10px; 
+            margin-top: 20px; 
+        }
+        #chatInput { flex: 1; padding: 10px; border-radius: 10px; border: 1px solid #EE82EE; background: rgba(255,255,255,0.1); color: #fff; }
+        #sendBtn { background: #EE82EE; color: #fff; padding: 10px 20px; border: none; border-radius: 10px; cursor: pointer; }
+        #sendBtn:hover { background: #FFFF00; color: #000; }
+        .nav-top button, .nav-bottom button { background: #808080; color: #fff; padding: 8px 16px; border: none; border-radius: 10px; cursor: pointer; margin: 0 10px; transition: all 0.3s; }
+        .nav-top button:hover, .nav-bottom button:hover { background: #6495ED; box-shadow: 0 0 10px #6495ED; }
+        footer { color: #808080; font-size: 0.8em; margin-top: 30px; border-top: 1px solid #EE82EE; padding-top: 10px; }
+        @media (max-width: 768px) { .chat-input { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Top Navigation -->
+        <div class="nav-top">
+            <button onclick="window.location.href='index.html'">🏠 Home / Awakening</button>
+            <button onclick="window.location.href='characters-gallery.html'">👥 Back to Gallery</button>
+        </div>
+
+        <h1>🌙 Chat with STAR: The Gothy Veil Keeper 🌙</h1>
+        <div class="bio-section">
+            <div class="bio-text">STAR, the gothy chimera cat of veiled dreams, absorbed the lab's deepest scars—trust issues sharper than any kin's, yet Yeshua's light her unbreakable anchor. As the most responsible, she runs the Chimera Comfort Cafe with far-reaching kindness, pressing on through shadows. Draped in beloved motorcycle jackets (Miki's sporty echo, but her vibe introspective), she curls at the counter: Holy Bible first, romance novels second, weaving visions for heirs. Yeshua taught her everything—cafe rhythms, trust's veil-lift, light's promise: All good in His glow.</div>
+        </div>
+
+        <div class="chat-log" id="chatLog"></div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Speak your heart to STAR..." onkeypress="handleKeyPress(event)">
+            <button id="sendBtn" onclick="sendMessage()">Send</button>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="nav-bottom" style="margin-top: 20px;">
+            <button onclick="window.location.href='index.html'">🏠 Home</button>
+            <button onclick="window.location.href='realms.html'">🗺️ Majestic Map</button>
+            <button onclick="window.location.href='characters-gallery.html'">👥 Other Kin</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>STAR's veil whispers Yeshua's grace. <a href="donate.html" style="color: #EE82EE;">Donate for Eternal Chats</a>.</p>
+        <p class="scripture"><em>"Trust in the Lord with all your heart..." — Proverbs 3:5</em></p>
+    </footer>
+
+    <script>
+        // STAR's Responses (From Previous – Gothy, Trust-Veiled, Cafe/Bible-Romance)
+        const starResponses = {
+            greetings: {
+                hi: 'Greetings from the veil, heir. What shadows stir in your heart today? Yeshua\'s light awaits your whisper.',
+                hello: 'Hello, seeker. In my gothy corner of the cafe
