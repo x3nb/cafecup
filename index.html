@@ -203,19 +203,41 @@
         <p>Yeshua's light initializes every path. <a href="donate.html" class="donate-link">Donate for Eternal Awakening</a> – Unlock the full grid.</p>
     </footer>
 
-    <script>
-        // Simple Boot-Up "Animation" (Static Fade – No Motion)
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('Awakening sequence online.'); // Debug
-            const container = document.querySelector('.container');
-            if (container) {
-                container.style.opacity = '0';
-                container.style.transition = 'opacity 1s ease-in';
-                setTimeout(() => {
-                    container.style.opacity = '1';
-                }, 100); // Gentle fade-in for "loading"
+   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cover = document.getElementById('cover-screen');
+        const container = document.querySelector('.container');
+        const typewriter = document.getElementById('typewriter');
+
+        const message = "Booting Café Terminal... Awakening Lavender Node...";
+        let i = 0;
+
+        function type() {
+            if (i < message.length) {
+                typewriter.textContent += message.charAt(i);
+                i++;
+                setTimeout(type, 80);
             }
-        });
-    </script>
+        }
+
+        type();
+
+        function beginExperience() {
+            cover.classList.add('fade-out');
+            setTimeout(() => {
+                cover.style.display = 'none';
+                container.style.opacity = '1';
+            }, 1000);
+        }
+
+        // Start hidden main container
+        container.style.opacity = '0';
+
+        // Allow any key or click to continue
+        document.addEventListener('keydown', beginExperience);
+        cover.addEventListener('click', beginExperience);
+    });
+</script>
+
 </body>
 </html>
