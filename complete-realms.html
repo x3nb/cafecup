@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eternal Estates Map: Kin Nodes Unlocked</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:wght@300;400;500&display=swap');
+        body { 
+            background: 
+                linear-gradient(to bottom, #301934 0%, #6495ED 50%, #008080 100%) !important; /* Deep purple to cornflower blue to teal – calm iRobot flow */
+            color: #708090 !important; /* Slate grey text for monochromatic calm */
+            font-family: 'Roboto Mono', monospace; /* iRobot robotic monospace – legible, futuristic */
+            margin: 0; 
+            padding: 20px; 
+            text-align: center; 
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            /* Faint grid lines in greys/purples (subtle, static calm) */
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(48, 25, 52, 0.05) 2px, rgba(48, 25, 52, 0.05) 4px), /* Deep purple lines */
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(100, 149, 237, 0.05) 2px, rgba(100, 149, 237, 0.05) 4px); /* Cornflower whispers */
+            background-size: 100% 4px, 4px 100%;
+        }
+        .container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            background: rgba(47, 79, 79, 0.7) !important; /* Dark slate grey semi-trans – calm iRobot panel */
+            padding: 30px; 
+            border-radius: 10px; /* Soft edges */
+            box-shadow: 
+                0 0 20px #4B0082, /* Deep purple subtle aura */
+                inset 0 0 15px rgba(100, 149, 237, 0.1); /* Inner cornflower calm glow */
+            border: 1px solid #00CED1; /* Funky teal border – minimal neon */
+            font-size: 14px; /* Legible compact */
+        }
+        h1 { 
+            color: #00CED1; /* Funky teal title – iRobot protocol pop */
+            text-shadow: 0 0 10px #00CED1, 0 0 15px #6495ED; /* Teal + cornflower subtle glow */
+            font-size: 3em; 
+            margin-bottom: 20px; 
+            font-family: 'Playfair Display', serif; /* Fancy legible */
+            font-weight: 700; 
+            font-style: italic; 
+            letter-spacing: 1px; 
+        }
+        h2 { 
+            color: #708090; /* Slate grey */
+            text-shadow: 0 0 5px #00CED1; /* Subtle teal */
+            font-family: 'Playfair Display', serif; 
+            font-weight: 400; 
+            font-style: italic; 
+        }
+        .interview { 
+            background: rgba(112, 128, 144, 0.3); /* Slate grey pane – calm */
+            padding: 20px; 
+            border-radius: 10px; 
+            margin: 20px 0; 
+            box-shadow: 0 0 10px #008080; /* Teal subtle lift */
+            border: 1px solid #6495ED; /* Cornflower edge */
+            font-family: 'Roboto Mono', monospace; 
+        }
+        .question { 
+            margin: 20px 0; 
+            opacity: 1 !important; 
+            visibility: visible !important; 
+            display: block !important; 
+            transform: none !important; 
+            transition: none; 
+        }
+        .question label { 
+            display: block; 
+            margin: 10px 0; 
+            color: #E6E6FA; /* Lavender tint for legibility */
+            font-size: 1.1em; 
+            font-weight: bold; 
+            text-shadow: 0 0 3px #00CED1; /* Teal subtle */
+            font-family: 'Roboto Mono', monospace; 
+        }
+        input[type="radio"] { margin: 5px 0; accent-color: #00CED1; } /* Teal radio */
+        select { 
+            margin: 5px; 
+            padding: 8px; 
+            border-radius: 5px; 
+            border: 1px solid #6495ED; /* Cornflower select */
+            background: rgba(230,230,250,0.2); 
+            color: #708090; /* Grey text */
+            font-family: 'Roboto Mono', monospace; 
+        }
+        #progressBar { 
+            width: 100%; 
+            height: 5px; 
+            background: #301934; /* Deep purple bar */
+            border-radius: 5px; 
+            margin: 10px 0; 
+            overflow: hidden; 
+            box-shadow: 0 0 5px #008080; /* Teal progress glow */
+        }
+        #progressFill { 
+            height: 100%; 
+            background: linear-gradient(to right, #6495ED, #008080); /* Cornflower to teal fill */
+            transition: width 0.3s; 
+            border-radius: 5px; 
+        }
+        #progressText { 
+            color: #708090; /* Grey */
+            font-size: 0.9em; 
+            text-shadow: 0 0 3px #00CED1; /* Teal subtle */
+            font-family: 'Roboto Mono', monospace; 
+        }
+        button { 
+            background: linear-gradient(45deg, #4B0082, #301934); /* Deep purple to purple – calm */
+            color: #00CED1; /* Funky teal text */
+            padding: 10px 20px; 
+            border: 1px solid #00CED1; /* Teal border */
+            border-radius: 10px; 
+            cursor: pointer; 
+            margin: 10px; 
+            transition: all 0.3s; 
+            font-family: 'Playfair Display', serif; /* Fancy buttons */
+            font-weight: 700; 
+            box-shadow: 0 0 10px rgba(0, 206, 209, 0.3); /* Teal subtle glow */
+            letter-spacing: 1px; 
+        }
+        button:hover { 
+            background: linear-gradient(45deg, #6495ED, #008080); /* Cornflower to teal shift */
+            box-shadow: 0 0 15px #00CED1; /* Funky teal flash – minimal */
+            transform: scale(1.05); 
+        }
+        button:disabled { background: #2F4F4F; color: #A9A9A9; cursor: not-allowed; box-shadow: none; border-color: #A9A9A9; } /* Dark slate disabled */
+        button.important { border: 2px solid #00CED1; text-shadow: 0 0 5px #00CED1; } /* Teal important */
+        .important:hover { background: #00CED1 !important; color: #301934 !important; box-shadow: 0 0 20px #00CED1; }
+        .hidden { display: none; }
+        #confirmationModal { 
+            background: rgba(47, 79, 79, 0.8); /* Dark slate modal */
+            padding: 20px; 
+            border-radius: 10px; 
+            margin: 20px 0; 
+            border: 1px solid #00CED1; /* Teal modal */
+            box-shadow: 0 0 15px #6495ED; /* Cornflower shadow */
+            font-family: 'Roboto Mono', monospace; 
+        }
+        .map-section { 
+            margin-top: 40px; 
+            position: relative; 
+            height: 600px; 
+            min-height: 500px; 
+            border-radius: 10px; 
+            overflow: hidden; 
+            box-shadow: inset 0 0 30px rgba(75, 0, 130, 0.2); /* Purple inner calm */
+            border: 1px solid #00CED1; /* Teal lift */
+        }
+        .map-hub { 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            background: radial-gradient(circle, #20B2AA, #008080, #006666); /* Teal core – iRobot light protocol */
+            border-radius: 50%; 
+            width: 150px; 
+            height: 150px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            box-shadow: 0 0 20px #20B2AA, inset 0 0 15px rgba(255,255,255,0.3); /* Teal subtle glow */
+            z-index: 10;
+            border: 1px solid #00CED1; /* Teal ring */
+        }
+        .hub-icon { width: 80px; height: 80px; border-radius: 50%; background: #E6E6FA; margin-bottom: 5px; display: flex; align-items: center; justify-content: center; font-size: 2em; box-shadow: 0 0 10px #20B2AA; }
+        .hub-name { font-size: 1.2em; color: #fff; font-weight: bold; text-shadow: 0 0 3px #00CED1; font-family: 'Playfair Display', serif; }
+        .kin-portal { 
+            position: absolute; 
+            width: 150px; 
+            height: 150px; 
+            border-radius: 50%; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            transition: all 0.5s ease; 
+            border: 1px solid #708090; /* Slate grey border – calm */
+            box-shadow: 0 0 15px rgba(0, 206, 209, 0.2); /* Teal subtle glow */
+            z-index: 5;
+            background: rgba(112, 128, 144, 0.3); /* Slate grey node – monochromatic */
+            font-family: 'Roboto Mono', monospace; 
+        }
+        .kin-portal:hover { 
+            transform: scale(1.2) rotate(5deg); 
+            box-shadow: 0 0 25px #00CED1; /* Funky teal expand – minimal */
+            border-color: #00CED1; 
+            animation: subtleGlitch 0.3s ease-out; 
+        }
+        @keyframes subtleGlitch { 0%, 100% { transform: scale(1.2) rotate(5deg); } 10%, 30%, 50% { transform: scale(1.25) rotate(7deg) translateX(2px); } 20%, 40% { transform: scale(1.15) rotate(3deg) translateX(-2px); } }
+        .portal-icon { width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px; background: radial-gradient(circle, currentColor, #2F4F4F); display: flex; align-items: center; justify-content: center; font-size: 1.5em; box-shadow: 0 0 10px rgba(0, 206, 209, 0.3); }
+        .portal-name { font-size: 1em; color: #708090; font-weight: bold; text-shadow: 0 0 3px #00CED1; white-space: nowrap; font-family: 'Playfair Display', serif; }
+        .portal-teaser { font-size: 0.7em; color: #A9A9A9; margin-top: 2px; font-family: 'Roboto Mono', monospace; }
+        /* Color Associations (Calm Monochromatic – Violet Toned) */
+        .star-violet { color: #9370DB; background: radial-gradient(circle, #9370DB, #708090); } /* Medium purple violet */
+        .milo-mint { color: #008080; background: radial-gradient(circle, #008080, #2F4F4F); } /* Teal mint */
+        .chari-lavender { color: #708090; background: radial-gradient(circle, #708090, #6495ED); } /* Grey lavender */
+        .hans-purple { color: #4B0082; background: radial-gradient(circle, #4B0082, #301934); } /* Deep purple */
+        .miki-yellow { color: #6495ED; background: radial-gradient(circle, #6495ED, #708090); } /* Cornflower "yellow" calm */
+        /* Radial Positioning (Desktop) */
+        .kin-portal:nth-child(1) { top: 20%; left: 20%; transform: rotate(72deg) translateY(-200px); } /* STAR */
+        .kin-portal:nth-child(2) { top: 20%; right: 20%; transform: rotate(144deg) translateY(-200px); } /* Milo */
+        .kin-portal:nth-child(3) { bottom: 20%; right: 20%; transform: rotate(216deg) translateY(200px); } /* Chari */
+        .kin-portal:nth-child(4) { bottom: 20%; left: 20%; transform: rotate(288deg) translateY(200px); } /* Hans */
+        .kin-portal:nth-child(5) { top: 50%; right: 5%; transform: rotate(0deg) translateX(200px); } /* Miki */
+        /* Mobile: Vertical Cascade */
+        @media (max-width: 768px) { 
+            .map-hub { position: static; transform: none; margin: 20px auto; width: 120px; height: 120px; } 
+            .kin-portal { 
+                position: static; 
+                transform: none; 
+                margin: 15px auto; 
+                width: 120px; 
+                height: 120px; 
+                box-shadow: 0 0 15px rgba(0, 206, 209, 0.2); 
+            }
+            .kin-portal:nth-child(1) { background: linear-gradient(to bottom, #9370DB, #708090); } /* STAR */
+            .kin-portal:nth-child(2) { background: linear-gradient(to bottom, #008080, #2F4F4F); } /* Milo */
+            .kin-portal:nth-child(3) { background: linear-gradient(to bottom, #708090, #6495ED); } /* Chari */
+            .kin-portal:nth-child(4) { background: linear-gradient(to bottom, #4B0082, #301934); } /* Hans */
+            .kin-portal:nth-child(5) { background: linear-gradient(to bottom, #6495ED, #708090); } /* Miki */
+            .map-section { height: auto; min-height: 400px; } 
+            h1 { font-size: 2em; } 
+            .interview { padding: 15px; } 
+        }
+        label { display: block; margin: 10px 0; color: #E6E6FA; text-shadow: 0 0 3px #00CED1; font-family: 'Roboto Mono', monospace; }
+        input[type="radio"], select { margin: 5px; padding: 5px; border-radius: 5px; border: 1px solid #6495ED; background: rgba(230,230,250,0.2); color: #708090; box-shadow: 0 0 5px rgba(0, 206, 209, 0.2); font-family: 'Roboto Mono', monospace; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌙 Eternal Estates Map: Kin Nodes Unlocked 🌙</h1>
+        <p style="font-family: 'Playfair Display', serif; color: #B0C4DE; font-style: italic; margin-bottom: 30px; text-shadow: 0 0 3px #00CED1;">Yeshua's light core pulses, kin auras orbit eternally. Explore freely—no veils remain. Mysteries compile in quests (Proverbs 3:5-6).</p>
+
+        <!-- Optional Interview Protocol
