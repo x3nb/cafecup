@@ -233,8 +233,238 @@
 <body>
     <div class="container">
         <h1>🌙 Eternal Estates Map: Kin Nodes Unlocked 🌙</h1>
-        <p style="font-family: 'Playfair Display', serif; color: #B0C4DE; font-style: italic; margin-bottom: 30px; text-shadow: 0 0 3px #00FFFF;">Yeshua's light core pulses, kin auras orbit eternally. Explore freely—no veils remain. Mysteries compile in quests (Proverbs 3:5-6).</p>
+              <p style="font-family: 'Playfair Display', serif; color: #B0C4DE; font-style: italic; margin-bottom: 30px; text-shadow: 0 0 3px #00FFFF;">Yeshua's light core pulses, kin auras orbit eternally. Explore freely—no veils remain. Mysteries compile in quests (Proverbs 3:5-6).</p>
 
         <!-- Optional Interview Protocol (Skip for Immediate Lift) -->
         <div id="interview" class="interview">
-            <h2 style="color: #00FFFF; text-shadow: 0 0 5px #00FFFF;
+            <h2 style="color: #00FFFF; text-shadow: 0 0 5px #00FFFF; font-family: 'Playfair Display', serif; font-style: italic;">Pathfinder Protocol: Optional Kin Alignment</h2>
+            <p style="color: #E6E6FA; font-family: 'Courier New', monospace; margin-bottom: 20px; text-shadow: 0 0 3px #00FFFF;">
+                <em>STAR:</em> Heir, this protocol weaves your spark to realms—optional, as Yeshua's light unlocks all. <em>Miki:</em> Riff freely; rhythm reveals, but explore unbound!
+            </p>
+            <div id="progressBar">
+                <div id="progressFill" style="width: 0%;"></div>
+            </div>
+            <p id="progressText" style="color: #B0C4DE; font-size: 0.9em; font-family: 'Courier New', monospace;">Protocol Step 1 of 4 – Reflect or skip. (All nodes accessible.)</p>
+            
+            <form id="realmQuiz">
+                <div class="question">
+                    <label>1. Preferred Pace: Gentle brews or vibrant vibes?</label><br>
+                    <input type="radio" name="pace" value="calm" id="calm"> Calm & Reflective (Coffee Realms)<br>
+                    <input type="radio" name="pace" value="energetic" id="energetic"> Energetic & Expressive (Music Realms)<br>
+                </div>
+                
+                <div class="question">
+                    <label>2. Creative Spark: Stories or symphonies?</label><br>
+                    <input type="radio" name="creative" value="stories" id="stories"> Stories & Secrets (Veil Realms)<br>
+                    <input type="radio" name="creative" value="sounds" id="sounds"> Sounds & Rhythms (Harmony Realms)<br>
+                </div>
+                
+                <div class="question">
+                    <label>3. Social Shade: Solitary or kin-knit?</label><br>
+                    <input type="radio" name="social" value="solitary" id="solitary"> Solitary Sanctuary (Recluse Paths)<br>
+                    <input type="radio" name="social" value="kin" id="kin"> Kin & Collective (Tribe Bonds)<br>
+                </div>
+                
+                <div class="question">
+                    <label>4. Adventure Flavor: Gentle drifts or bold rifts?</label><br>
+                    <select name="adventure" style="padding: 5px; border-radius: 5px; border: 1px solid #6495ED;">
+                        <option value="gentle">Gentle Drifts (Cozy Quests)</option>
+                        <option value="bold">Bold Rifts (Epic Adventures)</option>
+                    </select>
+                </div>
+                
+                <button type="button" id="submitBtn" class="important">Compile Choices & Suggest Node</button>
+                <button type="button" id="skipBtn" style="background: #301934; border-color: #00FFFF;">Skip to Eternal Map (Unlocked)</button>
+                <button type="button" id="escapeBtn">Escape Protocol (Partial Nodes)</button>
+            </form>
+        </div>
+
+        <!-- Confirmation Modal (Optional Suggestion) -->
+        <div id="confirmationModal" class="hidden">
+            <h3 id="modalTitle" style="color: #FFD700; text-shadow: 0 0 5px #FFD700; font-family: 'Playfair Display', serif;">Path Unveiled</h3>
+            <p id="modalMessage" style="color: #E6E6FA; font-family: 'Courier New', monospace;"></p>
+            <button id="proceedBtn" class="important">Proceed to Suggested Node</button>
+            <button id="exploreBtn" style="background: #00FFFF; color: #000; border-color: #FFD700;">Explore All Nodes (Map Lift)</button>
+        </div>
+
+        <!-- Majestic Map Section (Lifted with TRON – Unlocked Nodes) -->
+        <div class="map-section">
+            <!-- Central Yeshua Hub (Gold Core) -->
+            <div class="map-hub">
+                <div class="hub-icon">✝️</div>
+                <div class="hub-name">Yeshua's Light Core</div>
+                <p style="font-size: 0.8em; color: #000; margin: 0; font-family: 'Playfair Display', serif;">Eternal Overseer – All Nodes Unlocked</p>
+            </div>
+
+            <!-- Kin Portals (Bio-Pic Nodes – Unlocked with Images/Teasers) -->
+            <div class="kin-portal star-violet unlocked" onclick="enterRealm('star-realm.html')" title="STAR's Veil Node">
+                <img src="images/star-portrait.jpg" alt="STAR: Gothy Veil Node" class="portal-icon" loading="lazy" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #00FFFF;">
+                <div class="portal-name">STAR</div>
+                <div class="portal-teaser">Goth Veil Visions – Trust in Light</div>
+            </div>
+
+            <div class="kin-portal milo-mint unlocked" onclick="enterRealm('milo-realm.html')" title="Milo's Way Node">
+                <img src="images/milo-portrait.jpg" alt="Milo: Way Walker Node" class="portal-icon" loading="lazy" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #00FFFF;">
+                <div class="portal-name">Milo</div>
+                <div class="portal-teaser">Tao & Truth Flow – Balanced Paths</div>
+            </div>
+
+            <div class="kin-portal chari-lavender unlocked" onclick="enterRealm('chari-realm.html')" title="Chari's Coffee Node">
+                <img src="images/chari-portrait.jpg" alt="Chari: Cozy Sanctuary Node" class="portal-icon" loading="lazy" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #00FFFF;">
+                <div class="portal-name">Chari</div>
+                <div class="portal-teaser">Cozy Brew Sanctuary – Kindness Sips</div>
+            </div>
+
+            <div class="kin-portal hans-purple unlocked" onclick="enterRealm('hans-realm.html')" title="Hans's Harmony Node">
+                <img src="images/hans-portrait.jpg" alt="Hans: Shadow Hymnist Node" class="portal-icon" loading="lazy" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #00FFFF;">
+                <div class="portal-name">Hans</div>
+                <div class="portal-teaser">Howl to Light Hymns – Redemption Echo</div>
+            </div>
+
+            <div class="kin-portal miki-yellow unlocked" onclick="enterRealm('miki-realm.html')" title="Miki's Music Node">
+                <img src="images/miki-portrait.jpg" alt="Miki: Music Realm Node" class="portal-icon" loading="lazy" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid #00FFFF;">
+                <div class="portal-name">Miki</div>
+                <div class="portal-teaser">Riffing Symphony Sparks – Energetic Vibes</div>
+            </div>
+        </div>
+
+        <!-- Back Buttons (TRON Lift) -->
+        <button onclick="window.location.href='index.html'" style="background: #301934; border-color: #00FFFF; margin-top: 20px;">← Boot-Up Awakening</button>
+        <button onclick="window.location.href='blueprint.html'" style="background: #4B0082; border-color: #FFD700;">🌟 Kin Terminal Grid</button>
+    </div>
+
+    <footer>
+        <p>Yeshua's core illuminates every node. <a href="donate.html" style="color: #00FFFF; text-shadow: 0 0 5px #00FFFF;">Donate for Eternal Lift</a> – Compile quests.</p>
+        <p class="scripture" style="color: #FFD700; font-family: 'Playfair Display', serif; font-style: italic;"><em>"I am the way, the truth, and the life." — John 14:6</em></p>
+    </footer>
+
+    <script>
+        console.log('=== Eternal Map Lift Starting ==='); // Debug
+
+        // Interview Logic (Optional – Progress Optional Save)
+        const questions = document.querySelectorAll('.question');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        const form = document.getElementById('realmQuiz');
+        const submitBtn = document.getElementById('submitBtn');
+        const skipBtn = document.getElementById('skipBtn');
+        const escapeBtn = document.getElementById('escapeBtn');
+        const modal = document.getElementById('confirmationModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+        const proceedBtn = document.getElementById('proceedBtn');
+        const exploreBtn = document.getElementById('exploreBtn');
+
+        let currentQuestion = 0;
+        updateProgress();
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            progressFill.style.width = progress + '%';
+            progressText.textContent = `Protocol Step ${currentQuestion + 1} of ${questions.length} – Reflect or skip.`;
+        }
+
+        // Simple Visibility (All Shown, Progress Tracks)
+        questions.forEach((q, index) => {
+            q.style.opacity = '1';
+            q.style.pointerEvents = 'auto';
+        });
+
+        // Submit (Optional)
+        submitBtn.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                updateProgress();
+            } else {
+                const formData = new FormData(form);
+                const pace = formData.get('pace');
+                const creative = formData.get('creative');
+                const social = formData.get('social');
+                const adventure = formData.get('adventure');
+
+                let suggestedRealm = '';
+                let score = 0;
+
+                if (pace === 'calm') score += 1;
+                if (creative === 'stories') score += 2;
+                if (social === 'solitary') score += 3;
+                if (adventure === 'gentle') score += 4;
+
+                if (score >= 6) suggestedRealm = 'Chari\'s Cozy Sanctuary Node (Lavender Aura)';
+                else if (score >= 4) suggestedRealm = 'Milo\'s Mint Way Node (Balanced Flow)';
+                else if (score >= 2) suggestedRealm = 'STAR\'s Violet Veil Node (Goth Visions)';
+                else suggestedRealm = 'Hans\'s Purple Harmony Node (Shadow Hymns)';
+
+                modalTitle.textContent = 'Path Unveiled – Optional Suggestion';
+                modalMessage.textContent = `Your spark aligns with ${suggestedRealm}. Yeshua's light guides all—proceed or explore the lifted map?`;
+                modal.classList.remove('hidden');
+
+                // Optional Save
+                localStorage.setItem('realmProgress', JSON.stringify({ completed: true, suggested: suggestedRealm, score: score }));
+                console.log('Protocol compiled – Optional save.'); // Debug
+            }
+        });
+
+        // Skip (Immediate Unlock – No Locks)
+        skipBtn.addEventListener('click', () => {
+            document.getElementById('interview').style.display = 'none';
+            document.querySelector('.map-section').style.display = 'block';
+            console.log('Skip executed – Full map lift.'); // Debug
+            unlockMap(); // Ensure full
+        });
+
+        // Escape (Partial – But Lifted to Full for Simplicity)
+        escapeBtn.addEventListener('click', () => {
+            modalTitle.textContent = 'Protocol Paused – Partial Veil Lifted';
+            modalMessage.textContent = 'STAR and Milo nodes open gently. Reflect or explore the map? (John 14:6)';
+            modal.classList.remove('hidden');
+            localStorage.setItem('realmProgress', JSON.stringify({ completed: false, partial: true }));
+            unlockMap(true); // Partial, but all unlocked anyway
+        });
+
+        proceedBtn.addEventListener('click', () => {
+            const suggested = localStorage.getItem('realmProgress');
+            const data = JSON.parse(suggested);
+            const realm = data.suggested.toLowerCase().replace(/[^a-z0-9]/g, '-');
+            window.location.href = `${realm}.html`;
+        });
+
+        exploreBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            document.querySelector('.map-section').style.display = 'block';
+            unlockMap(); // Full lift
+        });
+
+        // Map Unlock Function (No Locks – All Unlocked)
+        function unlockMap(partial = false) {
+            const portals = document.querySelectorAll('.kin-portal');
+            portals.forEach(portal => {
+                portal.classList.add('unlocked'); // All glow – lifted access
+            });
+            console.log('Map unlocked:', partial ? 'partial (but full lift)' : 'full'); // Debug
+            document.querySelector('.map-section').style.display = 'block'; // Show map
+        }
+
+        // Portal Enter (No Locks – Direct Access)
+        function enterRealm(url) {
+            window.location.href = url; // Free flow
+        }
+
+        // Initial Full Unlock (Lifted – No Locks)
+        unlockMap();
+
+        // Glitchy Hover Enhancement (Neon Lift)
+        document.querySelectorAll('.kin-portal').forEach(portal => {
+            portal.addEventListener('mouseenter', () => {
+                portal.style.animation = 'subtleGlitch 0.3s ease-out';
+            });
+            portal.addEventListener('mouseleave', () => {
+                portal.style.animation = 'none';
+            });
+        });
+
+        console.log('Eternal Map Lift Online.'); // Debug
+    </script>
+</body>
+</html>
+
