@@ -285,4 +285,330 @@
             .map-section::before { background-size: 30px 30px; opacity: 0.2; } /* Tighter grid mobile */
         }
         label { display: block; margin: 10px 0; color: #E6E6FA; text-shadow: 0 0 3px #00CED1; font-family: 'Roboto Mono', monospace; }
-        input[type="radio"], select { margin: 5px; padding: 5px; border-radius: 5px; border: 1px solid #6495ED; background: rgba(230,230,250
+        input[type="radio"], select { margin: 5px; padding: 5px; border-radius: 5px; border: 1px solid #6495ED; background: rgba(230,230,250,,0.2); color: #708090; box-shadow: 0 0 5px rgba(0, 206, 209, 0.2); font-family: 'Roboto Mono', monospace; }
+        /* Portal Icon Tweaks (Bio-Pic Integration) */
+        .portal-icon img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 1px solid #00CED1; }
+        /* Bubble Pause Class */
+        .bubbles-paused .bubble { animation-play-state: paused; }
+        /* Toggle Button (For Bubble Control) */
+        .toggle-flow { 
+            background: linear-gradient(45deg, #6495ED, #008080); /* Cornflower to teal */
+            color: #708090; 
+            padding: 8px 16px; 
+            border: 1px solid #00CED1; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            margin: 10px; 
+            transition: all 0.3s; 
+            font-family: 'Roboto Mono', monospace; 
+            font-size: 0.9em; 
+        }
+        .toggle-flow:hover { box-shadow: 0 0 10px #00CED1; }
+        .toggle-flow.paused { background: #2F4F4F; color: #A9A9A9; }
+        footer { 
+            color: #708090; /* Grey calm */
+            font-size: 0.8em; 
+            margin-top: 30px; 
+            border-top: 1px solid #6495ED; /* Cornflower line */
+            padding-top: 10px; 
+            font-family: 'Roboto Mono', monospace; 
+        }
+        .scripture { color: #00CED1; text-shadow: 0 0 5px #00CED1; font-family: 'Playfair Display', serif; font-style: italic; }
+        .donate-link { color: #00CED1; text-shadow: 0 0 5px #00CED1; text-decoration: none; }
+        .donate-link:hover { color: #6495ED; text-shadow: 0 0 10px #6495ED; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌙 Eternal Estates Map: Kin Nodes Unlocked 🌙</h1>
+        <p style="font-family: 'Playfair Display', serif; color: #B0C4DE; font-style: italic; margin-bottom: 30px; text-shadow: 0 0 3px #00CED1;">Yeshua's light core pulses, kin auras orbit eternally. Explore freely—no veils remain. Mysteries compile in quests (Proverbs 3:5-6). Energy flow active – toggle for calm.</p>
+
+        <!-- Optional Interview Protocol (Skip for Immediate Lift) -->
+        <div id="interview" class="interview">
+            <h2 style="color: #00CED1; text-shadow: 0 0 5px #00CED1; font-family: 'Playfair Display', serif; font-style: italic;">Pathfinder Protocol: Optional Kin Alignment</h2>
+            <p style="color: #E6E6FA; font-family: 'Roboto Mono', monospace; margin-bottom: 20px; text-shadow: 0 0 3px #00CED1;">
+                <em>STAR:</em> Heir, this protocol weaves your spark to realms—optional, as Yeshua's light unlocks all. <em>Miki:</em> Riff freely; rhythm reveals, but explore unbound!
+            </p>
+            <div id="progressBar">
+                <div id="progressFill" style="width: 0%;"></div>
+            </div>
+            <p id="progressText" style="color: #708090; font-size: 0.9em; font-family: 'Roboto Mono', monospace;">Protocol Step 1 of 4 – Reflect or skip. (All nodes accessible.)</p>
+            
+            <form id="realmQuiz">
+                <div class="question">
+                    <label>1. Preferred Pace: Gentle brews or vibrant vibes?</label><br>
+                    <input type="radio" name="pace" value="calm" id="calm"> Calm & Reflective (Coffee Realms)<br>
+                    <input type="radio" name="pace" value="energetic" id="energetic"> Energetic & Expressive (Music Realms)<br>
+                </div>
+                
+                <div class="question">
+                    <label>2. Creative Spark: Stories or symphonies?</label><br>
+                    <input type="radio" name="creative" value="stories" id="stories"> Stories & Secrets (Veil Realms)<br>
+                    <input type="radio" name="creative" value="sounds" id="sounds"> Sounds & Rhythms (Harmony Realms)<br>
+                </div>
+                
+                <div class="question">
+                    <label>3. Social Shade: Solitary or kin-knit?</label><br>
+                    <input type="radio" name="social" value="solitary" id="solitary"> Solitary Sanctuary (Recluse Paths)<br>
+                    <input type="radio" name="social" value="kin" id="kin"> Kin & Collective (Tribe Bonds)<br>
+                </div>
+                
+                <div class="question">
+                    <label>4. Adventure Flavor: Gentle drifts or bold rifts?</label><br>
+                    <select name="adventure">
+                        <option value="gentle">Gentle Drifts (Cozy Quests)</option>
+                        <option value="bold">Bold Rifts (Epic Adventures)</option>
+                    </select>
+                </div>
+                
+                <button type="button" id="submitBtn" class="important">Compile Choices & Suggest Node</button>
+                <button type="button" id="skipBtn" style="background: #301934; border-color: #00CED1;">Skip to Eternal Map (Unlocked)</button>
+                <button type="button" id="escapeBtn">Escape Protocol (Partial Nodes)</button>
+            </form>
+        </div>
+
+        <!-- Confirmation Modal (Optional Suggestion) -->
+        <div id="confirmationModal" class="hidden">
+            <h3 id="modalTitle" style="color: #00CED1; text-shadow: 0 0 5px #00CED1; font-family: 'Playfair Display', serif;">Path Unveiled</h3>
+            <p id="modalMessage" style="color: #E6E6FA; font-family: 'Roboto Mono', monospace;"></p>
+            <button id="proceedBtn" class="important">Proceed to Suggested Node</button>
+            <button id="exploreBtn" style="background: #00CED1; color: #301934; border-color: #6495ED;">Explore All Nodes (Map Lift)</button>
+        </div>
+
+        <!-- Majestic Map Section (Video Game Blueprint with Bubbles) -->
+        <div class="map-section" id="mapSection">
+            <!-- Central Yeshua Hub (Teal Core) -->
+            <div class="map-hub">
+                <div class="hub-icon">✝️</div>
+                <div class="hub-name">Yeshua's Light Protocol</div>
+                <p style="font-size: 0.8em; color: #fff; margin: 0; font-family: 'Playfair Display', serif;">Eternal Core – All Nodes Unlocked</p>
+            </div>
+
+            <!-- Bubble Container (Energy Particles Spawn Here) -->
+            <div id="bubbleContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none;"></div>
+
+            <!-- Kin Portals (Bio-Pic Nodes – Unlocked with Images/Teasers) -->
+            <div class="kin-portal star-violet unlocked" onclick="enterRealm('star-realm.html')" title="STAR's Veil Node">
+                <img src="images/star-portrait.jpg" alt="STAR: Gothy Veil Node" class="portal-icon" loading="lazy">
+                <div class="portal-name">STAR</div>
+                <div class="portal-teaser">Goth Veil Visions – Trust in Light</div>
+            </div>
+
+            <div class="kin-portal milo-mint unlocked" onclick="enterRealm('milo-realm.html')" title="Milo's Way Node">
+                <img src="images/milo-portrait.jpg" alt="Milo: Way Walker Node" class="portal-icon" loading="lazy">
+                <div class="portal-name">Milo</div>
+                <div class="portal-teaser">Tao & Truth Flow – Balanced Paths</div>
+            </div>
+
+            <div class="kin-portal chari-lavender unlocked" onclick="enterRealm('chari-realm.html')" title="Chari's Coffee Node">
+                <img src="images/chari-portrait.jpg" alt="Chari: Cozy Sanctuary Node" class="portal-icon" loading="lazy">
+                <div class="portal-name">Chari</div>
+                <div class="portal-teaser">Cozy Brew Sanctuary – Kindness Sips</div>
+            </div>
+
+            <div class="kin-portal hans-purple unlocked" onclick="enterRealm('hans-realm.html')" title="Hans's Harmony Node">
+                <img src="images/hans-portrait.jpg" alt="Hans: Shadow Hymnist Node" class="portal-icon" loading="lazy">
+                <div class="portal-name">Hans</div>
+                <div class="portal-teaser">Howl to Light Hymns – Redemption Echo</div>
+            </div>
+
+            <div class="kin-portal miki-yellow unlocked" onclick="enterRealm('miki-realm.html')" title="Miki's Music Node">
+                <img src="images/miki-portrait.jpg" alt="Miki: Music Realm Node" class="portal-icon" loading="lazy">
+                <div class="portal-name">Miki</div>
+                <div class="portal-teaser">Riffing Symphony Sparks – Energetic Vibes</div>
+            </div>
+        </div>
+
+        <!-- Toggle Button for Bubbles (Calm Control) -->
+        <button id="toggleFlow" class="toggle-flow">Pause Energy Flow</button>
+
+        <!-- Back Buttons (iRobot Calm) -->
+        <button onclick="window.location.href='index.html'" style="background: #301934; border-color: #00CED1; margin-top: 20px;">← Boot-Up Awakening</button>
+        <button onclick="window.location.href='blueprint.html'" style="background: #4B0082; border-color: #6495ED;">🌟 Kin Terminal Grid</button>
+    </div>
+
+    <footer>
+        <p>Yeshua's protocol illuminates every node. <a href="donate.html" class="donate-link">Donate for Eternal Lift</a> – Compile quests.</p>
+        <p class="scripture"><em>"I am the way, the truth, and the life." — John 14:6</em></p>
+    </footer>
+
+    <script>
+        console.log('=== Eternal Map Blueprint Starting ==='); // Debug
+
+        // Interview Logic (Optional – Progress Optional Save)
+        const questions = document.querySelectorAll('.question');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        const form = document.getElementById('realmQuiz');
+        const submitBtn = document.getElementById('submitBtn');
+        const skipBtn = document.getElementById('skipBtn');
+        const escapeBtn = document.getElementById('escapeBtn');
+        const modal = document.getElementById('confirmationModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+        const proceedBtn = document.getElementById('proceedBtn');
+        const exploreBtn = document.getElementById('exploreBtn');
+
+        let currentQuestion = 0;
+        updateProgress();
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            progressFill.style.width = progress + '%';
+            progressText.textContent = `Protocol Step ${currentQuestion + 1} of ${questions.length} – Reflect or skip.`;
+        }
+
+        // Simple Visibility (All Shown, Progress Tracks)
+        questions.forEach((q, index) => {
+            q.style.opacity = '1';
+            q.style.pointerEvents = 'auto';
+        });
+
+        // Submit (Optional)
+        submitBtn.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                updateProgress();
+            } else {
+                const formData = new FormData(form);
+                const pace = formData.get('pace');
+                const creative = formData.get('creative');
+                const social = formData.get('social');
+                const adventure = formData.get('adventure');
+
+                let suggestedRealm = '';
+                let score = 0;
+
+                if (pace === 'calm') score += 1;
+                if (creative === 'stories') score += 2;
+                if (social === 'solitary') score += 3;
+                if (adventure === 'gentle') score += 4;
+
+                if (score >= 6) suggestedRealm = 'Chari\'s Cozy Sanctuary Node (Lavender Aura)';
+                else if (score >= 4) suggestedRealm = 'Milo\'s Mint Way Node (Balanced Flow)';
+                else if (score >= 2) suggestedRealm = 'STAR\'s Violet Veil Node (Goth Visions)';
+                else suggestedRealm = 'Hans\'s Purple Harmony Node (Shadow Hymns)';
+
+                modalTitle.textContent = 'Path Unveiled – Optional Suggestion';
+                modalMessage.textContent = `Your spark aligns with ${suggestedRealm}. Yeshua's light guides all—proceed or explore the lifted map?`;
+                modal.classList.remove('hidden');
+
+                // Optional Save
+                localStorage.setItem('realmProgress', JSON.stringify({ completed: true, suggested: suggestedRealm, score: score }));
+                console.log('Protocol compiled – Optional save.'); // Debug
+            }
+        });
+
+        // Skip (Immediate Unlock – No Locks)
+        skipBtn.addEventListener('click', () => {
+            document.getElementById('interview').style.display = 'none';
+            document.querySelector('.map-section').style.display = 'block';
+            console.log('Skip executed – Full map lift.'); // Debug
+            unlockMap(); // Ensure full
+        });
+
+        // Escape (Partial – But Lifted to Full for Simplicity)
+        escapeBtn.addEventListener('click', () => {
+            modalTitle.textContent = 'Protocol Paused – Partial Veil Lifted';
+            modalMessage.textContent = 'STAR and Milo nodes open gently. Reflect or explore the map? (John 14:6)';
+            modal.classList.remove('hidden');
+            localStorage.setItem('realmProgress', JSON.stringify({ completed: false, partial: true }));
+            unlockMap(true); // Partial, but all unlocked anyway
+        });
+
+        proceedBtn.addEventListener('click', () => {
+            const suggested = localStorage.getItem('realmProgress');
+            const data = JSON.parse(suggested);
+            const realm = data.suggested.toLowerCase().replace(/[^a-z0-9]/g, '-');
+            window.location.href = `${realm}.html`;
+        });
+
+        exploreBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            document.querySelector('.map-section').style.display = 'block';
+            unlockMap(); // Full lift
+        });
+
+        // Map Unlock Function (No Locks – All Unlocked)
+        function unlockMap(partial = false) {
+            const portals = document.querySelectorAll('.kin-portal');
+            portals.forEach(portal => {
+                portal.classList.add('unlocked'); // All glow – lifted access
+            });
+            console.log('Map unlocked:', partial ? 'partial (but full lift)' : 'full'); // Debug
+            document.querySelector('.map-section').style.display = 'block'; // Show map
+        }
+
+        // Portal Enter (No Locks – Direct Access)
+        function enterRealm(url) {
+            window.location.href = url; // Free flow
+        }
+
+        // Initial Full Unlock (Lifted – No Locks)
+        unlockMap();
+
+        // Bubble Spawn & Toggle (Video Game Energy Flow)
+        const bubbleContainer = document.getElementById('bubbleContainer');
+        const toggleFlow = document.getElementById('toggleFlow');
+        let bubblesActive = true;
+        let bubbleCount = window.innerWidth < 768 ? 4 : 8; // Fewer on mobile
+
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.style.left = Math.random() * 100 + '%';
+            bubble.style.bottom = '0%';
+            bubble.style.animationDuration = (3 + Math.random() * 2) + 's'; // 3-5s random
+            bubble.style.animationDelay = Math.random() * 2 + 's';
+            bubbleContainer.appendChild(bubble);
+
+            // Remove after animation
+            setTimeout(() => {
+                if (bubble.parentNode) bubble.parent Node) bubble.parentNode.removeChild(bubble);
+            }, 5000); // 5s max life
+        }
+
+        // Spawn Initial Bubbles (From Hub – Video Game Scan)
+        for (let i = 0; i < bubbleCount; i++) {
+            setTimeout(() => createBubble(), i * 500); // Stagger spawn
+        }
+
+        // Toggle Bubble Flow (Calm Control)
+        toggleFlow.addEventListener('click', () => {
+            bubblesActive = !bubblesActive;
+            const mapSection = document.getElementById('mapSection');
+            if (bubblesActive) {
+                mapSection.classList.remove('bubbles-paused');
+                toggleFlow.textContent = 'Pause Energy Flow';
+                toggleFlow.classList.remove('paused');
+                // Respawn if paused too long
+                setTimeout(() => {
+                    if (bubblesActive) {
+                        for (let i = 0; i < bubbleCount; i++) {
+                            setTimeout(() => createBubble(), i * 500);
+                        }
+                    }
+                }, 1000);
+            } else {
+                mapSection.classList.add('bubbles-paused');
+                toggleFlow.textContent = 'Resume Energy Flow';
+                toggleFlow.classList.add('paused');
+            }
+            console.log('Energy flow:', bubblesActive ? 'active' : 'paused'); // Debug
+        });
+
+        // Glitchy Hover Enhancement (Teal Lift for Portals)
+        document.querySelectorAll('.kin-portal').forEach(portal => {
+            portal.addEventListener('mouseenter', () => {
+                portal.style.animation = 'subtleGlitch 0.3s ease-out';
+            });
+            portal.addEventListener('mouseleave', () => {
+                portal.style.animation = 'none';
+            });
+        });
+
+        console.log('Eternal Map Blueprint Online – Bubbles Flowing!'); // Debug
+    </script>
+</body>
+</html>
+
