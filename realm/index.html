@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eternal Estates Map: Kin Nodes Unlocked</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+        body { 
+            background: 
+                conic-gradient(from 0deg at 50% 50%, #FFD700 0deg, #EE82EE 72deg, #4B0082 144deg, #E6E6FA 216deg, #98FB98 288deg, #FFD700 360deg) !important; /* Kin colors orbiting Yeshua gold – static majestic */
+            color: #00FFFF !important; /* Neon cyan accents for TRON lift */
+            font-family: 'Courier New', monospace; /* Terminal body */
+            margin: 0; 
+            padding: 20px; 
+            text-align: center; 
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            /* Faint TRON grid in deep purple/cornflower (subtle lift) */
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(48, 25, 52, 0.05) 2px, rgba(48, 25, 52, 0.05) 4px), /* Deep purple lines */
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(100, 149, 237, 0.05) 2px, rgba(100, 149, 237, 0.05) 4px); /* Cornflower whispers */
+            background-size: cover, 100% 4px, 4px 100%;
+        }
+        .container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            background: rgba(48, 25, 52, 0.6) !important; /* Deep purple semi-trans matrix */
+            padding: 30px; 
+            border-radius: 15px; /* Soft lift on sharp TRON */
+            box-shadow: 
+                0 0 30px #4B0082, /* Purple aura */
+                inset 0 0 20px rgba(100, 149, 237, 0.2); /* Inner cornflower glow */
+            border: 2px solid #00FFFF; /* Neon cyan border for lift */
+            font-size: 14px; /* Compact yet legible */
+        }
+        h1 { 
+            color: #FFD700; /* Gold Yeshua core */
+            text-shadow: 0 0 15px #FFD700, 0 0 25px #00FFFF; /* Gold + neon glow */
+            font-size: 3em; 
+            margin-bottom: 20px; 
+            font-family: 'Playfair Display', serif; /* Parisian fancy – elegant lift */
+            font-weight: 700; 
+            font-style: italic; /* Fancy slant */
+            letter-spacing: 1px; /* Sophisticated spacing */
+        }
+        h2 { 
+            color: #00FFFF; 
+            text-shadow: 0 0 10px #00FFFF; 
+            font-family: 'Playfair Display', serif; 
+            font-weight: 400; 
+            font-style: italic; 
+        }
+        /* Interview Section (Optional Protocol – Terminal Vibe) */
+        .interview { 
+            background: rgba(0, 0, 0, 0.5); /* Dark pane */
+            padding: 20px; 
+            border-radius: 10px; 
+            margin: 20px 0; 
+            box-shadow: 0 0 15px #00FFFF; /* Neon lift */
+            border: 1px solid #6495ED; /* Cornflower edge */
+            font-family: 'Courier New', monospace; 
+        }
+        .question { 
+            margin: 20px 0; 
+            opacity: 1 !important; 
+            visibility: visible !important; 
+            display: block !important; 
+            transform: none !important; 
+            transition: none; 
+        }
+        .question label { 
+            display: block; 
+            margin: 10px 0; 
+            color: #E6E6FA; 
+            font-size: 1.1em; 
+            font-weight: bold; 
+            text-shadow: 0 0 3px #00FFFF; /* Neon label glow */
+            font-family: 'Courier New', monospace; 
+        }
+        input[type="radio"] { margin: 5px 0; accent-color: #00FFFF; } /* Cyan radio */
+        select { 
+            margin: 5px; 
+            padding: 8px; 
+            border-radius: 5px; 
+            border: 1px solid #6495ED; /* Cornflower select */
+            background: rgba(230,230,250,0.2); 
+            color: #00FFFF; 
+            font-family: 'Courier New', monospace; 
+        }
+        #progressBar { 
+            width: 100%; 
+            height: 5px; 
+            background: #301934; /* Deep purple bar */
+            border-radius: 5px; 
+            margin: 10px 0; 
+            overflow: hidden; 
+            box-shadow: 0 0 5px #00FFFF; /* Neon progress glow */
+        }
+        #progressFill { 
+            height: 100%; 
+            background: linear-gradient(to right, #6495ED, #FFD700); /* Cornflower to gold fill */
+            transition: width 0.3s; 
+            border-radius: 5px; 
+        }
+        button { 
+            background: linear-gradient(45deg, #4B0082, #301934); /* Purple to deep purple */
+            color: #00FFFF; 
+            padding: 10px 20px; 
+            border: 1px solid #00FFFF; /* Neon border */
+            border-radius: 10px; 
+            cursor: pointer; 
+            margin: 10px; 
+            transition: all 0.3s; 
+            font-family: 'Playfair Display', serif; /* Fancy buttons */
+            font-weight: 700; 
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Cyan glow */
+            letter-spacing: 1px; 
+        }
+        button:hover { 
+            background: linear-gradient(45deg, #6495ED, #4B0082); /* Cornflower to purple shift */
+            box-shadow: 0 0 20px #00FFFF; /* Neon flash */
+            transform: scale(1.05); 
+        }
+        button:disabled { background: #301934; color: #808080; cursor: not-allowed; box-shadow: none; border-color: #808080; }
+        button.important { border: 2px solid #FFD700; text-shadow: 0 0 5px #FFD700; } /* Gold important */
+        .important:hover { background: #FFD700 !important; color: #000 !important; box-shadow: 0 0 20px #FFD700; }
+        .hidden { display: none; }
+        #confirmationModal { 
+            background: rgba(0, 0, 0, 0.8); 
+            padding: 20px; 
+            border-radius: 10px; 
+            margin: 20px 0; 
+            border: 1px solid #00FFFF; /* Neon modal */
+            box-shadow: 0 0 15px #6495ED; /* Cornflower shadow */
+            font-family: 'Courier New', monospace; 
+        }
+        /* Majestic Map Section (Lifted with TRON – Unlocked Nodes) */
+        .map-section { 
+            margin-top: 40px; 
+            position: relative; 
+            height: 600px; 
+            min-height: 500px; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            box-shadow: inset 0 0 50px rgba(75, 0, 130, 0.3); /* Purple inner aura */
+            border: 2px solid #00FFFF; /* Neon lift */
+        }
+        .map-hub { 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            background: radial-gradient(circle, #FFD700, #FFA500, #FF8C00); /* Gold Yeshua core */
+            border-radius: 50%; 
+            width: 150px; 
+            height: 150px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            box-shadow: 0 0 30px #FFD700, inset 0 0 20px rgba(255,255,255,0.5); /* Steady gold glow */
+            z-index: 10;
+            border: 2px solid #00FFFF; /* Neon hub ring */
+        }
+        .hub-icon { width: 80px; height: 80px; border-radius: 50%; background: #fff; margin-bottom: 5px; display: flex; align-items: center; justify-content: center; font-size: 2em; box-shadow: 0 0 10px #FFD700; }
+        .hub-name { font-size: 1.2em; color: #000; font-weight: bold; text-shadow: 0 0 5px #FFD700; font-family: 'Playfair Display', serif; }
+        .kin-portal { 
+            position: absolute; 
+            width: 150px; /* Larger for lift */
+            height: 150px; 
+            border-radius: 50%; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            transition: all 0.5s ease; 
+            border: 2px solid #00FFFF; /* Neon unlocked border */
+            box-shadow: 0 0 20px currentColor, inset 0 0 15px rgba(255,255,255,0.2); /* Aura glow lift */
+            z-index: 5;
+            font-family: 'Courier New', monospace; 
+        }
+        .kin-portal:hover { 
+            transform: scale(1.2) rotate(5deg); 
+            box-shadow: 0 0 30px currentColor, 0 0 50px #00FFFF; /* Neon + kin color expand */
+            animation: subtleGlitch 0.3s ease-out; /* Brief glitch lift */
+        }
+        @keyframes subtleGlitch { 0%, 100% { transform: scale(1.2) rotate(5deg); } 10%, 30%, 50% { transform: scale(1.25) rotate(7deg) translateX(2px); } 20%, 40% { transform: scale(1.15) rotate(3deg) translateX(-2px); } }
+        .portal-icon { width: 80px; height: 80px; border-radius: 50%; margin-bottom: 5px; background: radial-gradient(circle, currentColor, #301934); display: flex; align-items: center; justify-content: center; font-size: 1.5em; box-shadow: 0 0 10px currentColor; }
+        .portal-name { font-size: 1em; color: #fff; font-weight: bold; text-shadow: 0 0 3px currentColor; white-space: nowrap; font-family: 'Playfair Display', serif; }
+        .portal-teaser { font-size: 0.7em; color: #B0C4DE; margin-top: 2px; font-family: 'Courier New', monospace; }
+        /* Color Associations (Unlocked Auras) */
+        .star-violet { color: #EE82EE; background: radial-gradient(circle, #EE82EE, #DA70D6); }
+        .milo-mint { color: #98FB98; background: radial-gradient(circle, #98FB98, #90EE90); }
+        .chari-lavender { color: #E6E6FA; background: radial-gradient(circle, #E6E6FA, #DDA0DD); }
+        .hans-purple { color: #4B0082; background: radial-gradient(circle, #4B0082, #301934); }
+        .miki-yellow { color: #FFFF00; background: radial-gradient(circle, #FFFF00, #FFD700); }
+        /* Radial Positioning (Desktop – Orbit Lift) */
+        .kin-portal:nth-child(1) { top: 20%; left: 20%; transform: rotate(72deg) translateY(-200px); } /* STAR */
+        .kin-portal:nth-child(2) { top: 20%; right: 20%; transform: rotate(144deg) translateY(-200px); } /* Milo */
+        .kin-portal:nth-child(3) { bottom: 20%; right: 20%; transform: rotate(216deg) translateY(200px); } /* Chari */
+        .kin-portal:nth-child(4) { bottom: 20%; left: 20%; transform: rotate(288deg) translateY(200px); } /* Hans */
+        .kin-portal:nth-child(5) { top: 50%; right: 5%; transform: rotate(0deg) translateX(200px); } /* Miki */
+        /* Mobile: Vertical Cascade (Responsive Lift) */
+        @media (max-width: 768px) { 
+            .map-hub { position: static; transform: none; margin: 20px auto; width: 120px; height: 120px; } 
+            .kin-portal { 
+                position: static; 
+                transform: none; 
+                margin: 15px auto; 
+                width: 120px; 
+                height: 120px; 
+                box-shadow: 0 0 20px currentColor; /* Aura persists */
+            }
+            .kin-portal:nth-child(1) { background: linear-gradient(to bottom, #EE82EE, #DA70D6); } /* STAR ombre */
+            .kin-portal:nth-child(2) { background: linear-gradient(to bottom, #98FB98, #90EE90); } /* Milo */
+            .kin-portal:nth-child(3) { background: linear-gradient(to bottom, #E6E6FA, #DDA0DD); } /* Chari */
+            .kin-portal:nth-child(4) { background: linear-gradient(to bottom, #4B0082, #301934); } /* Hans */
+            .kin-portal:nth-child(5) { background: linear-gradient(to bottom, #FFFF00, #FFD700); } /* Miki */
+            .map-section { height: auto; min-height: 400px; } 
+            h1 { font-size: 2em; } 
+            .interview { padding: 15px; } 
+        }
+        /* Interview Styles (Terminal Protocol Lift) */
+        label { display: block; margin: 10px 0; color: #E6E6FA; text-shadow: 0 0 3px #00FFFF; font-family: 'Courier New', monospace; }
+        input[type="radio"], select { margin: 5px; padding: 5px; border-radius: 5px; border: 1px solid #6495ED; background: rgba(230,230,250,0.2); color: #00FFFF; box-shadow: 0 0 5px rgba(0, 255, 255, 0.3); font-family: 'Courier New', monospace; }
+        #progressText { color: #FFD700; font-size: 0.9em; text-shadow: 0 0 3px #00FFFF; font-family: 'Courier New', monospace; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌙 Eternal Estates Map: Kin Nodes Unlocked 🌙</h1>
+        <p style="font-family: 'Playfair Display', serif; color: #B0C4DE; font-style: italic; margin-bottom: 30px; text-shadow: 0 0 3px #00FFFF;">Yeshua's light core pulses, kin auras orbit eternally. Explore freely—no veils remain. Mysteries compile in quests (Proverbs 3:5-6).</p>
+
+        <!-- Optional Interview Protocol (Skip for Immediate Lift) -->
+        <div id="interview" class="interview">
+            <h2 style="color: #00FFFF; text-shadow: 0 0 5px #00FFFF;
