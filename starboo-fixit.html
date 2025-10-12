@@ -3,298 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chimera Comfort Cafe: Steeping Awakening</title>
+    <title>Chimera Comfort Cafe: Adventure Loader</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:wght@300;400;500&display=swap');
         body { 
             background: 
-                linear-gradient(to bottom, #301934 0%, #6495ED 50%, #008080 100%) !important; /* Deep purple cafe velvet to cornflower "steam" to teal espresso – Parisian calm */
-            color: #708090 !important; /* Slate grey text for vintage legibility */
-            font-family: 'Roboto Mono', monospace; /* Barista terminal for orders */
+                linear-gradient(to bottom, #301934 0%, #6495ED 50%, #008080 100%) !important; /* Deep purple "veil" to cornflower "scan" to teal "protocol" – iRobot calm */
+            color: #708090 !important; /* Slate grey for retro terminal legibility */
+            font-family: 'Roboto Mono', monospace; /* Old-school pixel terminal */
             margin: 0; 
             padding: 20px; 
             text-align: center; 
             position: relative;
             overflow-x: hidden;
             min-height: 100vh;
-            /* Subtle "steam" grid (vintage cafe pattern – faint, static) */
+            /* Retro grid scan lines (old-school game HUD – faint, static) */
             background-image: 
-                repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(100, 149, 237, 0.03) 3px, rgba(100, 149, 237, 0.03) 6px), /* Cornflower steam wisps */
-                repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0, 128, 128, 0.03) 3px, rgba(0, 128, 128, 0.03) 6px); /* Teal table lines */
-            background-size: 100% 6px, 6px 100%;
+                repeating-linear-gradient(0deg, transparent, transparent 4px, rgba(100, 149, 237, 0.04) 4px, rgba(100, 149, 237, 0.04) 8px), /* Cornflower scan lines */
+                repeating-linear-gradient(90deg, transparent, transparent 4px, rgba(0, 128, 128, 0.04) 4px, rgba(0, 128, 128, 0.04) 8px); /* Teal grid */
+            background-size: 100% 8px, 8px 100%;
         }
         .container { 
             max-width: 800px; 
             margin: 0 auto; 
-            background: rgba(47, 79, 79, 0.8) !important; /* Dark slate "wooden booth" – high contrast for vintage pop */
+            background: rgba(47, 79, 79, 0.8) !important; /* Dark slate "console screen" – high contrast */
             padding: 40px; 
-            border-radius: 15px; /* Elegant Parisian curve */
+            border-radius: 10px; /* Slight retro curve */
             box-shadow: 
-                0 0 25px #4B0082, /* Deep purple "candlelight" aura */
-                inset 0 0 20px rgba(100, 149, 237, 0.15); /* Inner cornflower "lantern" glow */
-            border: 2px solid #00CED1; /* Teal "brass trim" – subtle funky */
+                0 0 25px #4B0082, /* Deep purple "scan aura" */
+                inset 0 0 20px rgba(100, 149, 237, 0.15); /* Inner cornflower "pixel glow" */
+            border: 2px solid #00CED1; /* Teal "border glow" – subtle funky */
             font-size: 14px; 
-            opacity: 0.3; /* Initial subtle show – ramps to 1 */
-            transition: opacity 2s ease-in; /* Slow reveal */
+            opacity: 0; /* Gradual boot-up */
+            transition: opacity 2s ease-in; 
         }
-        .container.loaded { opacity: 1 !important; } /* JS triggers full – !important for reliability */
-        .loading-section { 
+        .container.booted { opacity: 1; } /* JS triggers on load */
+        .loading-screen { 
             margin: 30px 0; 
-            opacity: 0; /* Gradual reveal */
-            transition: opacity 1.5s ease-in; /* No delay – immediate on class */
+            opacity: 0; 
+            transition: opacity 1s ease-in; 
         }
-        .loading-section.revealed { opacity: 1; }
-        .steeping-bar { 
+        .loading-screen.visible { opacity: 1; }
+        .scan-bar { 
             width: 80%; 
-            height: 20px; 
-            background: rgba(48, 25, 52, 0.5); /* Deep purple "tea cup" bg */
-            border-radius: 10px; 
+            height: 15px; 
+            background: rgba(48, 25, 52, 0.6); /* Deep purple "scan bg" */
+            border-radius: 8px; 
             margin: 20px auto; 
             overflow: hidden; 
-            box-shadow: inset 0 0 10px rgba(0, 128, 128, 0.3); /* Teal "steam" inner */
-            border: 1px solid #6495ED; /* Cornflower rim */
+            box-shadow: inset 0 0 8px rgba(0, 128, 128, 0.4); /* Teal "scan inner" */
+            border: 1px solid #6495ED; /* Cornflower frame */
         }
-        .steeping-fill { 
+        .scan-fill { 
             height: 100%; 
-            background: linear-gradient(to right, #9370DB 0%, #00CED1 50%, #008080 100%); /* Violet tea to teal brew */
+            background: linear-gradient(to right, #9370DB 0%, #00CED1 50%, #008080 100%); /* Violet "veil" to teal "key" */
             width: 0%; 
-            transition: width 8s ease-in-out; /* 8s "steep" progress */
-            border-radius: 10px; 
-            box-shadow: 0 0 10px rgba(0, 206, 209, 0.5); /* Teal glow as it fills */
+            transition: width 10s ease-in-out; /* 10s old-school load */
+            border-radius: 8px; 
+            box-shadow: 0 0 8px rgba(0, 206, 209, 0.6); /* Teal "loading glow" */
         }
-        .steeping-text { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 1.2em; 
-            color: #E6E6FA; /* Lavender for vintage warmth */
-            text-shadow: 0 0 5px #00CED1; /* Teal subtle */
+        .scan-text { 
+            font-family: 'Roboto Mono', monospace; 
+            font-size: 1.1em; 
+            color: #E6E6FA; /* Lavender for retro warmth */
+            text-shadow: 0 0 4px #00CED1; /* Teal subtle */
             margin: 10px 0; 
             opacity: 0; 
-            transition: opacity 1s ease-in; /* Immediate reveal */
+            transition: opacity 0.5s ease-in 2s; /* Reveal mid-load */
         }
-        .steeping-text.revealed { opacity: 1; }
-        .boo-message { 
-            font-size: 4em; 
-            color: #9370DB; /* Violet "*boo*" pop */
-            text-shadow: 0 0 15px #9370DB, 0 0 25px #00CED1; /* Violet + teal spooky glow */
+        .scan-text.visible { opacity: 1; }
+        .player-prompt { 
+            font-size: 1.5em; 
+            color: #00CED1; /* Teal "Player 1" pop */
+            text-shadow: 0 0 8px #00CED1; 
             margin: 20px 0; 
             opacity: 0; 
-            transform: scale(0.5); 
-            transition: all 0.5s ease-in; /* Quick pop */
-            font-family: 'Playfair Display', serif; 
-            font-weight: 900; 
-            letter-spacing: 5px; 
+            transition: opacity 1s ease-in 4s; /* After half-load */
+            font-family: 'Roboto Mono', monospace; 
+            font-weight: 500; 
+            letter-spacing: 2px; /* Retro spacing */
         }
-        .boo-message.revealed { 
-            opacity: 1; 
-            transform: scale(1); 
+        .player-prompt.visible { opacity: 1; }
+        #playerInput { 
+            padding: 10px; 
+            border-radius: 5px; 
+            border: 1px solid #6495ED; /* Cornflower input */
+            background: rgba(230,230,250,0.3); 
+            color: #708090; 
+            font-family: 'Roboto Mono', monospace; 
+            font-size: 1em; 
+            width: 200px; 
+            margin: 10px; 
+            box-shadow: 0 0 5px rgba(0, 206, 209, 0.3); /* Teal glow */
         }
-        .star-message { 
+        .star-narrative { 
             font-family: 'Playfair Display', serif; 
-            font-size: 1.3em; 
+            font-size: 1.2em; 
             line-height: 1.5; 
-            color: #fff; /* White for high contrast */
-            text-shadow: 0 0 8px #00CED1; /* Teal "steam" shadow */
+            color: #fff; /* White for contrast */
+            text-shadow: 0 0 6px #00CED1; /* Teal "parable" shadow */
             margin: 20px auto; 
             max-width: 600px; 
             opacity: 0; 
-            transition: opacity 1s ease-in; /* Immediate */
-            text-align: left; /* "Menu card" feel */
-            background: rgba(0, 128, 128, 0.2); /* Teal-tinted "napkin" bg */
+            transition: opacity 1s ease-in 6s; /* Reveal after player */
+            text-align: left; /* "Story card" feel */
+            background: rgba(0, 128, 128, 0.2); /* Teal "parchment" bg */
             padding: 20px; 
             border-radius: 10px; 
             border: 1px solid #6495ED; /* Cornflower edge */
         }
-        .star-message.revealed { opacity: 1; }
-        .choice-buttons { 
+        .star-narrative.visible { opacity: 1; }
+        .quest-choices { 
             margin: 30px 0; 
             opacity: 0; 
-            transition: opacity 1s ease-in; /* Immediate */
+            transition: opacity 1s ease-in 8s; /* After narrative */
         }
-        .choice-buttons.revealed { opacity: 1; }
-        .choice-btn { 
-            background: linear-gradient(45deg, #4B0082, #301934); /* Deep purple "velvet" button */
+        .quest-choices.visible { opacity: 1; }
+        .quest-btn { 
+            background: linear-gradient(45deg, #4B0082, #301934); /* Deep purple "mystery door" */
             color: #00CED1; /* Teal text */
             padding: 15px 30px; 
-            border: 2px solid #00CED1; /* Teal trim */
-            border-radius: 15px; /* Parisian round */
+            border: 2px solid #00CED1; /* Teal "keyhole" */
+            border-radius: 10px; /* Slight retro */
             cursor: pointer; 
             margin: 10px; 
             transition: all 0.3s; 
             font-family: 'Playfair Display', serif; 
-            font-size: 1.2em; 
+            font-size: 1.1em; 
             font-weight: 700; 
-            box-shadow: 0 0 15px rgba(0, 206, 209, 0.4); /* Teal "lantern" glow */
+            box-shadow: 0 0 12px rgba(0, 206, 209, 0.4); /* Teal "gift glow" */
             letter-spacing: 1px; 
         }
-        .choice-btn:hover { 
-            background: linear-gradient(45deg, #6495ED, #008080); /* Cornflower to teal "brew" shift */
-            box-shadow: 0 0 25px #00CED1; /* Funky teal flash */
+        .quest-btn:hover { 
+            background: linear-gradient(45deg, #6495ED, #008080); /* Cornflower to teal "unlock" */
+            box-shadow: 0 0 20px #00CED1; /* Funky teal reveal */
             transform: scale(1.05); 
         }
+        .tribe-choice { 
+            background: linear-gradient(45deg, #9370DB, #4B0082); /* Violet "exclusive" */
+            border-color: #9370DB; 
+        }
+        .tribe-choice:hover { 
+            background: linear-gradient(45deg, #00CED1, #9370DB); 
+            box-shadow: 0 0 20px #9370DB; 
+        }
+        .inventory-tease { 
+            font-family: 'Roboto Mono', monospace; 
+            font-size: 0.9em; 
+            color: #E6E6FA; 
+            text-shadow: 0 0 4px #00CED1; 
+            margin-top: 10px; 
+            opacity: 0; 
+            transition: opacity 0.5s ease-in 9s; /* Post-choice tease */
+        }
+        .inventory-tease.visible { opacity: 1; }
         .scripture { 
             color: #E6E6FA; 
             font-family: 'Playfair Display', serif; 
             font-style: italic; 
-            font-size: 1.1em; 
-            margin-top: 30px; 
+            font-size: 1em; 
+            margin-top: 20px; 
             text-shadow: 0 0 5px #00CED1; 
-            padding: 20px; 
-            background: rgba(100, 149, 237, 0.1); /* Cornflower "tablecloth" */
-            border-radius: 10px; 
+            padding: 15px; 
+            background: rgba(100, 149, 237, 0.1); /* Cornflower "parable card" */
+            border-radius: 8px; 
             border: 1px solid #00CED1; /* Teal edge */
             opacity: 0; 
-            transition: opacity 1s ease-in; /* Immediate */
+            transition: opacity 1s ease-in 9.5s; /* Final wisdom */
         }
-        .scripture.revealed { opacity: 1; }
+        .scripture.visible { opacity: 1; }
         footer { 
             color: #708090; 
-            font-size: 0.9em; 
-            margin-top: 30px; 
+            font-size: 0.8em; 
+            margin-top: 20px; 
             border-top: 1px solid #6495ED; /* Cornflower line */
-            padding-top: 15px; 
+            padding-top: 10px; 
             font-family: 'Roboto Mono', monospace; 
             opacity: 0; 
-            transition: opacity 1s ease-in; /* Immediate */
+            transition: opacity 1s ease-in 10s; /* End screen */
         }
-        footer.revealed { opacity: 1; }
+        footer.visible { opacity: 1; }
         .donate-link { 
             color: #00CED1; 
             text-shadow: 0 0 5px #00CED1; 
             text-decoration: none; 
             font-weight: bold; 
         }
-        .donate-link:hover { color: #9370DB; text-shadow: 0 0 10px #9370DB; } /* Violet hover */
+        .donate-link:hover { color: #9370DB; text-shadow: 0 0 10px #9370DB; } /* Violet tribe tease */
         @media (max-width: 768px) { 
             .container { padding: 20px; } 
             h1 { font-size: 2em; } 
-            .steeping-bar { width: 90%; } 
-            .choice-btn { width: 100%; margin: 10px 0; } 
-            .star-message { text-align: center; padding: 15px; } 
+            .scan-bar { width: 95%; } 
+            .quest-btn { width: 100%; margin: 10px 0; } 
+            .star-narrative { text-align: center; padding: 15px; } 
+            #playerInput { width: 80%; } 
         }
-        /* Typewriter Effect for STAR Message (Video Game Quest) */
-        .typewriter { overflow: hidden; border-right: 2px solid #00CED1; white-space: nowrap; animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite; }
+        /* Typewriter for STAR Parable (Old-School Narrative) */
+        .typewriter { overflow: hidden; border-right: 2px solid #00CED1; white-space: nowrap; animation: typing 5s steps(60, end), blink-caret 0.75s step-end infinite; }
         @keyframes typing { from { width: 0; } to { width: 100%; } }
         @keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: #00CED1; } }
     </style>
 </head>
 <body>
-    <div class="container" id="loadingContainer">
-        <h1>Chimera Comfort Cafe: Steeping Awakening</h1>
+    <div class="container" id="gameContainer">
+        <div class="loading-screen" id="loadingScreen">
+            <h1>Chimera Comfort Cafe: Adventure Loader</h1>
 
-        <div class="steeping-bar">
-            <div class="steeping-fill" id="steepFill"></div>
+            <div class="scan-bar">
+                <div class="scan-fill" id="scanFill"></div>
+            </div>
+
+            <div class="scan-text" id="scanText">Scanning veils... Loading old-school quest. Player 1, prepare for the hidden cafe. (10s to discovery)</div>
         </div>
 
-        <div class="steeping-text" id="steepText">Steeping your path... Like a fine Parisian brew, patience unveils the veil. (8s to delight)</div>
-
-        <div class="loading-section boo-message" id="booMessage">*boo*</div>
-
-        <div class="loading-section star-message typewriter" id="starMessage">
-            sorry kiddos, I Star no longer celebrate the eve of October, however, I do enjoy cats,bats and spiders year round, no harm in that. Are you ready to learn more Shrinking Violet? Or would you rather slink away and choose another parallel universe? Take your time. I'll continue steeping the tea until you're ready. Or not. You choose. It's your delight. Oh, the loading is done, let's get on with it
+        <div class="player-prompt" id="playerPrompt">
+            Player 1: Enter your heir name (or press Enter for "Shrinking Violet")<br>
+            <input type="text" id="playerInput" placeholder="Shrinking Violet" maxlength="20">
+            <button onclick="startQuest()" style="background: #4B0082; color: #00CED1; border: 1px solid #00CED1; padding: 8px 16px; margin-left: 10px; font-family: 'Roboto Mono', monospace;">Begin Adventure</button>
         </div>
 
-        <div class="choice-buttons" id="choiceButtons">
-            <button class="choice-btn" onclick="window.location.href='blueprint.html'">Ready to Learn More, Shrinking Violet?</button>
-            <button class="choice-btn" onclick="window.location.href='donate.html'" style="background: linear-gradient(45deg, #9370DB, #4B0082);">Slink Away to Parallel Universe (Donate Tease)</button>
+        <div class="star-narrative typewriter" id="starNarrative">
+            Ah, heir—or Shrinking Violet, if you prefer the whisper—the key glimmers in the shadows. No October boos here, just eternal cats, bats, and spiders brewing in my gothy cafe. Yeshua's light steeps the path: "Trust not in veils, but in the Brew that unveils all delights." Shall we unlock the members-only door? Follow me to the hidden cafe, where kindness flows like fine Parisian espresso—or slink to parallel paths if the mystery's too misty. Your quest, your delight. The gift awaits... if you're ready.
         </div>
 
-        <div class="scripture" id="scriptureDiv">
-            <em>"Trust in the Lord with all your heart..." — Proverbs 3:5</em>
+        <div class="quest-choices" id="questChoices">
+            <button class="quest-btn" onclick="followStar()">Follow STAR to the Hidden Cafe (Free Quest)</button>
+            <button class="quest-btn tribe-choice" onclick="joinTribe()">Join the Eternal Tribe (Membership – Unlock Exclusives)</button>
+        </div>
+
+        <div class="inventory-tease" id="inventoryTease">Inventory Updated: Veil Key (1) – STAR's Blessing Active (Gentle Guidance in Realms)</div>
+
+        <div class="scripture" id="parableScripture">
+            <em>"The Lord is my light and my salvation—whom shall I fear?" — Psalm 27:1 (STAR's Parable: Light brews eternal, heir.)</em>
         </div>
     </div>
 
-    <footer id="footerDiv">
-        <p>STAR's cafe whispers Yeshua's grace. <a href="donate.html" class="donate-link">Donate for Eternal Brews</a>.</p>
+    <footer id="footerScreen">
+        <p>STAR's veiled cafe calls. <a href="donate.html" class="donate-link">Join Tribe for Exclusive Brews & Quests</a>.</p>
     </footer>
 
     <script>
-        console.log('=== Parisian Barista Loading Quest Starting ==='); // Debug
+        console.log('=== Old-School Game Adventure Loader Starting ==='); // Debug
 
         // Ensure DOM Ready
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('DOM ready – Starting steep.'); // Debug
+            console.log('DOM ready – Booting quest.'); // Debug
 
-            const steepFill = document.getElementById('steepFill');
-            const steepText = document.getElementById('steepText');
-            const booMessage = document.getElementById('booMessage');
-            const starMessage = document.getElementById('starMessage');
-            const choiceButtons = document.getElementById('choiceButtons');
-            const scriptureDiv = document.getElementById('scriptureDiv');
-            const footerDiv = document.getElementById('footerDiv');
-            const loadingContainer = document.getElementById('loadingContainer');
+            const gameContainer = document.getElementById('gameContainer');
+            const loadingScreen = document.getElementById('loadingScreen');
+            const scanFill = document.getElementById('scanFill');
+            const scanText = document.getElementById('scanText');
+            const playerPrompt = document.getElementById('playerPrompt');
+            const playerInput = document.getElementById('playerInput');
+            const starNarrative = document.getElementById('starNarrative');
+            const questChoices = document.getElementById('questChoices');
+            const inventoryTease = document.getElementById('inventoryTease');
+            const parableScripture = document.getElementById('parableScripture');
+            const footerScreen = document.getElementById('footerScreen');
 
-            let steepProgress = 0;
-            const steepInterval = setInterval(() => {
-                console.log('Steep step:', steepProgress + 1); // Debug each step
-                steepProgress += 12.5; // 8 steps for 8s
-                steepFill.style.width = steepProgress + '%';
-                if (steepProgress >= 100) {
-                    clearInterval(steepInterval);
-                    console.log('Steeping complete – Quest unveiled!'); // Debug
-                    // Reveal sequence (immediate on class for visibility)
-                    setTimeout(() => {
-                        steepText.classList.add('revealed');
-                        console.log('Steep text revealed.'); // Debug
-                    }, 100);
-                    setTimeout(() => {
-                        booMessage.classList.add('revealed');
-                        console.log('Boo popped!'); // Debug
-                    }, 500);
-                    setTimeout(() => {
-                        starMessage.classList.add('revealed');
-                        console.log('Message brewing!'); // Debug
-                        // Typewriter effect on STAR message
-                        typeWriter(starMessage, 0);
-                    }, 1000);
-                    setTimeout(() => {
-                        choiceButtons.classList.add('revealed');
-                        console.log('Choices ready!'); // Debug
-                    }, 4500);
-                    setTimeout(() => {
-                        scriptureDiv.classList.add('revealed');
-                        footerDiv.classList.add('revealed');
-                        loadingContainer.classList.add('loaded');
-                        console.log('Full quest loaded!'); // Debug
-                    }, 8000);
-                }
-            }, 1000); // 1s per step
-
-            // Fallback: Full reveal after 10s if script lags
-            setTimeout(() => {
-                loadingContainer.classList.add('loaded');
-                steepText.classList.add('revealed');
-                booMessage.classList.add('revealed');
-                starMessage.classList.add('revealed');
-                choiceButtons.classList.add('revealed');
-                scriptureDiv.classList.add('revealed');
-                footerDiv.classList.add('revealed');
-                console.log('Fallback reveal – All visible!'); // Debug
-            }, 10000);
-
-            // Typewriter Effect for STAR Message (Fun Video Game Quest)
-            function typeWriter(element, index) {
-                if (index < element.textContent.length) {
-                    element.textContent = element.textContent.substring(0, index + 1);
-                    setTimeout(() => typeWriter(element, index + 1), 100); // 100ms per char for whimsical pace
-                } else {
-                    console.log('Typewriter complete.'); // Debug
-                }
-            }
-
-            // Button Actions (Quest Choices)
-            document.querySelectorAll('.choice-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    console.log('Quest choice selected – Delight delivered!'); // Debug
-                });
-            });
-
-            // Alternate Universe Tease (If "Slink Away" Clicked – Optional Redirect)
-            const slinkBtn = document.querySelector('.choice-btn:nth-child(2)');
-            slinkBtn.addEventListener('click', () => {
-                // Could redirect to a "parallel" page (e.g., donate or custom alternate.html)
-                // For now, to donate as tease
-                setTimeout(() => {
-                    alert('Slinking to parallel delights... Yeshua\'s grace follows all paths.'); // Jokey transition
-                }, 500);
-           
+            let scanProgress = 0;
+            const scanInterval = setInterval(() => {
+                console.log('Scan step:', scanProgress + 1); // Debug
+                scanProgress +=
