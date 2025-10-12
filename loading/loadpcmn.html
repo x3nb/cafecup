@@ -280,4 +280,152 @@
     </footer>
 
     <script>
-        console.log('=== Barista Steep Loader Starting ==='); //
+        console.log('=== Barista Steep Loader Starting ==='); // Debug
+
+            // Ensure DOM Ready (Bulletproof for Input/Functions)
+            document.addEventListener('DOMContentLoaded', () => {
+                console.log('DOM ready – Steeping quest.'); // Debug
+
+                const gameContainer = document.getElementById('gameContainer');
+                const loadingScreen = document.getElementById('loadingScreen');
+                const steepFill = document.getElementById('steepFill');
+                const timeLeft = document.getElementById('timeLeft');
+                const playerPrompt = document.getElementById('playerPrompt');
+                const playerInput = document.getElementById('playerInput');
+                const starNarrative = document.getElementById('starNarrative');
+                const questChoices = document.getElementById('questChoices');
+                const inventoryTease = document.getElementById('inventoryTease');
+                const parableScripture = document.getElementById('parableScripture');
+                const footerScreen = document.getElementById('footerScreen');
+
+                let steepProgress = 0;
+                let timeRemaining = 5; // Sync to 5s steep
+
+                // Steep Bar (5s Load – Visible Progress)
+                const steepInterval = setInterval(() => {
+                    console.log('Steep step:', steepProgress + 1); // Debug
+                    steepProgress += 20; // 5 steps for 5s (500ms interval)
+                    steepFill.style.width = steepProgress + '%';
+                    timeRemaining--;
+                    timeLeft.textContent = `${timeRemaining}s remaining – Steeping the veil...`;
+                    if (steepProgress >= 100) {
+                        clearInterval(steepInterval);
+                        console.log('Steep complete – Veil unveiled!'); // Debug
+                        // Reveal sequence (smooth pacing)
+                        setTimeout(() => {
+                            loadingScreen.classList.add('visible');
+                            console.log('Loading screen steeped.'); // Debug
+                        }, 100);
+                        setTimeout(() => {
+                            playerPrompt.classList.add('visible');
+                            console.log('Player 1 prompt ready.'); // Debug
+                            playerInput.focus(); // Auto-focus input
+                            playerInput.select(); // Select for easy typing
+                        }, 1000);
+                        setTimeout(() => {
+                            gameContainer.classList.add('booted');
+                            console.log('Game booted – Narrative brewing.'); // Debug
+                        }, 2000);
+                    }
+                }, 500); // 0.5s steps for 5s total
+
+                // Hourglass Recede Sync (CSS Animation Starts on Load – 5s)
+                const sand = document.getElementById('sand');
+                sand.style.animation = 'recede 5s linear forwards'; // Trigger recede
+                console.log('Sand receding – Time brewing!'); // Debug
+
+                // Fallback: Full reveal after 8s if script lags
+                setTimeout(() => {
+                    gameContainer.classList.add('booted');
+                    loadingScreen.classList.add('visible');
+                    playerPrompt.classList.add('visible');
+                    playerInput.focus();
+                    console.log('Fallback steep – All visible & focused!'); // Debug
+                }, 8000);
+
+                // Start Quest on Button or Enter (Robust Input Handling)
+                function startQuest() {
+                    const playerName = playerInput.value.trim() || 'Shrinking Violet'; // Default for fun
+                    console.log('Player 1:', playerName, '– Adventure steeps!'); // Debug
+                    alert('Adventure begins, ' + playerName + '! The key glimmers...'); // Test alert – remove if too pop-uppy
+                    playerPrompt.style.display = 'none'; // Hide prompt
+                    starNarrative.textContent = `Ah, ${playerName}—or Shrinking Violet, if you prefer the whisper—the key glimmers in the shadows. No October boos here, just eternal cats, bats, and spiders brewing in my gothy cafe. Yeshua's light steeps the path: "Trust not in veils, but in the Brew that unveils all delights." Shall we unlock the members-only door? Follow me to the hidden cafe, where kindness flows like fine Parisian espresso—or slink to parallel paths if the mystery's too misty. Your quest, your delight. The gift awaits... if you're ready.`; // Personalize
+                    starNarrative.classList.add('visible', 'typewriter'); // Trigger typewriter
+                    setTimeout(() => {
+                        questChoices.classList.add('visible');
+                        console.log('Quest choices steeped!'); // Debug
+                    }, 3000); // After typewriter
+                    localStorage.setItem('playerName', playerName); // Save for realms
+                }
+
+                // Enter Key on Input (Robust – Works Even if Focus Issues)
+                playerInput.addEventListener('keypress', (e) => {
+                    console.log('Key pressed in input:', e.key); // Debug typing
+                    if (e.key === 'Enter') {
+                        startQuest();
+                    }
+                });
+
+                // Button Click Handler (Fallback if Enter Fails)
+                const beginBtn = document.querySelector('button[onclick="startQuest()"]');
+                beginBtn.addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent default
+                    console.log('Begin button clicked!'); // Debug
+                    startQuest();
+                });
+
+                // Follow STAR (Free Quest – To Blueprint/Cafe)
+                function followStar() {
+                    localStorage.setItem('inventory', JSON.stringify({ veilKey: 1, blessing: 'STAR\'s Gentle Guidance' })); // RPG tease
+                    console.log('Following STAR – Free cafe unlocked!'); // Debug
+                    alert('Unlocking the hidden cafe... Yeshua\'s light guides!'); // Test alert – remove if desired
+                    window.location.href = 'blueprint.html'; // Or 'cafe-menu.html'
+                }
+
+                // Join Tribe (Membership – To Donate/Exclusives)
+                function joinTribe() {
+                    localStorage.setItem('tribeStatus', 'member'); // Unlock exclusives
+                    localStorage.setItem('inventory', JSON.stringify({ veilKey: 1, tribeAccess: 'Eternal Brews & VIP Quests' })); // Enhanced
+                    console.log('Tribe joined – Members-only awaits!'); // Debug
+                    alert('Joining the Eternal Tribe... Exclusives brewing!'); // Test alert – remove if desired
+                    window.location.href = 'donate.html'; // Or 'tribe.html'
+                }
+
+                // Typewriter Effect for STAR Narrative (Barista Pace)
+                function typeWriter(element, index) {
+                    if (index < element.textContent.length) {
+                        element.textContent = element.textContent.substring(0, index + 1);
+                        setTimeout(() => typeWriter(element, index + 1), 60); // 60ms per char for smooth steep
+                    } else {
+                        console.log('Narrative steeped – Choices ready!'); // Debug
+                        setTimeout(() => {
+                            questChoices.classList.add('visible');
+                            setTimeout(() => {
+                                inventoryTease.classList.add('visible');
+                                console.log('Inventory unlocked.'); // Debug
+                            }, 500);
+                            setTimeout(() => {
+                                parableScripture.classList.add('visible');
+                                footerScreen.classList.add('visible');
+                                console.log('Parable & footer revealed.'); // Debug
+                            }, 1000);
+                        }, 500);
+                    }
+                }
+
+                // Quest Choice Listeners (Robust – Attach Globally)
+                document.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('quest-btn')) {
+                        if (e.target.textContent.includes('Follow STAR')) {
+                            followStar();
+                        } else if (e.target.textContent.includes('Join the Eternal Tribe')) {
+                            joinTribe();
+                        }
+                    }
+                });
+            });
+
+            console.log('Barista Loader Online – Player 1, steep on!'); // Debug
+        </script>
+</body>
+</html>
