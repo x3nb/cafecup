@@ -336,7 +336,7 @@
             }
 
             // Typewriter Effect for STAR Narrative (Minimal Pace)
-            function typeWriter(element, index) {
+                      function typeWriter(element, index) {
                 if (index < element.textContent.length) {
                     element.textContent = element.textContent.substring(0, index + 1);
                     setTimeout(() => typeWriter(element, index + 1), 40); // 40ms per char for fast steep
@@ -344,3 +344,33 @@
                     console.log('Narrative steeped – Choices ready!'); // Debug
                     setTimeout(() => {
                         questChoices.classList.add('visible');
+                        console.log('Quest choices unlocked.'); // Debug
+                    }, 300);
+                    setTimeout(() => {
+                        inventoryTease.classList.add('visible');
+                        console.log('Inventory revealed.'); // Debug
+                    }, 600);
+                    setTimeout(() => {
+                        parableScripture.classList.add('visible');
+                        footerScreen.classList.add('visible');
+                        console.log('Parable & footer complete.'); // Debug
+                    }, 900);
+                }
+            }
+
+            // Quest Choice Listeners (Robust – Attach Globally)
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('quest-btn')) {
+                    if (e.target.textContent.includes('Follow STAR')) {
+                        followStar();
+                    } else if (e.target.textContent.includes('Join the Eternal Tribe')) {
+                        joinTribe();
+                    }
+                }
+            });
+        });
+
+        console.log('Minimal Steep Loader Online – Player 1, brew on!'); // Debug
+    </script>
+</body>
+</html>
