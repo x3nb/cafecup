@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chimera Comfort Cafe: Steep Loader</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap');
+        body { 
+            background: #000000 !important; /* Basic black – minimal */
+            color: #FFFFFF !important; /* White text for contrast */
+            font-family: 'Roboto Mono', monospace; /* Simple terminal */
+            margin: 0; 
+            padding: 20px; 
+            text-align: center; 
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: #111111; /* Dark grey "screen" – subtle contrast */
+            padding: 30px; 
+            border: 1px solid #333333; /* Plain border */
+            font-size: 14px; 
+            opacity: 0; 
+            transition: opacity 1s ease-in; 
+        }
+        .container.booted { opacity: 1; } /* JS triggers */
+        .loading-screen { 
+            margin: 30px 0; 
+            opacity: 0; 
+            transition: opacity 0.5s ease-in; 
+        }
+        .loading-screen.visible { opacity: 1; }
+        .steep-bar { 
+            width: 80%; 
+            height: 15px; 
+            background: #222222; /* Dark bg */
+            border-radius: 5px; 
+            margin: 20px auto; 
+            overflow: hidden; 
+            border: 1px solid #444444; /* Plain border */
+        }
+        .steep-fill { 
+            height: 100%; 
+            background: #FFFFFF; /* White fill – simple steep */
+            width: 0%; 
+            transition: width 1.5s ease-in-out; /* 1.5s fast steep */
+            border-radius: 5px; 
+        }
+        .time-left { 
+            font-family: 'Roboto Mono', monospace; 
+            font-size: 1em; 
+            color: #FFFFFF; 
+            margin: 10px 0; 
+            opacity: 0; 
+            transition: opacity 0.5s ease-in 0.5s; 
+        }
+        .time-left.visible { opacity: 1; }
+        .player-prompt { 
+            font-size: 1.5em; 
+            color: #FFFFFF; 
+            margin: 20px 0; 
+            opacity: 0; 
+            transition: opacity 0.5s ease-in 1.5s; /* After steep */
+            font-family: 'Roboto Mono', monospace; 
+            font-weight: 500; 
+            letter-spacing: 1px; 
+        }
+        .player-prompt.visible { opacity: 1; }
+        #playerInput { 
+            padding: 10px; 
+            border-radius: 3px; 
+            border: 1px solid #666666; /* Plain border */
+            background: #222222; 
+            color: #FFFFFF; 
+            font-family: 'Roboto Mono', monospace; 
+            font-size: 1em; 
+            width: 200px; 
+            margin: 10px; 
+            pointer-events: auto; 
+            user-select: text; 
+            outline: none; 
+        }
+        #playerInput:focus { 
+            border-color: #FFFFFF; /* White focus */
+        }
+        .star-narrative { 
+            font-family: 'Roboto Mono', monospace; 
+            font-size: 1.1em; 
+            line-height: 1.5; 
+            color: #FFFFFF; 
+            margin: 20px auto; 
+            max-width: 600px; 
+            opacity: 0; 
+            transition: opacity 0.5s ease-in 2s; /* After prompt */
+            text-align: left; 
+            background: #222222; /* Dark bg */
+            padding: 15px; 
+            border: 1px solid #444444; /* Plain border */
+            border-radius: 5px; 
+        }
+        .star-narrative.visible { opacity: 1; }
+        .quest-choices { 
+            margin: 30px 0; 
+            opacity: 0; 
+            transition: opacity 0.5s ease-in 3s; /* End load */
+        }
+        .quest-choices.visible { opacity: 1; }
+        .quest-btn { 
+            background: #333333; /* Dark button */
+            color: #FFFFFF; 
+            padding: 12px 24px; 
+            border: 1px solid #666666; /* Plain border */
+            border-radius: 5px; 
+            cursor: pointer; 
+            margin: 10px; 
+            transition: background 0.3s; 
+            font-family: 'Roboto Mono', monospace; 
+            font-size: 1em; 
+            font-weight: 400; 
+        }
+        .quest-btn:hover { 
+            background: #444444; /* Lighter on hover */
+        }
+        .tribe-choice { 
+            background: #222222; 
+            border-color: #555555; 
+        }
+        .tribe-choice:hover { 
+            background: #333333; 
+        }
+        .inventory-tease { 
+            font-family: 'Roboto Mono', monospace; 
+            font-size: 0.9em; 
+            color: #FFFFFF; 
+            margin-top: 10px; 
+            opacity: 0; 
+            transition: opacity 0.5s ease-in 3.5s; /* Post-choices */
+        }
+        .inventory-tease.visible { opacity: 1; }
+        .scripture { 
+            color: #FFFFFF; 
+            font-family: 'Roboto Mono', monospace; 
+            font-style: italic; 
+            font-size: 0.9em; 
+            margin-top: 20px; 
+            padding: 10px; 
+            background: #222222; 
+            border: 1px solid #444444; 
+            border-radius: 5px; 
+            opacity: 0; 
+            transition: opacity 0.5s ease-in 4s; /* Final */
+        }
+        .scripture.visible { opacity: 1; }
+        footer { 
+            color: #CCCCCC; /* Light grey */
+            font-size: 0.8em; 
+            margin-top: 20px; 
+            border-top: 1px solid #333333; 
+            padding-top: 10px; 
+            font-family: 'Roboto Mono', monospace; 
+            opacity: 0; 
+            transition: opacity 0.5s ease-in 4.5s; /* End */
+        }
+        footer.visible { opacity: 1; }
+        .donate-link { 
+            color: #FFFFFF; 
+            text-decoration: underline; 
+            font-weight: bold; 
+        }
+        .donate-link:hover { color: #CCCCCC; }
+        @media (max-width: 768px) { 
+            .container { padding: 20px; } 
+            h1 { font-size: 1.5em; } 
+            .steep-bar { width: 95%; } 
+            .quest-btn { width: 100%; margin: 10px 0; } 
+            .star-narrative { text-align: center; padding: 10px; } 
+            #playerInput { width: 80%; } 
+        }
+        /* Typewriter for STAR Parable (Minimal Pace) */
+        .typewriter { overflow: hidden; border-right: 2px solid #FFFFFF; white-space: nowrap; animation: typing 2s steps(60, end), blink-caret 0.75s step-end infinite; }
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
+        @keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: #FFFFFF; } }
+    </style>
+</head>
+<body>
+    <div class="container" id="gameContainer">
+        <div class="loading-screen" id="loadingScreen">
+            <h1>Chimera Comfort Cafe: Steep Loader</h1>
+
+            <div class="steep-bar">
+                <div class="steep-fill" id="steepFill"></div>
+            </div>
+
+            <div class="time-left" id="timeLeft">3s remaining – Steeping the veil...</div>
+        </div>
+
+        <div class="player-prompt" id="playerPrompt">
+            Player 1: Enter your heir name (or press Enter for "Shrinking Violet")<br>
+            <input type="text" id="playerInput" placeholder="Shrinking Violet" maxlength="20">
+            <button onclick="startQuest()">Begin Adventure</button>
+        </div>
+
+        <div class="star-narrative typewriter" id="starNarrative">
+            Ah, heir—or Shrinking Violet, if you prefer the whisper—the key glimmers in the shadows. No October boos here, just eternal cats, bats, and spiders brewing in my gothy cafe. Yeshua's light steeps the path: "Trust not in veils, but in the Brew that unveils all delights." Shall we unlock the members-only door? Follow me to the hidden cafe, where kindness flows like fine Parisian espresso—or slink to parallel paths if the mystery's too misty. Your quest, your delight. The gift awaits... if you're ready.
+        </div>
+
+        <div class="quest-choices" id="questChoices">
+            <button class="quest-btn" onclick="followStar()">Follow STAR to the Hidden Cafe (Free Quest)</button>
+            <button class="quest-btn tribe-choice" onclick="joinTribe()">Join the Eternal Tribe (Membership – Unlock Exclusives)</button>
+        </div>
+
+        <div class="inventory-tease" id="inventoryTease">Inventory Updated: Veil Key (1) – STAR's Blessing Active (Gentle Guidance in Realms)</div>
+
+        <div class="scripture" id="parableScripture">
+            <em>"The light shines in the darkness, and the darkness has not overcome it." — John 1:5</em>
+        </div>
+    </div>
+
+    <footer id="footerScreen">
+        <p>STAR's cafe calls. <a href="donate.html" class="donate-link">Join Tribe for Eternal Brews</a>.</p>
+    </footer>
+
+    <script>
+        console.log('=== Minimal Steep Loader Starting ==='); // Debug
+
+        // Ensure DOM Ready (Bulletproof for Input/Functions)
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM ready – Steeping quest.'); // Debug
+
+            const gameContainer = document.getElementById('gameContainer');
+            const loadingScreen = document.getElementById('loadingScreen');
+            const steepFill = document.getElementById('steepFill');
+            const timeLeft = document.getElementById('timeLeft');
+            const playerPrompt = document.getElementById('playerPrompt');
+            const playerInput = document.getElementById('playerInput');
+            const starNarrative = document.getElementById('starNarrative');
+            const questChoices = document.getElementById('questChoices');
+            const inventoryTease = document.getElementById('inventoryTease');
+            const parableScripture = document.getElementById('parableScripture');
+            const footerScreen = document.getElementById('footerScreen');
+
+            let steepProgress = 0;
+            let timeRemaining = 3; // Sync to 3s fast steep
+
+            // Steep Bar (1.5s Load – Visible Progress)
+            const steepInterval = setInterval(() => {
+                console.log('Steep step:', steepProgress + 1); // Debug
+                steepProgress += 33.3; // 3 steps for 1.5s (500ms interval)
+                steepFill.style.width = steepProgress + '%';
+                timeRemaining--;
+                timeLeft.textContent = `${timeRemaining}s remaining – Steeping the veil...`;
+                if (steepProgress >= 100) {
+                    clearInterval(steepInterval);
+                    console.log('Steep complete – Veil unveiled!'); // Debug
+                    // Reveal sequence (fast pacing)
+                    setTimeout(() => {
+                        loadingScreen.classList.add('visible');
+                        console.log('Loading screen steeped.'); // Debug
+                    }, 100);
+                    setTimeout(() => {
+                        playerPrompt.classList.add('visible');
+                        console.log('Player 1 prompt ready.'); // Debug
+                        playerInput.focus(); // Auto-focus input
+                        playerInput.select(); // Select for easy typing
+                    }, 500);
+                    setTimeout(() => {
+                        gameContainer.classList.add('booted');
+                        console.log('Game booted – Narrative brewing.'); // Debug
+                    }, 1000);
+                }
+            }, 500); // 0.5s steps for 1.5s total
+
+            // Fallback: Full reveal after 3s if script lags
+            setTimeout(() => {
+                gameContainer.classList.add('booted');
+                loadingScreen.classList.add('visible');
+                playerPrompt.classList.add('visible');
+                playerInput.focus();
+                console.log('Fallback steep – All visible & focused!'); // Debug
+            }, 3000);
+
+            // Start Quest on Button or Enter (Robust Input Handling)
+            function startQuest() {
+                const playerName = playerInput.value.trim() || 'Shrinking Violet'; // Default for fun
+                console.log('Player 1:', playerName, '– Adventure steeps!'); // Debug
+                playerPrompt.style.display = 'none'; // Hide prompt
+                starNarrative.textContent = `Ah, ${playerName}—or Shrinking Violet, if you prefer the whisper—the key glimmers in the shadows. No October boos here, just eternal cats, bats, and spiders brewing in my gothy cafe. Yeshua's light steeps the path: "Trust not in veils, but in the Brew that unveils all delights." Shall we unlock the members-only door? Follow me to the hidden cafe, where kindness flows like fine Parisian espresso—or slink to parallel paths if the mystery's too misty. Your quest, your delight. The gift awaits... if you're ready.`; // Personalize
+                starNarrative.classList.add('visible', 'typewriter'); // Trigger typewriter
+                setTimeout(() => {
+                    questChoices.classList.add('visible');
+                    console.log('Quest choices steeped!'); // Debug
+                }, 2000); // After typewriter
+                localStorage.setItem('playerName', playerName); // Save for realms
+            }
+
+            // Enter Key on Input (Robust – Works Even if Focus Issues)
+            playerInput.addEventListener('keypress', (e) => {
+                console.log('Key pressed in input:', e.key); // Debug typing
+                if (e.key === 'Enter') {
+                    startQuest();
+                }
+            });
+
+            // Button Click Handler (Fallback if Enter Fails)
+            const beginBtn = document.querySelector('button[onclick="startQuest()"]');
+            beginBtn.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent default
+                console.log('Begin button clicked!'); // Debug
+                startQuest();
+            });
+
+            // Follow STAR (Free Quest – To Blueprint/Cafe)
+            function followStar() {
+                localStorage.setItem('inventory', JSON.stringify({ veilKey: 1, blessing: 'STAR\'s Gentle Guidance' })); // RPG tease
+                console.log('Following STAR – Free cafe unlocked!'); // Debug
+                window.location.href = 'blueprint.html'; // Or 'cafe-menu.html'
+            }
+
+            // Join Tribe (Membership – To Donate/Exclusives)
+            function joinTribe() {
+                localStorage.setItem('tribeStatus', 'member'); // Unlock exclusives
+                localStorage.setItem('inventory', JSON.stringify({ veilKey: 1, tribeAccess: 'Eternal Brews & VIP Quests' })); // Enhanced
+                console.log('Tribe joined – Members-only awaits!'); // Debug
+                window.location.href = 'donate.html'; // Or 'tribe.html'
+            }
+
+            // Typewriter Effect for STAR Narrative (Minimal Pace)
+            function typeWriter(element, index) {
+                if (index < element.textContent.length) {
+                    element.textContent = element.textContent.substring(0, index + 1);
+                    setTimeout(() => typeWriter(element, index + 1), 50); // 50ms per char for fast steep
+                } else {
+                    console.log('Narrative steeped – Choices ready!'); // Debug
+                    setTimeout(() => {
+                        questChoices.classList.add('visible');
+                        setTimeout(() => {
+                            inventoryTease.classList.add('visible');
+                            console.log('Inventory unlocked.'); // Debug
+                        }, 300);
+                        setTimeout(() => {
+                            parableScripture.classList.add('visible');
+                            footerScreen.classList.add('visible');
+                            console.log('Parable & footer revealed.'); // Debug
+                        }, 600);
+                    }, 300);
+                }
+            }
+
+            // Quest Choice Listeners (Robust – Attach Globally)
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('quest-btn')) {
+                    if (e.target.textContent.includes('Follow STAR')) {
+                        followStar();
+                    } else
