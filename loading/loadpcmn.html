@@ -3,39 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chimera Comfort Cafe: Pac-Man Adventure Loader</title>
+    <title>Chimera Comfort Cafe: Steeping Adventure Loader</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:wght@300;400;500&display=swap');
         body { 
             background: 
-                linear-gradient(to bottom, #301934 0%, #6495ED 50%, #008080 100%) !important; /* Deep purple "maze" to cornflower "pellet" to teal "power" – iRobot calm */
-            color: #708090 !important; /* Slate grey for retro legibility */
-            font-family: 'Roboto Mono', monospace; /* Pixel terminal */
+                linear-gradient(to bottom, #301934 0%, #6495ED 50%, #008080 100%) !important; /* Deep purple "veil" to cornflower "steam" to teal "brew" – Parisian calm */
+            color: #708090 !important; /* Slate grey for vintage legibility */
+            font-family: 'Roboto Mono', monospace; /* Barista terminal */
             margin: 0; 
             padding: 20px; 
             text-align: center; 
             position: relative;
             overflow-x: hidden;
             min-height: 100vh;
-            /* Retro maze grid (Pac-Man style – faint pellets/lines, static) */
+            /* Subtle steam grid (cafe pattern – faint, static) */
             background-image: 
-                repeating-linear-gradient(0deg, transparent, transparent 5px, rgba(210, 180, 140, 0.02) 5px, rgba(210, 180, 140, 0.02) 10px), /* Muted beige "pellet" lines */
-                repeating-linear-gradient(90deg, transparent, transparent 5px, rgba(0, 128, 128, 0.02) 5px, rgba(0, 128, 128, 0.02) 10px); /* Teal maze walls */
-            background-size: 100% 10px, 10px 100%;
+                repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(100, 149, 237, 0.03) 3px, rgba(100, 149, 237, 0.03) 6px), /* Cornflower wisps */
+                repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0, 128, 128, 0.03) 3px, rgba(0, 128, 128, 0.03) 6px); /* Teal lines */
+            background-size: 100% 6px, 6px 100%;
         }
         .container { 
             max-width: 800px; 
             margin: 0 auto; 
-            background: rgba(47, 79, 79, 0.8) !important; /* Dark slate "arcade cabinet" – high contrast */
+            background: rgba(47, 79, 79, 0.8) !important; /* Dark slate "booth" – high contrast */
             padding: 40px; 
-            border-radius: 10px; /* Slight retro bezel */
+            border-radius: 15px; /* Elegant curve */
             box-shadow: 
-                0 0 25px #4B0082, /* Deep purple "screen glow" */
-                inset 0 0 20px rgba(100, 149, 237, 0.15); /* Inner cornflower "pixel" */
-            border: 2px solid #00CED1; /* Teal "joystick" trim */
+                0 0 25px #4B0082, /* Deep purple "candlelight" */
+                inset 0 0 20px rgba(100, 149, 237, 0.15); /* Inner cornflower "lantern" */
+            border: 2px solid #00CED1; /* Teal "brass" trim */
             font-size: 14px; 
-            opacity: 0; /* Gradual boot */
+            opacity: 0; /* Gradual steep */
             transition: opacity 1.5s ease-in; 
         }
         .container.booted { opacity: 1; } /* JS triggers */
@@ -45,39 +45,24 @@
             transition: opacity 0.8s ease-in; 
         }
         .loading-screen.visible { opacity: 1; }
-        .pacman-bar { 
+        .steep-bar { 
             width: 80%; 
-            height: 25px; 
-            background: rgba(48, 25, 52, 0.6); /* Deep purple "maze bg" */
-            border-radius: 12px; 
+            height: 20px; 
+            background: rgba(48, 25, 52, 0.6); /* Deep purple "cup" bg */
+            border-radius: 10px; 
             margin: 20px auto; 
             overflow: hidden; 
-            box-shadow: inset 0 0 10px rgba(0, 128, 128, 0.4); /* Teal "tunnel" inner */
-            border: 2px solid #D2B48C; /* Muted beige rim */
+            box-shadow: inset 0 0 10px rgba(0, 128, 128, 0.4); /* Teal "steam" inner */
+            border: 1px solid #6495ED; /* Cornflower rim */
             position: relative; 
         }
-        .pacman-fill { 
+        .steep-fill { 
             height: 100%; 
-            background: linear-gradient(to right, #D2B48C 0%, #F5F5DC 50%, #00CED1 100%); /* Beige chomp to light beige to teal power – muted */
+            background: linear-gradient(to right, #9370DB 0%, #00CED1 50%, #008080 100%); /* Violet tea to teal brew – subtle */
             width: 0%; 
-            transition: width 5s ease-in-out; /* 5s faster chomp */
-            border-radius: 12px; 
-            box-shadow: 0 0 10px rgba(210, 180, 140, 0.4); /* Muted beige "munch glow" */
-            position: relative; 
-        }
-        .pacman-fill::before { 
-            content: '◯'; /* Pac-Man icon */
-            position: absolute; 
-            right: -20px; 
-            top: 50%; 
-            transform: translateY(-50%); 
-            font-size: 20px; 
-            color: #301934; /* Deep purple mouth – muted contrast */
-            animation: chomp 0.5s ease-in-out infinite alternate; /* Chomping animation */
-        }
-        @keyframes chomp { 
-            0% { transform: translateY(-50%) rotate(0deg); } /* Open mouth */
-            100% { transform: translateY(-50%) rotate(45deg); } /* Close chomp */
+            transition: width 5s ease-in-out; /* 5s steep */
+            border-radius: 10px; 
+            box-shadow: 0 0 10px rgba(0, 206, 209, 0.5); /* Teal glow */
         }
         .hourglass { 
             width: 50px; 
@@ -96,18 +81,18 @@
             width: 100%; 
             height: 50%; 
             background: #D2B48C; /* Muted beige sand */
-            animation: recede 5s linear forwards; /* Recede as time goes (5s sync to Pac-Man) */
+            animation: recede 5s linear forwards; /* Recede sync to steep */
             border-radius: 0 0 25px 25px; 
         }
         @keyframes recede { 
-            0% { height: 50%; } /* Full sand */
-            100% { height: 0%; } /* Empty hourglass */
+            0% { height: 50%; } 
+            100% { height: 0%; } 
         }
         .time-left { 
             font-family: 'Roboto Mono', monospace; 
             font-size: 1em; 
             color: #E6E6FA; 
-            text-shadow: 0 0 4px #00CED1; /* Teal subtle */
+            text-shadow: 0 0 4px #00CED1; 
             margin: 10px 0; 
             opacity: 0; 
             transition: opacity 0.5s ease-in 1s; 
@@ -115,14 +100,14 @@
         .time-left.visible { opacity: 1; }
         .player-prompt { 
             font-size: 1.5em; 
-            color: #D2B48C; /* Muted beige "Player 1" */
-            text-shadow: 0 0 8px #D2B48C; 
+            color: #00CED1; /* Teal "Player 1" pop */
+            text-shadow: 0 0 8px #00CED1; 
             margin: 20px 0; 
             opacity: 0; 
-            transition: opacity 1s ease-in 2.5s; /* Mid-load */
+            transition: opacity 1s ease-in 2.5s; /* Mid-steep */
             font-family: 'Roboto Mono', monospace; 
             font-weight: 500; 
-            letter-spacing: 3px; /* Retro bold */
+            letter-spacing: 2px; 
         }
         .player-prompt.visible { opacity: 1; }
         #playerInput { 
@@ -135,20 +120,27 @@
             font-size: 1em; 
             width: 200px; 
             margin: 10px; 
-            box-shadow: 0 0 5px rgba(210, 180, 140, 0.3); /* Muted beige glow */
+            box-shadow: 0 0 5px rgba(0, 206, 209, 0.3); /* Teal glow */
+            pointer-events: auto; /* Ensure clickable */
+            user-select: text; /* Allow typing */
+            outline: none; /* Clean focus */
+        }
+        #playerInput:focus { 
+            border-color: #00CED1; /* Teal focus */
+            box-shadow: 0 0 8px rgba(0, 206, 209, 0.5); 
         }
         .star-narrative { 
             font-family: 'Playfair Display', serif; 
             font-size: 1.2em; 
             line-height: 1.5; 
             color: #fff; 
-            text-shadow: 0 0 6px #00CED1; /* Teal "maze shadow" */
+            text-shadow: 0 0 6px #00CED1; 
             margin: 20px auto; 
             max-width: 600px; 
             opacity: 0; 
             transition: opacity 1s ease-in 4s; /* After prompt */
             text-align: left; 
-            background: rgba(0, 128, 128, 0.2); /* Teal "power pellet" bg */
+            background: rgba(0, 128, 128, 0.2); /* Teal "parchment" bg */
             padding: 20px; 
             border-radius: 10px; 
             border: 1px solid #6495ED; /* Cornflower edge */
@@ -157,14 +149,14 @@
         .quest-choices { 
             margin: 30px 0; 
             opacity: 0; 
-            transition: opacity 1s ease-in 5.5s; /* End load */
+            transition: opacity 1s ease-in 5.5s; /* End steep */
         }
         .quest-choices.visible { opacity: 1; }
         .quest-btn { 
-            background: linear-gradient(45deg, #4B0082, #301934); /* Deep purple "ghost chase" */
-            color: #D2B48C; /* Muted beige text */
+            background: linear-gradient(45deg, #4B0082, #301934); /* Deep purple "mystery door" */
+            color: #00CED1; /* Teal text */
             padding: 15px 30px; 
-            border: 2px solid #D2B48C; /* Muted beige "pellet" trim */
+            border: 2px solid #00CED1; /* Teal "keyhole" */
             border-radius: 10px; 
             cursor: pointer; 
             margin: 10px; 
@@ -172,18 +164,17 @@
             font-family: 'Playfair Display', serif; 
             font-size: 1.1em; 
             font-weight: 700; 
-            box-shadow: 0 0 12px rgba(210, 180, 140, 0.4); /* Muted beige "power-up" glow */
+            box-shadow: 0 0 12px rgba(0, 206, 209, 0.4); /* Teal "gift glow" */
             letter-spacing: 1px; 
         }
         .quest-btn:hover { 
-            background: linear-gradient(45deg, #6495ED, #008080); /* Cornflower to teal "escape" */
-            box-shadow: 0 0 20px #D2B48C; /* Muted beige flash */
+            background: linear-gradient(45deg, #6495ED, #008080); /* Cornflower to teal "unlock" */
+            box-shadow: 0 0 20px #00CED1; /* Teal reveal */
             transform: scale(1.05); 
         }
         .tribe-choice { 
-            background: linear-gradient(45deg, #9370DB, #4B0082); /* Violet "ghost" exclusive */
+            background: linear-gradient(45deg, #9370DB, #4B0082); /* Violet "exclusive" */
             border-color: #9370DB; 
-            color: #D2B48C; 
         }
         .tribe-choice:hover { 
             background: linear-gradient(45deg, #00CED1, #9370DB); 
@@ -193,7 +184,7 @@
             font-family: 'Roboto Mono', monospace; 
             font-size: 0.9em; 
             color: #E6E6FA; 
-            text-shadow: 0 0 4px #D2B48C; /* Muted beige inventory */
+            text-shadow: 0 0 4px #00CED1; 
             margin-top: 10px; 
             opacity: 0; 
             transition: opacity 0.5s ease-in 6.5s; /* Post-choices */
@@ -207,11 +198,11 @@
             margin-top: 20px; 
             text-shadow: 0 0 5px #00CED1; 
             padding: 15px; 
-            background: rgba(100, 149, 237, 0.1); /* Cornflower "score card" */
+            background: rgba(100, 149, 237, 0.1); /* Cornflower "parable card" */
             border-radius: 8px; 
-            border: 1px solid #D2B48C; /* Muted beige edge */
+            border: 1px solid #00CED1; /* Teal edge */
             opacity: 0; 
-            transition: opacity 1s ease-in 7s; /* Final "high score" */
+            transition: opacity 1s ease-in 7s; /* Final wisdom */
         }
         .scripture.visible { opacity: 1; }
         footer { 
@@ -226,50 +217,36 @@
         }
         footer.visible { opacity: 1; }
         .donate-link { 
-            color: #D2B48C; /* Muted beige tribe */
-            text-shadow: 0 0 5px #D2B48C; 
+            color: #00CED1; 
+            text-shadow: 0 0 5px #00CED1; 
             text-decoration: none; 
             font-weight: bold; 
         }
-        .donate-link:hover { color: #00CED1; text-shadow: 0 0 10px #00CED1; } /* Teal power-up */
-        .audio-toggle { 
-            background: #4B0082; 
-            color: #D2B48C; /* Muted beige */
-            padding: 8px 16px; 
-            border: 1px solid #D2B48C; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            margin: 10px; 
-            font-family: 'Roboto Mono', monospace; 
-            font-size: 0.9em; 
-            transition: all 0.3s; 
-        }
-        .audio-toggle:hover { box-shadow: 0 0 10px #D2B48C; }
-        .audio-toggle.playing { background: #008080; color: #fff; }
+        .donate-link:hover { color: #9370DB; text-shadow: 0 0 10px #9370DB; } /* Violet tribe */
         @media (max-width: 768px) { 
             .container { padding: 20px; } 
             h1 { font-size: 2em; } 
-            .pacman-bar { width: 95%; } 
+            .steep-bar { width: 95%; } 
             .quest-btn { width: 100%; margin: 10px 0; } 
             .star-narrative { text-align: center; padding: 15px; } 
             #playerInput { width: 80%; } 
         }
-        /* Typewriter for STAR Parable (Pac-Man Narrative Pace) */
-        .typewriter { overflow: hidden; border-right: 2px solid #D2B48C; white-space: nowrap; animation: typing 3s steps(60, end), blink-caret 0.75s step-end infinite; }
+        /* Typewriter for STAR Parable (Barista Narrative Pace) */
+        .typewriter { overflow: hidden; border-right: 2px solid #00CED1; white-space: nowrap; animation: typing 3s steps(60, end), blink-caret 0.75s step-end infinite; }
         @keyframes typing { from { width: 0; } to { width: 100%; } }
-        @keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: #D2B48C; } }
+        @keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: #00CED1; } }
     </style>
 </head>
 <body>
     <div class="container" id="gameContainer">
         <div class="loading-screen" id="loadingScreen">
-            <h1>Chimera Comfort Cafe: Pac-Man Adventure Loader</h1>
+            <h1>Chimera Comfort Cafe: Steeping Adventure Loader</h1>
 
-            <div class="pacman-bar">
-                <div class="pacman-fill" id="pacmanFill"></div>
+            <div class="steep-bar">
+                <div class="steep-fill" id="steepFill"></div>
             </div>
 
-            <div class="time-left" id="timeLeft">5s remaining – Chomping the veil...</div>
+            <div class="time-left" id="timeLeft">5s remaining – Steeping the veil...</div>
 
             <div class="hourglass" id="hourglass">
                 <div class="sand" id="sand"></div>
@@ -279,11 +256,11 @@
         <div class="player-prompt" id="playerPrompt">
             Player 1: Enter your heir name (or press Enter for "Shrinking Violet")<br>
             <input type="text" id="playerInput" placeholder="Shrinking Violet" maxlength="20">
-            <button onclick="startQuest()" style="background: #4B0082; color: #D2B48C; border: 1px solid #D2B48C; padding: 8px 16px; margin-left: 10px; font-family: 'Roboto Mono', monospace;">Begin Adventure</button>
+            <button onclick="startQuest()" style="background: #4B0082; color: #00CED1; border: 1px solid #00CED1; padding: 8px 16px; margin-left: 10px; font-family: 'Roboto Mono', monospace;">Begin Adventure</button>
         </div>
 
         <div class="star-narrative typewriter" id="starNarrative">
-            Ah, heir—or Shrinking Violet, if you prefer the whisper—the key glimmers in the shadows. No October boos here, just eternal cats, bats, and spiders brewing in my gothy cafe. Yeshua's  light steeps the path: 'Trust not in veils, but in the Brew that unveils all delights.' Shall we unlock the members-only door? Follow me to the hidden cafe, where kindness flows like fine Parisian espresso—or slink to parallel paths if the mystery's too misty. Your quest, your delight. The gift awaits... if you're ready.
+            Ah, heir—or Shrinking Violet, if you prefer the whisper—the key glimmers in the shadows. No October boos here, just eternal cats, bats, and spiders brewing in my gothy cafe. Yeshua's light steeps the path: "Trust not in veils, but in the Brew that unveils all delights." Shall we unlock the members-only door? Follow me to the hidden cafe, where kindness flows like fine Parisian espresso—or slink to parallel paths if the mystery's too misty. Your quest, your delight. The gift awaits... if you're ready.
         </div>
 
         <div class="quest-choices" id="questChoices">
@@ -294,147 +271,13 @@
         <div class="inventory-tease" id="inventoryTease">Inventory Updated: Veil Key (1) – STAR's Blessing Active (Gentle Guidance in Realms)</div>
 
         <div class="scripture" id="parableScripture">
-            <em>"The light shines in the darkness, and the darkness has not overcome it." — John 1:5 (STAR's Parable: Chomps the veil, heir—your power pellet awaits.)</em>
+            <em>"The light shines in the darkness, and the darkness has not overcome it." — John 1:5 (STAR's Parable: Steeps the veil, heir—your brew awaits.)</em>
         </div>
     </div>
 
     <footer id="footerScreen">
-        <p>STAR's maze calls the bold. <a href="donate.html" class="donate-link">Join Tribe for Power Pellets & Exclusive Levels</a>.</p>
+        <p>STAR's cafe calls the bold. <a href="donate.html" class="donate-link">Join Tribe for Eternal Brews & Quests</a>.</p>
     </footer>
 
     <script>
-        console.log('=== Pac-Man Adventure Loader Starting ==='); // Debug
-
-        // Ensure DOM Ready
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('DOM ready – Chomping quest.'); // Debug
-
-            const gameContainer = document.getElementById('gameContainer');
-            const loadingScreen = document.getElementById('loadingScreen');
-            const pacmanFill = document.getElementById('pacmanFill');
-            const timeLeft = document.getElementById('timeLeft');
-            const playerPrompt = document.getElementById('playerPrompt');
-            const playerInput = document.getElementById('playerInput');
-            const starNarrative = document.getElementById('starNarrative');
-            const questChoices = document.getElementById('questChoices');
-            const inventoryTease = document.getElementById('inventoryTease');
-            const parableScripture = document.getElementById('parableScripture');
-            const footerScreen = document.getElementById('footerScreen');
-
-            let chompProgress = 0;
-            let timeRemaining = 5; // Sync to 5s chomp
-
-            // Pac-Man Chomp Bar (5s Faster Load)
-            const chompInterval = setInterval(() => {
-                console.log('Chomp step:', chompProgress + 1); // Debug
-                chompProgress += 20; // 5 steps for 5s (500ms interval)
-                pacmanFill.style.width = chompProgress + '%';
-                timeRemaining--;
-                timeLeft.textContent = `${timeRemaining}s remaining – Chomping the veil...`;
-                if (chompProgress >= 100) {
-                    clearInterval(chompInterval);
-                    console.log('Chomp complete – Ghosts scattered!'); // Debug
-                    // Reveal sequence (faster pacing)
-                    setTimeout(() => {
-                        loadingScreen.classList.add('visible');
-                        console.log('Loading screen chomped.'); // Debug
-                    }, 100);
-                    setTimeout(() => {
-                        playerPrompt.classList.add('visible');
-                        console.log('Player 1 prompt powered up.'); // Debug
-                        playerInput.focus(); // Auto-focus
-                    }, 1000);
-                    setTimeout(() => {
-                        gameContainer.classList.add('booted');
-                        console.log('Game booted – Narrative munching.'); // Debug
-                    }, 2000);
-                }
-            }, 500); // 0.5s steps for 5s total
-
-            // Hourglass Recede Sync (CSS Animation Starts on Load – 5s)
-            const sand = document.getElementById('sand');
-            sand.style.animation = 'recede 5s linear forwards'; // Trigger recede
-            console.log('Sand receding – Time brewing!'); // Debug
-
-            // Fallback: Full reveal after 7s if script lags
-            setTimeout(() => {
-                gameContainer.classList.add('booted');
-                loadingScreen.classList.add('visible');
-                playerPrompt.classList.add('visible');
-                console.log('Fallback chomp – All powered up!'); // Debug
-            }, 7000);
-
-            // Start Quest on Button or Enter (Player Input)
-            function startQuest() {
-                const playerName = playerInput.value.trim() || 'Shrinking Violet'; // Default for fun
-                console.log('Player 1:', playerName, '– Adventure chomps!'); // Debug
-                playerPrompt.style.display = 'none'; // Hide prompt
-                starNarrative.textContent = `Ah, ${playerName}—or Shrinking Violet, if you prefer the whisper—the key glimmers in the shadows. No October boos here, just eternal cats, bats, and spiders brewing in my gothy cafe. Yeshua's light steeps the path: "Trust not in veils, but in the Brew that unveils all delights." Shall we unlock the members-only door? Follow me to the hidden cafe, where kindness flows like fine Parisian espresso—or slink to parallel paths if the mystery's too misty. Your quest, your delight. The gift awaits... if you're ready.`; // Personalize
-                starNarrative.classList.add('visible', 'typewriter'); // Trigger typewriter
-                setTimeout(() => {
-                    questChoices.classList.add('visible');
-                    console.log('Quest choices powered!'); // Debug
-                }, 3000); // After typewriter
-                localStorage.setItem('playerName', playerName); // Save for realms
-            }
-
-            // Enter Key on Input (Pac-Man Quick-Start)
-            playerInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    startQuest();
-                }
-            });
-
-            // Follow STAR (Free Quest – To Blueprint/Cafe)
-            function followStar() {
-                localStorage.setItem('inventory', JSON.stringify({ veilKey: 1, blessing: 'STAR\'s Gentle Guidance' })); // RPG tease
-                console.log('Following STAR – Free maze unlocked!'); // Debug
-                window.location.href = 'blueprint.html'; // Or 'cafe-menu.html'
-            }
-
-            // Join Tribe (Membership – To Donate/Exclusives)
-            function joinTribe() {
-                localStorage.setItem('tribeStatus', 'member'); // Unlock exclusives
-                localStorage.setItem('inventory', JSON.stringify({ veilKey: 1, tribeAccess: 'Eternal Brews & VIP Quests' })); // Enhanced
-                console.log('Tribe joined – Power pellets await!'); // Debug
-                window.location.href = 'donate.html'; // Or 'tribe.html'
-            }
-
-            // Typewriter Effect for STAR Narrative (Retro Munch Pace)
-            function typeWriter(element, index) {
-                if (index < element.textContent.length) {
-                    element.textContent = element.textContent.substring(0, index + 1);
-                    setTimeout(() => typeWriter(element, index + 1), 60); // 60ms per char for chompy pace
-                } else {
-                    console.log('Narrative chomped – Choices ready!'); // Debug
-                    setTimeout(() => {
-                        questChoices.classList.add('visible');
-                        setTimeout(() => {
-                            inventoryTease.classList.add('visible');
-                            console.log('Inventory powered up.'); // Debug
-                        }, 500);
-                        setTimeout(() => {
-                            parableScripture.classList.add('visible');
-                            footerScreen.classList.add('visible');
-                            console.log('Parable & footer scored!'); // Debug
-                        }, 1000);
-                    }, 500);
-                }
-            }
-
-            // Quest Choice Listeners (Attach on Visible)
-            document.addEventListener('click', (e) => {
-                if (e.target.classList.contains('quest-btn')) {
-                    if (e.target.textContent.includes('Follow STAR')) {
-                        followStar();
-                    } else if (e.target.textContent.includes('Join the Eternal Tribe')) {
-                        joinTribe();
-                    }
-                }
-            });
-        });
-
-        console.log('Pac-Man Loader Online – Player 1, chomp on!'); // Debug
-    </script>
-</body>
-</html>
+        console.log('=== Barista Steep Loader Starting ==='); //
