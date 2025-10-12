@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chimera Comfort Cafe: Steeping Awakening</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:wght@300;400;500&display=swap');
+        body { 
+            background: 
+                linear-gradient(to bottom, #301934 0%, #6495ED 50%, #008080 100%) !important; /* Deep purple cafe velvet to cornflower "steam" to teal espresso – Parisian calm */
+            color: #708090 !important; /* Slate grey text for vintage legibility */
+            font-family: 'Roboto Mono', monospace; /* Barista terminal for orders */
+            margin: 0; 
+            padding: 20px; 
+            text-align: center; 
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            /* Subtle "steam" grid (vintage cafe pattern – faint, static) */
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(100, 149, 237, 0.03) 3px, rgba(100, 149, 237, 0.03) 6px), /* Cornflower steam wisps */
+                repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0, 128, 128, 0.03) 3px, rgba(0, 128, 128, 0.03) 6px); /* Teal table lines */
+            background-size: 100% 6px, 6px 100%;
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: rgba(47, 79, 79, 0.8) !important; /* Dark slate "wooden booth" – high contrast for vintage pop */
+            padding: 40px; 
+            border-radius: 15px; /* Elegant Parisian curve */
+            box-shadow: 
+                0 0 25px #4B0082, /* Deep purple "candlelight" aura */
+                inset 0 0 20px rgba(100, 149, 237, 0.15); /* Inner cornflower "lantern" glow */
+            border: 2px solid #00CED1; /* Teal "brass trim" – subtle funky */
+            font-size: 14px; 
+            opacity: 0; /* Gradual fade-in for loading quest */
+            transition: opacity 2s ease-in; /* Slow reveal */
+        }
+        .container.loaded { opacity: 1; } /* JS triggers on load complete */
+        h1 { 
+            color: #00CED1; /* Teal "neon sign" title */
+            text-shadow: 0 0 12px #00CED1, 0 0 20px #6495ED; /* Teal + cornflower "steam" glow */
+            font-size: 3em; 
+            margin-bottom: 20px; 
+            font-family: 'Playfair Display', serif; /* Fancy Parisian menu font */
+            font-weight: 700; 
+            font-style: italic; /* Vintage slant */
+            letter-spacing: 2px; /* Elegant spacing */
+        }
+        .loading-section { 
+            margin: 30px 0; 
+            opacity: 0; /* Gradual reveal */
+            transition: opacity 1.5s ease-in 1s; /* Delay after progress */
+        }
+        .loading-section.revealed { opacity: 1; }
+        .steeping-bar { 
+            width: 80%; 
+            height: 20px; 
+            background: rgba(48, 25, 52, 0.5); /* Deep purple "tea cup" bg */
+            border-radius: 10px; 
+            margin: 20px auto; 
+            overflow: hidden; 
+            box-shadow: inset 0 0 10px rgba(0, 128, 128, 0.3); /* Teal "steam" inner */
+            border: 1px solid #6495ED; /* Cornflower rim */
+        }
+        .steeping-fill { 
+            height: 100%; 
+            background: linear-gradient(to right, #9370DB 0%, #00CED1 50%, #008080 100%); /* Violet tea to teal brew */
+            width: 0%; 
+            transition: width 8s ease-in-out; /* 8s "steep" progress */
+            border-radius: 10px; 
+            box-shadow: 0 0 10px rgba(0, 206, 209, 0.5); /* Teal glow as it fills */
+        }
+        .steeping-text { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.2em; 
+            color: #E6E6FA; /* Lavender for vintage warmth */
+            text-shadow: 0 0 5px #00CED1; /* Teal subtle */
+            margin: 10px 0; 
+            opacity: 0; 
+            transition: opacity 1s ease-in 3s; /* Reveal mid-steep */
+        }
+        .steeping-text.revealed { opacity: 1; }
+        .boo-message { 
+            font-size: 4em; 
+            color: #9370DB; /* Violet "*boo*" pop */
+            text-shadow: 0 0 15px #9370DB, 0 0 25px #00CED1; /* Violet + teal spooky glow */
+            margin: 20px 0; 
+            opacity: 0; 
+            transform: scale(0.5); 
+            transition: all 0.5s ease-in 5s; /* Jokey pop at 5s */
+            font-family: 'Playfair Display', serif; 
+            font-weight: 900; 
+            letter-spacing: 5px; 
+        }
+        .boo-message.revealed { 
+            opacity: 1; 
+            transform: scale(1); 
+        }
+        .star-message { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.3em; 
+            line-height: 1.5; 
+            color: #fff; /* White for high contrast */
+            text-shadow: 0 0 8px #00CED1; /* Teal "steam" shadow */
+            margin: 20px auto; 
+            max-width: 600px; 
+            opacity: 0; 
+            transition: opacity 1s ease-in 6s; /* Reveal after "*boo*" */
+            text-align: left; /* "Menu card" feel */
+            background: rgba(0, 128, 128, 0.2); /* Teal-tinted "napkin" bg */
+            padding: 20px; 
+            border-radius: 10px; 
+            border: 1px solid #6495ED; /* Cornflower edge */
+        }
+        .star-message.revealed { opacity: 1; }
+        .choice-buttons { 
+            margin: 30px 0; 
+            opacity: 0; 
+            transition: opacity 1s ease-in 7s; /* Reveal after message */
+        }
+        .choice-buttons.revealed { opacity: 1; }
+        .choice-btn { 
+            background: linear-gradient(45deg, #4B0082, #301934); /* Deep purple "velvet" button */
+            color: #00CED1; /* Teal text */
+            padding: 15px 30px; 
+            border: 2px solid #00CED1; /* Teal trim */
+            border-radius: 15px; /* Parisian round */
+            cursor: pointer; 
+            margin: 10px; 
+            transition: all 0.3s; 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.2em; 
+            font-weight: 700; 
+            box-shadow: 0 0 15px rgba(0, 206, 209, 0.4); /* Teal "lantern" glow */
+            letter-spacing: 1px; 
+        }
+        .choice-btn:hover { 
+            background: linear-gradient(45deg, #6495ED, #008080); /* Cornflower to teal "brew" shift */
+            box-shadow: 0 0 25px #00CED1; /* Funky teal flash */
+            transform: scale(1.05); 
+        }
+        .scripture { 
+            color: #E6E6FA; 
+            font-family: 'Playfair Display', serif; 
+            font-style: italic; 
+            font-size: 1.1em; 
+            margin-top: 30px; 
+            text-shadow: 0 0 5px #00CED1; 
+            padding: 20px; 
+            background: rgba(100, 149, 237, 0.1); /* Cornflower "tablecloth" */
+            border-radius: 10px; 
+            border: 1px solid #00CED1; /* Teal edge */
+            opacity: 0; 
+            transition: opacity 1s ease-in 8s; /* Final reveal */
+        }
+        .scripture.revealed { opacity: 1; }
+        footer { 
+            color: #708090; 
+            font-size: 0.9em; 
+            margin-top: 30px; 
+            border-top: 1px solid #6495ED; /* Cornflower line */
+            padding-top: 15px; 
+            font-family: 'Roboto Mono', monospace; 
+            opacity: 0; 
+            transition: opacity 1s ease-in 8.5s; 
+        }
+        footer.revealed { opacity: 1; }
+        .donate-link { 
+            color: #00CED1; 
+            text-shadow: 0 0 5px #00CED1; 
+            text-decoration: none; 
+            font-weight: bold; 
+        }
+        .donate-link:hover { color: #9370DB; text-shadow: 0 0 10px #9370DB; } /* Violet hover */
+        @media (max-width: 768px) { 
+            .container { padding: 20px; } 
+            h1 { font-size: 2em; } 
+            .steeping-bar { width: 90%; } 
+            .choice-btn { width: 100%; margin: 10px 0; } 
+            .star-message { text-align: center; padding: 15px; } 
+        }
+        /* Typewriter Effect for STAR Message (Video Game Quest) */
+        .typewriter { overflow: hidden; border-right: 2px solid #00CED1; white-space: nowrap; animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite; }
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
+        @keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: #00CED1; } }
+    </style>
+</head>
+<body>
+    <div class="container" id="loadingContainer">
+        <h1>Chimera Comfort Cafe: Steeping Awakening</h1>
+
+        <div class="steeping-bar">
+            <div class="steeping-fill" id="steepFill"></div>
+        </div>
+
+        <div class="steeping-text" id="steepText">Steeping your path... Like a fine Parisian brew, patience unveils the veil. (8s to delight)</div>
+
+        <div class="loading-section boo-message" id="booMessage">*boo*</div>
+
+        <div class="loading-section star-message" id="starMessage">
+            sorry kiddos, I Star no longer celebrate the eve of October, however, I do enjoy cats,bats and spiders year round, no harm in that. Are you ready to learn more Shrinking Violet? Or would you rather slink away and choose another parallel universe? Take your time. I'll continue steeping the tea until you're ready. Or not. You choose. It's your delight. Oh, the loading is done, let's get on with it
+        </div>
+
+        <div class="choice-buttons" id="choiceButtons">
+            <button class="choice-btn" onclick="window.location.href='blueprint.html'">Ready to Learn More, Shrinking Violet?</button>
+            <button class="choice-btn" onclick="window.location.href='donate.html'" style="background: linear-gradient(45deg, #9370DB, #4B0082);">Slink Away to Parallel Universe (Donate Tease)</button>
+        </div>
+
+        <div class="scripture" id="scriptureDiv">
+            <em>"Trust in the Lord with all your heart..." — Proverbs 3:5</em>
+        </div>
+    </div>
+
+    <footer id="footerDiv">
+        <p>STAR's cafe whispers Yeshua's grace. <a href="donate.html" class="donate-link">Donate for Eternal Brews</a>.</p>
+    </footer>
+
+    <script>
+        console.log('=== Parisian Barista Loading Quest Starting ==='); // Debug
+
+        // Steeping Progress (Video Game Loading Bar – 8s Gradual)
+        const steepFill = document.getElementById('steepFill');
+        const steepText = document.getElementById('steepText');
+        const booMessage = document.getElementById('booMessage');
+        const starMessage = document.getElementById('starMessage');
+        const choiceButtons = document.getElementById('choiceButtons');
+        const scriptureDiv = document.getElementById('scriptureDiv');
+        const footerDiv = document.getElementById('footerDiv');
+        const loadingContainer = document.getElementById('loadingContainer');
+
+        let steepProgress = 0;
+        const steepInterval = setInterval(() => {
+            steepProgress += 12.5; // 8 steps for 8s
+            steepFill.style.width = steepProgress + '%';
+            if (steepProgress >= 100) {
+                clearInterval(steepInterval);
+                // Reveal sequence
+                setTimeout(() => {
+                    steepText.classList.add('revealed');
+                }, 500);
+                setTimeout(() => {
+                    booMessage.classList.add('revealed');
+                }, 2000);
+                setTimeout(() => {
+                    starMessage.classList.add('revealed');
+                    // Typewriter effect on STAR message
+                    typeWriter(starMessage, 0);
+                }, 2500);
+                setTimeout(() => {
+                    choiceButtons.classList.add('revealed');
+                }, 6500);
+                setTimeout(() => {
+                    scriptureDiv.classList.add('revealed');
+                    footerDiv.classList.add('revealed');
+                    loadingContainer.classList.add('loaded');
+                }, 8000);
+                console.log('Steeping complete – Quest unveiled!'); // Debug
+            }
+        }, 1000); // 1s per step
+
+        // Typewriter Effect for STAR Message (Fun Video Game Quest)
+        function typeWriter(element, index) {
+            if (index < element.textContent.length) {
+                element.textContent = element.textContent.substring(0, index + 1);
+                setTimeout(() => typeWriter(element, index + 1), 100); // 100ms per char for whimsical pace
+            }
+        }
+
+        // Button Actions (Quest Choices)
+        document.querySelectorAll('.choice-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                console.log('Quest choice selected – Delight delivered!'); // Debug
+            });
+        });
+
+        // Alternate Universe Tease (If "Slink Away" Clicked – Optional Redirect)
+        const slinkBtn = document.querySelector('.choice-btn:nth-child(2)');
+        slinkBtn.addEventListener('click', () => {
+            // Could redirect to a "parallel" page (e.g., donate or custom alternate.html)
+            // For now, to donate as tease
+            setTimeout(() => {
+                alert('Slinking to parallel delights... Yeshua\'s grace follows all paths.'); // Jokey transition
+            }, 500);
+        });
+    </script>
+</body>
+</html>
