@@ -252,4 +252,43 @@
                 console.log('VIP Web Access – Charlotte's teases unlocked!'); // Debug
             }
 
-            // Dynamic Section Loading (Click Nav – Web
+            // Dynamic Section Loading (Click Nav – Web  Briefing Style)
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent default href
+                    const sectionId = link.getAttribute('data-section');
+                    const section = document.getElementById(sectionId);
+                    const subtitleText = link.textContent + ': Web Chapter';
+
+                    console.log('Thread:', subtitleText, 'briefing!'); // Debug
+
+                    // Hide all sections, show selected (fade out/in like web cut)
+                    sections.forEach(sec => {
+                        sec.classList.remove('visible');
+                    });
+                    setTimeout(() => {
+                        section.classList.add('visible');
+                        cafeSubtitle.textContent = subtitleText;
+                        link.classList.add('active'); // Highlight active link (Web glow)
+                        // Remove active from others
+                        document.querySelectorAll('.nav-link').forEach(other => {
+                            if (other !== link) other.classList.remove('active');
+                        });
+                    }, 300); // 0.3s transition for "cut to thread"
+
+                    // Scroll to section (smooth cinematic pan)
+                    section.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            // Default to ABOUT if no ticket (or load first section)
+            if (localStorage.getItem('spiderTicket') !== 'cafe-access') {
+                console.log('Standard access – ABOUT threaded.'); // Debug
+            }
+        });
+
+        console.log('Web Cafe Online – Threads spun... Brew on, kin!'); // Debug
+    </script>
+</body>
+</html>
+
