@@ -516,4 +516,121 @@
             const navMenu = document.getElementById('navMenu');
             const filmScripture = document.getElementById('filmScripture');
             const filmFooter = document.getElementById('filmFooter');
-            const filmTitle
+            const filmTitle  = document.getElementById('filmTitle');
+            const filmSubtitle = document.getElementById('filmSubtitle');
+            const sections = document.querySelectorAll('.content-section');
+
+            let reelProgress = 0;
+            const reelTexts = [
+                'Mission briefing... 0%',
+                'Shadows gathering... 33%',
+                'Characters awakening... 66%',
+                'Premiere imminent... 100%'
+            ];
+
+            // Bond Intro Sequence (6s Dramatic Total: 2s Shoot + 1s Splat/Shake + 2s Logo + 1s Intertitle)
+            setTimeout(() => {
+                console.log('Bond dramatic armed – Shoot!'); // Debug
+                // Bullet shoots (CSS animation starts immediately)
+                // Splat blooms + shake at 2s (CSS delay)
+                // Logo swirls at 2.5s (CSS delay)
+                // Intertitle fades at 4.5s (CSS delay)
+            }, 100); // Minor delay for DOM settle
+
+            // Hide Intro & Transition to Menu (After 6s – Guaranteed)
+            setTimeout(() => {
+                bondIntro.classList.add('hidden');
+                console.log('Bond intro dramatic complete – Fade to menu briefing.'); // Debug
+                setTimeout(() => {
+                    filmContainer.classList.add('loaded');
+                    filmTitle.classList.add('visible');
+                    console.log('Title licensed.'); // Debug
+                }, 200); // 0.2s instant for clicks
+                setTimeout(() => {
+                    headerBanner.classList.add('visible'); // Slide header
+                    console.log('Header mission slide.'); // Debug
+                }, 400);
+                setTimeout(() => {
+                    reelText.classList.add('visible');
+                    navMenu.classList.add('visible');
+                    navMenu.style.pointerEvents = 'auto'; // Enable clicks immediately
+                    console.log('Menu briefing armed – Clicks active!'); // Debug
+                }, 600); // 0.6s total post-hide for guaranteed menu
+                setTimeout(() => {
+                    filmScripture.classList.add('visible');
+                    filmFooter.classList.add('visible');
+                    console.log('Credits licensed.'); // Debug
+                }, 800);
+                // Unlock "007 Ticket" for realms
+                localStorage.setItem('filmTicket', '007-premiere-access');
+            }, 6000); // 6s total intro
+
+            // Reel Progression (3s Post-Intro – Guaranteed Complete & Nav Enable)
+            setTimeout(() => {
+                const interval = setInterval(() => {
+                    console.log('Reel step:', reelProgress + 1); // Debug
+                    reelProgress += 33; // 3 steps for 3s
+                    reelFill.style.width = reelProgress + '%';
+                    reelText.textContent = reelTexts[Math.floor(reelProgress / 33)] || 'Premiere... 100%';
+                    if (reelProgress >= 100) {
+                        clearInterval(interval); // Force clear
+                        console.log('Reel licensed – Menu fully active!'); // Debug
+                        // Double-ensure nav clicks
+                        navMenu.classList.add('visible');
+                        navMenu.style.pointerEvents = 'auto';
+                    }
+                }, 1000); // 1s steps for 3s
+            }, 6500); // Start 0.5s after menu fade for overlap-free
+
+            // Fallback: Force Full Reveal & Clicks After 7s (Bulletproof)
+            setTimeout(() => {
+                bondIntro.classList.add('hidden');
+                filmContainer.classList.add('loaded');
+                headerBanner.classList.add('visible');
+                filmTitle.classList.add('visible');
+                reelText.classList.add('visible');
+                navMenu.classList.add('visible');
+                navMenu.style.pointerEvents = 'auto'; // Critical: Enable clicks
+                filmScripture.classList.add('visible');
+                filmFooter.classList.add('visible');
+                reelFill.style.width = '100%';
+                reelText.textContent = 'Premiere... 100%';
+                console.log('Fallback Bond – Mission fully armed & clickable!'); // Debug
+            }, 7000);
+
+            // Dynamic Section Loading (Click Nav – Cinematic Transition, Bond Briefing Style)
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent default href
+                    const sectionId = link.getAttribute('data-section');
+                    const section = document.getElementById(sectionId);
+                    const subtitleText = link.textContent + ': Mission Dossier';
+
+                    console.log('Scene:', subtitleText, 'briefing!'); // Debug
+
+                    // Hide all sections, show selected (fade out/in like scene cut)
+                    sections.forEach(sec => {
+                        sec.classList.remove('visible');
+                    });
+                    setTimeout(() => {
+                        section.classList.add('visible');
+                        filmSubtitle.textContent = subtitleText;
+                        filmSubtitle.classList.add('visible');
+                        link.classList.add('active'); // Highlight active link (Bond dossier glow)
+                        // Remove active from others
+                        document.querySelectorAll('.nav-link').forEach(other => {
+                            if (other !== link) other.classList.remove('active');
+                        });
+                    }, 300); // 0.3s transition for "cut to briefing"
+
+                    // Scroll to section (smooth cinematic pan)
+                    section.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        });
+
+        console.log('Bond Reel Online – Shaken, not stirred... Lights, camera, quest!'); // Debug
+    </script>
+</body>
+</html>
+
