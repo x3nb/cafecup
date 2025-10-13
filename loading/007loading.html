@@ -544,3 +544,61 @@
                     }
                 }, 1000); // 1s steps for 3s
             }, 4500); // Start after intro
+                        
+
+            // Fallback: Full reveal after 8s if script lags (Bond-safe)
+            setTimeout(() => {
+                bondIntro.classList.add('hidden');
+                filmContainer.classList.add('loaded');
+                headerBanner.classList.add('visible');
+                filmTitle.classList.add('visible');
+                reelText.classList.add('visible');
+                navMenu.classList.add('visible');
+                filmScripture.classList.add('visible');
+                filmFooter.classList.add('visible');
+                reelFill.style.width = '100%';
+                reelText.textContent = 'Premiere... 100%';
+                console.log('Fallback Bond – Mission active!'); // Debug
+            }, 8000);
+
+            // Dynamic Section Loading (Click Nav – Cinematic Transition, Bond Briefing Style)
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent default href
+                    const sectionId = link.getAttribute('data-section');
+                    const section = document.getElementById(sectionId);
+                    const subtitleText = link.textContent + ': Mission Dossier';
+
+                    console.log('Scene:', subtitleText, 'briefing!'); // Debug
+
+                    // Hide all sections, show selected (fade out/in like scene cut)
+                    sections.forEach(sec => {
+                        sec.classList.remove('visible');
+                    });
+                    setTimeout(() => {
+                        section.classList.add('visible');
+                        filmSubtitle.textContent = subtitleText;
+                        filmSubtitle.classList.add('visible');
+                        link.classList.add('active'); // Highlight active link (Bond dossier glow)
+                        // Remove active from others
+                        document.querySelectorAll('.nav-link').forEach(other => {
+                            if (other !== link) other.classList.remove('active');
+                        });
+                    }, 300); // 0.3s transition for "cut to briefing"
+
+                    // Scroll to section (smooth cinematic pan)
+                    section.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            // Unlock "007 Ticket" for Realms (Post-Intro Tease)
+            setTimeout(() => {
+                localStorage.setItem('filmTicket', '007-premiere-access'); // Use in realms.html for "Licensed Viewer" badge
+                console.log('007 Ticket issued – Licensed to quest!'); // Debug
+            }, 5000);
+        });
+
+        console.log('Bond Reel Online – Shaken, not stirred... Lights, camera, quest!'); // Debug
+    </script>
+</body>
+</html>
