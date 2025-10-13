@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comfy Chimera Cafe – Quests</title>
+    <title>Eternal Estates: Spider's Brew Production – Web of Quest</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Roboto+Mono:wght@300;400;500&display=swap');
@@ -52,7 +52,7 @@
         .web-target { 
             width: 300px; 
             height: 300px; 
-            border: 5px solid #8e7cc3F; /* White web circle – sniper rifle target vibe */
+            border: 5px solid #FFFFFF; /* White web circle – sniper rifle target vibe */
             border-radius: 50%; 
             position: relative; 
             background: #000000; /* Black interior */
@@ -137,8 +137,8 @@
             animation: logoSwirl 2s ease-in-out 2.5s forwards; /* Swirl in after bloom */
         }
         @keyframes logoSwirl { 
-            0% { opacity: 0; transform: translate(-50%, -50%) rotate(-180deg) scale(0.5); text-shadow: 0 0 5px rgba(100, 149, 237, 0.3); } /* Swirl from spin/small */ 
-                        50% { opacity: 1; transform: translate(-50%, -50%) rotate(0deg) scale(1.2); text-shadow: 0 0 20px rgba(100, 149, 237, 1); } /* Dramatic scale/glow burst */
+            0% { opacity: 0; transform: translate(-50%, -50%) rotate(-180deg) scale(0.5); text-shadow: 0 0 5px rgba(100, 149, 237, 0.3); } /* Swirl from spin/small */
+            50% { opacity: 1; transform: translate(-50%, -50%) rotate(0deg) scale(1.2); text-shadow: 0 0 20px rgba(100, 149, 237, 1); } /* Dramatic scale/glow burst */
             100% { opacity: 1; transform: translate(-50%, -50%) rotate(0deg) scale(1); text-shadow: 0 0 10px rgba(100, 149, 237, 0.5); } /* Settle to elegant */
         }
         .intertitle { 
@@ -246,7 +246,7 @@
             height: 100%; 
             background: linear-gradient(to right, #FFFFFF 0%, #6495ED 100%); /* White to cornflower progression – film strip tint */
             width: 0%; 
-            transition: width 3s ease-in-out; /* 3s shorter for pace */
+            transition: width 3s ease-in-out; /* 3s shorter for Bond pace */
             border-radius: 10px; 
             box-shadow: 0 0 5px rgba(100, 149, 237, 0.3); /* Cornflower glow */
         }
@@ -260,14 +260,6 @@
             z-index: 11; 
         }
         .reel-text.visible { opacity: 1; }
-        .reel-text.disintegrate { 
-            animation: disintegrate 1s ease-out forwards; /* 1s silk shatter on 100% */
-        }
-        @keyframes disintegrate { 
-            0% { opacity: 1; filter: blur(0px); transform: scale(1); text-shadow: 0 0 10px rgba(100, 149, 237, 0.5); letter-spacing: 0; } /* Solid start */
-            50% { opacity: 0.7; filter: blur(2px); transform: scale(1.1); text-shadow: 0 0 20px rgba(100, 149, 237, 0.8); letter-spacing: 2px; } /* Glow burst + blur/spread */
-            100% { opacity: 0; filter: blur(5px); transform: scale(0.8); text-shadow: 0 0 0 rgba(100, 149, 237, 0); letter-spacing: 5px; display: none; } /* Crumble fade/hide */
-        }
         .nav-menu { 
             display: none; /* Hidden until intro ends */
             flex-wrap: wrap; 
@@ -407,13 +399,13 @@
     </style>
 </head>
 <body>
-    <!-- Spider Intro (Dramatic Web Target Sequence – 6s  Total) -->
+    <!-- Spider Intro (Dramatic Web Target Sequence – 6s Total) -->
     <div class="spider-intro" id="spiderIntro">
         <div class="web-target">
             <div class="spider-drop">🕷️</div>
             <div class="tea-cup">☕</div>
             <div class="web-bloom"></div>
-            <div class="spider-logo">Salutations</div>
+            <div class="spider-logo">Spider's Brew 007</div>
             <div class="intertitle">Eternal Estates Presents...</div>
         </div>
     </div>
@@ -421,11 +413,11 @@
     <div class="container" id="filmContainer">
         <!-- Sliding Image Header (200px Height, Adjustable Width – Seamless Foggy Estate) -->
         <header class="header-banner" id="headerBanner">
-            <div class="header-image"></div> <!-- CSS-generated placeholder; replace background-image with your image URL -->
+            <div class="header-image"></div> <!-- CSS-generated placeholder; replace background-image with your URL -->
         </header>
 
         <!-- Title (Post-Spider) -->
-        <div class="title" id="filmTitle">Chimera Cafe Realms</div>
+        <div class="title" id="filmTitle">Eternal Estates</div>
 
         <div class="reel-bar">
             <div class="reel-fill" id="reelFill"></div>
@@ -515,7 +507,7 @@
         </div>
 
         <div id="soundtrack" class="content-section">
-            <h2>MUSIC SOUNDTRACK: Ethereal Threads</h2>
+      <h2>MUSIC SOUNDTRACK: Ethereal Threads</h2>
             <p>The Eternal Estates soundtrack brews gothy symphonies and light hymns—Yeshua's truth in sonic veils, spun like spider silk. Composed by Miki's riffs and Hans's echoes, with STAR's whisper overlays and the 🕷️'s gentle drop. "Rhythms reveal the delight, heir—no boos, just bats in harmony, tea in hand."</p>
             <ul>
                 <li><strong>"Veil Glimmer"</strong>: Cornflower whispers (Opening theme – ambient piano drop, 3:14)</li>
@@ -599,7 +591,7 @@
                 localStorage.setItem('filmTicket', 'spider-premiere-access');
             }, 6000); // 6s total intro
 
-            // Reel Progression (3s Post-Intro – Guaranteed Complete & Nav Enable with Disintegrate)
+            // Reel Progression (3s Post-Intro – Guaranteed Complete & Nav Enable)
             setTimeout(() => {
                 const interval = setInterval(() => {
                     console.log('Reel step:', reelProgress + 1); // Debug
@@ -608,20 +600,15 @@
                     reelText.textContent = reelTexts[Math.floor(reelProgress / 33)] || 'Premiere... 100%';
                     if (reelProgress >= 100) {
                         clearInterval(interval); // Force clear
-                        console.log('Reel threaded – Disintegrate 100%!'); // Debug
-                        reelText.classList.add('disintegrate'); // Trigger shatter animation
-                        setTimeout(() => {
-                            reelText.style.display = 'none'; // Hide after 1s
-                            console.log('100% shattered – Menu fully active!'); // Debug
-                            // Double-ensure nav clicks
-                            navMenu.classList.add('visible');
-                            navMenu.style.pointerEvents = 'auto';
-                        }, 1000); // 1s for disintegrate
+                        console.log('Reel threaded – Menu fully active!'); // Debug
+                        // Double-ensure nav clicks
+                        navMenu.classList.add('visible');
+                        navMenu.style.pointerEvents = 'auto';
                     }
                 }, 1000); // 1s steps for 3s
             }, 6500); // Start 0.5s after menu fade for overlap-free
 
-            // Fallback: Force Full Reveal & Clicks After 7s (Bulletproof, with Disintegrate)
+            // Fallback: Force Full Reveal & Clicks After 7s (Bulletproof)
             setTimeout(() => {
                 spiderIntro.classList.add('hidden');
                 filmContainer.classList.add('loaded');
@@ -634,16 +621,12 @@
                 filmFooter.classList.add('visible');
                 reelFill.style.width = '100%';
                 reelText.textContent = 'Premiere... 100%';
-                reelText.classList.add('disintegrate'); // Trigger shatter
-                setTimeout(() => {
-                    reelText.style.display = 'none';
-                }, 1000);
                 console.log('Fallback Spider – Web fully armed & clickable!'); // Debug
             }, 7000);
 
             // Dynamic Section Loading (Click Nav – Cinematic Transition, Web Briefing Style)
             document.querySelectorAll('.nav-link').forEach(link => {
-                            link.addEventListener('click', (e) => {
+                link.addEventListener('click', (e) => {
                     e.preventDefault(); // Prevent default href
                     const sectionId = link.getAttribute('data-section');
                     const section = document.getElementById(sectionId);
@@ -670,12 +653,6 @@
                     section.scrollIntoView({ behavior: 'smooth' });
                 });
             });
-
-            // Unlock "Spider Ticket" for Realms (Post-Intro Tease – Reinforced)
-            setTimeout(() => {
-                localStorage.setItem('filmTicket', 'spider-premiere-access'); // Use in realms.html for "Web Viewer" badge
-                console.log('Spider Ticket spun – Licensed to web!'); // Debug
-            }, 5000);
         });
 
         console.log('Spider Web Reel Online – Spun, not stirred... Lights, camera, quest!'); // Debug
