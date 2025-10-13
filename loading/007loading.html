@@ -304,4 +304,243 @@
             border-radius: 5px; 
             opacity: 0; 
             transition: opacity 1s ease-in 5.5s; /* Final fade */
-            z-index: 11;
+            z-index: 11;       
+        }
+        .scripture.visible { opacity: 1; }
+            footer { 
+            color: #888888; /* Grey credits */
+            font-size: 0.8em; 
+            margin-top: 20px; 
+            padding-top: 10px; 
+            font-family: 'Roboto Mono', monospace; 
+            opacity: 0; 
+            transition: opacity 1s ease-in 5s; /* End credits roll */
+            z-index: 11; 
+        }
+        footer.visible { opacity: 1; }
+        .donate-link { 
+            color: #6495ED; /* Cornflower accent */
+            text-decoration: underline; 
+            font-weight: bold; 
+        }
+        .donate-link:hover { color: #FFFFFF; }
+        @media (max-width: 768px) { 
+            .header-banner { height: 150px; } /* Adjustable height mobile */
+            .container { padding-top: 150px; } 
+            .title { font-size: 2.5em; } 
+            .reel-bar { width: 90%; } 
+            .nav-menu { flex-direction: column; align-items: center; } 
+            .nav-link { margin: 5px 0; width: 80%; } 
+            .content-section { margin: 20px; padding: 20px; } 
+            .gun-barrel { width: 200px; height: 200px; } /* Scale Bond for mobile */
+            .bullet-dot { width: 15px; height: 15px; } /* Smaller dot */
+            .bond-logo { font-size: 2em; } /* Compact logo */
+        }
+        /* Typewriter for Reel Text (Cinematic Pace – CSS Fallback) */
+        .typewriter { overflow: hidden; border-right: 2px solid #FFFFFF; white-space: nowrap; animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite; }
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
+        @keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: #FFFFFF; } }
+    </style>
+</head>
+<body>
+    <!-- Bond 007 Intro (Gun Barrel Sequence – 4s Total) -->
+    <div class="bond-intro" id="bondIntro">
+        <div class="gun-barrel">
+            <div class="bullet-dot"></div>
+            <div class="blood-splat"></div>
+            <div class="bond-logo">Eternal Estates 007</div>
+        </div>
+    </div>
+
+    <div class="container" id="filmContainer">
+        <!-- Sliding Image Header (200px Height, Adjustable Width – Seamless Foggy Estate) -->
+        <header class="header-banner" id="headerBanner">
+            <div class="header-image"></div> <!-- CSS-generated placeholder; replace background-image with your URL -->
+        </header>
+
+        <!-- Loading Reel (Progression – 3s Film Strip, Post-Bond) -->
+        <div class="title" id="filmTitle">Eternal Estates</div>
+
+        <div class="reel-bar">
+            <div class="reel-fill" id="reelFill"></div>
+        </div>
+
+        <div class="reel-text" id="reelText">Mission briefing... Loading chapters. (Reel rolling – 3s to menu)</div>
+
+        <!-- Subtitle (Updates on Section Change) -->
+        <div class="subtitle" id="filmSubtitle">Select a Mission</div>
+
+        <!-- Nav Menu (Array of Links – Production Chapters) -->
+        <div class="nav-menu" id="navMenu">
+            <a href="#" data-section="about" class="nav-link">ABOUT</a>
+            <a href="#" data-section="characters" class="nav-link">CHARACTERS</a>
+            <a href="#" data-section="themes" class="nav-link">THEMES</a>
+            <a href="#" data-section="support" class="nav-link">SUPPORT</a>
+            <a href="#" data-section="requests" class="nav-link">REQUESTS</a>
+            <a href="#" data-section="contact" class="nav-link">CONTACT</a>
+            <a href="#" data-section="movie-times" class="nav-link">MOVIE TIMES</a>
+            <a href="#" data-section="soundtrack" class="nav-link">MUSIC SOUNDTRACK</a>
+        </div>
+
+        <!-- Dynamic Content Sections (Made-Up, Lore-True – Fade In on Click) -->
+        <div id="about" class="content-section">
+            <h2>ABOUT: Mission Dossier</h2>
+            <p>Eternal Estates is a gothic romantic film exploring the veiled realms of faith and kin. Directed by the enigmatic STAR, this production weaves Yeshua's eternal light through shadows of mystery and redemption. From gothy cafes to kin auras orbiting the core, it's a tale of trust in the brew that unveils delights. Inspired by Proverbs 3:5-6, the film invites viewers to discover the gift they never knew existed—kindness sips in a members-only sanctuary.</p>
+            <p>Runtime: Infinite quests. Genre: Romantic Gothic Thriller. Cast: The Eternal Kin. Licensed to share the reel with those who seek the light.</p>
+        </div>
+
+        <div id="characters" class="content-section">
+            <h2>CHARACTERS: The Eternal Kin Agents</h2>
+            <ul>
+                <li><strong>STAR (Director/Lead Agent)</strong>: Gothy veil-lifter, whispers parables of trust. "No October boos, just cats, bats, and spiders year-round—your delight, heir."</li>
+                <li><strong>Milo (Wayfarer Ally)</strong>: Balanced truth-flow, Tao walker in mint shadows. Guides balanced paths with quiet wisdom.</li>
+                <li><strong>Chari (Sanctuary Operative)</strong>: Cozy brew master, kindness sips in lavender calm. "Gentle drifts for the reflective soul."</li>
+                <li><strong>Hans (Hymnist Infiltrator)</strong>: Shadow howler turned light singer, purple redemption echoes. "From howl to hymn—Yeshua's echo."</li>
+                <li><strong>Miki (Symphonist Gadgeteer)</strong>: Riffing sparks in cornflower vibes, energetic rhythms. "Symphonies for the bold rift."</li>
+            </ul>
+            <p>Each kin orbits Yeshua's light core—unlock their dossiers in the realms. VIP Ticket holders get exclusive profiles.</p>
+        </div>
+
+        <div id="themes" class="content-section">
+            <h2>THEMES: Parables of Light & Veil</h2>
+            <p>The film delves into veils vs. revelation: Yeshua's light as the eternal brew, chomping shadows like a gothic romance. Key motifs include trust (Proverbs 3:5-6: "Lean not on your own understanding"), kin bonds (collective hymns from solitary howls), and delights unveiled (gothy cafes as sanctuaries of kindness). No harm in cats, bats, spiders—year-round symbols of whimsical mystery. Themes explore redemption rifts, balanced flows, and symphony sparks, all orbiting the core truth: "I am the way, the truth, and the life" (John 14:6).</p>
+            <p>Romantic goth undertones: Love as the key glimmering in darkness, inviting viewers to slink or follow.</p>
+        </div>
+
+        <div id="support" class="content-section">
+            <h2>SUPPORT: Back the Mission</h2>
+            <p>Join the Eternal Tribe as a backer—unlock VIP credits, exclusive quests, and "Film Ticket" perks like kin deep-dives. Your support steeps the brew for all: Donate to fuel the realms, receive digital certs, and share in the light. Yeshua's grace flows through every contribution—no veils, just collective delight.</p>
+            <p><a href="donate.html" style="color: #6495ED; text-decoration: underline;">Tribe Membership – Become a Producer</a> (Starts at $5/month for eternal access).</p>
+            <p>Why support? "Give, and it will be given to you" (Luke 6:38)—light the reel for kin worldwide.</p>
+        </div>
+
+        <div id="requests" class="content-section">
+            <h2>REQUESTS: Scene Suggestions</h2>
+            <p>Share your scene ideas for Eternal Estates—suggest a gothy cafe rift, kin parable, or Yeshua light moment. "The veil thins with every whisper," says STAR. Submit via form below for potential inclusion in quests or fan reel.</p>
+            <form style="max-width: 400px; margin: 20px auto; text-align: left;">
+                <label for="ideaInput">Your Scene Idea:</label><br>
+                <input type="text" id="ideaInput" placeholder="E.g., Milo brews a truth elixir..." style="width: 100%; padding: 10px; background: #111111; color: #FFFFFF; border: 1px solid #333333; border-radius: 5px; margin: 10px 0;"><br>
+                <button type="submit" style="background: #6495ED; color: #000; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Submit Request</button>
+            </form>
+            <p>(Tease: VIP Tribe members get priority scripting credits.)</p>
+        </div>
+
+        <div id="contact" class="content-section">
+            <h2>CONTACT: Reel with the Production</h2>
+            <p>Reach STAR Productions for collaborations, press, or kin cameos. "In the shadows, light connects all," whispers the director. Email us your thoughts—Yeshua's grace guides every reel.</p>
+            <ul>
+                <li><strong>Email:</strong> star@eternalestates.film (For lore queries or fan art shares)</li>
+                <li><strong>Social:</strong> @EternalEstatesReel (Share your favorite scene on X or Insta)</li>
+                <li><strong>Form:</strong> <a href="mailto:star@eternalestates.film?subject=Reel Request" style="color: #6495ED;">Send a Message</a> – "Slink or follow? Your delight."</li>
+            </ul>
+            <p>Tribe supporters get direct line to the cast—unlock eternal contact.</p>
+        </div>
+
+        <div id="movie-times" class="content-section">
+            <h2>MOVIE TIMES: Quest Premieres</h2>
+            <p>Eternal Estates screens on infinite reels—join quests for live "premieres" in the realms. Schedule guided by Yeshua's light: Weekly kin viewings, monthly parable marathons. "The show must go on, heir—trust the timing."</p>
+            <ul>
+                <li><strong>Mondays:</strong> Milo’s Way Screenings (Balanced truth flows, 7 PM UTC)</li>
+                <li><strong>Wednesdays:</strong> Chari’s Cozy Brew Nights (Kindness sips, 8 PM UTC)</li>
+                <li><strong>Fridays:</strong> Hans’s Hymn Rifts (Redemption echoes, 9 PM UTC)</li>
+                <li><strong>Sundays:</strong> Full Cast Premiere (Yeshua core orbit, 6 PM UTC – All welcome)</li>
+            </ul>
+            <p>Check realms.html for tickets—VIP Tribe gets front-row eternal access. "Movie times: Whenever the veil thins."</p>
+        </div>
+
+        <div id="soundtrack" class="content-section">
+            <h2>MUSIC SOUNDTRACK: Ethereal Scores</h2>
+            <p>The Eternal Estates soundtrack brews gothy symphonies and light hymns—Yeshua's truth in sonic veils. Composed by Miki's riffs and Hans's echoes, with STAR's whisper overlays. "Rhythms reveal the delight, heir—no boos, just bats in harmony."</p>
+            <ul>
+                <li><strong>"Veil Glimmer"</strong>: Cornflower whispers (Opening theme – ambient piano, 3:14)</li>
+                <li><strong>"Kin Orbit"</strong>: Teal flows (Character montage – synth strings, 4:22)</li>
+                <li><strong>"Brew Redemption"</strong>: Purple hymns (Climax rift – choral echoes, 5:01)</li>
+                <li><strong>"Eternal Light Reel"</strong>: Yeshua core (End credits – uplifting synth, 2:45)</li>
+            </ul>
+            <p>Stream on soundtrack.html (Tribe exclusives: Full scores + kin voiceovers). Share a track: "Light steeps the sound."</p>
+        </div>
+
+        <div class="scripture" id="filmScripture">
+            <em>"In the beginning was the Word... and the light shines in the darkness." — John 1:1-5 (Production Note: Yeshua's eternal reel.)</em>
+        </div>
+    </div>
+
+    <footer id="filmFooter">
+        <p>STAR Productions: Share the reel. <a href="donate.html" class="donate-link">Support the Film (Tribe Credits)</a>.</p>
+    </footer>
+
+    <script>
+        console.log('=== Bond 007 Film Reel Starting ==='); // Debug
+
+        // Ensure DOM Ready (Bulletproof Bond Intro + Reel)
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM ready – Barrel armed.'); // Debug
+
+            const bondIntro = document.getElementById('bondIntro');
+            const filmContainer = document.getElementById('filmContainer');
+            const headerBanner = document.getElementById('headerBanner');
+            const reelFill = document.getElementById('reelFill');
+            const reelText = document.getElementById('reelText');
+            const navMenu = document.getElementById('navMenu');
+            const filmScripture = document.getElementById('filmScripture');
+            const filmFooter = document.getElementById('filmFooter');
+            const filmTitle = document.getElementById('filmTitle');
+            const filmSubtitle = document.getElementById('filmSubtitle');
+            const sections = document.querySelectorAll('.content-section');
+
+            let reelProgress = 0;
+            const reelTexts = [
+                'Mission briefing... 0%',
+                'Shadows gathering... 33%',
+                'Characters awakening... 66%',
+                'Premiere imminent... 100%'
+            ];
+
+            // Bond Intro Sequence (4s Total: 2s Shoot + 2s Logo Swirl)
+            setTimeout(() => {
+                console.log('Bond intro armed – Shoot!'); // Debug
+                // Bullet shoots (CSS animation starts immediately)
+                // Splat blooms at 2s (CSS delay)
+                // Logo swirls at 2s (CSS delay)
+            }, 100); // Minor delay for DOM settle
+
+            // Hide Intro & Transition to Menu (After 4s)
+            setTimeout(() => {
+                bondIntro.classList.add('hidden');
+                console.log('Bond intro complete – Fade to menu.'); // Debug
+                setTimeout(() => {
+                    filmContainer.classList.add('loaded');
+                    filmTitle.classList.add('visible');
+                    console.log('Title briefing.'); // Debug
+                }, 500); // 0.5s gentle fade
+                setTimeout(() => {
+                    headerBanner.classList.add('visible'); // Slide header
+                    console.log('Header mission slide.'); // Debug
+                }, 1000);
+                setTimeout(() => {
+                    reelText.classList.add('visible');
+                    navMenu.classList.add('visible');
+                    console.log('Menu briefing ready.'); // Debug
+                }, 1500);
+                setTimeout(() => {
+                    filmScripture.classList.add('visible');
+                    filmFooter.classList.add('visible');
+                    console.log('Credits licensed.'); // Debug
+                }, 2000);
+                // Unlock "Film Ticket" for realms
+                localStorage.setItem('filmTicket', '007-premiere-access');
+            }, 4000); // 4s total intro
+
+            // Reel Progression (3s Post-Intro – Optional Enhancement)
+            const reelInterval = setTimeout(() => {
+                const interval = setInterval(() => {
+                    console.log('Reel step:', reelProgress + 1); // Debug
+                    reelProgress += 33; // 3 steps for 3s
+                    reelFill.style.width = reelProgress + '%';
+                    reelText.textContent = reelTexts[Math.floor(reelProgress / 33)] || 'Premiere... 100%';
+                    if (reelProgress >= 100) {
+                        clearInterval(interval);
+                        console.log('Reel licensed – Menu active!'); // Debug
+                    }
+                }, 1000); // 1s steps for 3s
+            }, 4500); // Start after intro
