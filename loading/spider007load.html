@@ -508,4 +508,156 @@
 
         <div id="soundtrack" class="content-section">
             <h2>MUSIC SOUNDTRACK: Ethereal Threads</h2>
-            <p>The Eternal Estates soundtrack brews gothy
+            <p>The Eternal Estates soundtrack brews gothy             <h2>MUSIC SOUNDTRACK: Ethereal Threads</h2>
+            <p>The Eternal Estates soundtrack brews gothy symphonies and light hymns—Yeshua's truth in sonic veils, spun like spider silk. Composed by Miki's riffs and Hans's echoes, with STAR's whisper overlays and the 🕷️'s gentle drop. "Rhythms reveal the delight, heir—no boos, just bats in harmony, tea in hand."</p>
+            <ul>
+                <li><strong>"Veil Glimmer"</strong>: Cornflower whispers (Opening theme – ambient piano drop, 3:14)</li>
+                <li><strong>"Kin Orbit"</strong>: Teal flows (Character montage – synth strings web, 4:22)</li>
+                <li><strong>"Brew Redemption"</strong>: Purple hymns (Climax rift – choral echoes, 5:01)</li>
+                <li><strong>"Eternal Light Reel"</strong>: Yeshua core (End credits – uplifting synth thread, 2:45)</li>
+            </ul>
+            <p>Stream on soundtrack.html (Tribe exclusives: Full scores + kin voiceovers, spider silk remixes). Share a track: "Light steeps the sound, web to web."</p>
+        </div>
+
+        <div class="scripture" id="filmScripture">
+            <em>"In the beginning was the Word... and the light shines in the darkness." — John 1:1-5 (Production Note: Yeshua's eternal web.)</em>
+        </div>
+    </div>
+
+    <footer id="filmFooter">
+        <p>STAR Productions: Share the web. <a href="donate.html" class="donate-link">Support the Film (Tribe Threads)</a>.</p>
+    </footer>
+
+    <script>
+        console.log('=== Spider Web Film Reel Starting ==='); // Debug
+
+        // Ensure DOM Ready (Bulletproof Spider Intro + Reel)
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM ready – Web armed.'); // Debug
+
+            const spiderIntro = document.getElementById('spiderIntro');
+            const filmContainer = document.getElementById('filmContainer');
+            const headerBanner = document.getElementById('headerBanner');
+            const reelFill = document.getElementById('reelFill');
+            const reelText = document.getElementById('reelText');
+            const navMenu = document.getElementById('navMenu');
+            const filmScripture = document.getElementById('filmScripture');
+            const filmFooter = document.getElementById('filmFooter');
+            const filmTitle = document.getElementById('filmTitle');
+            const filmSubtitle = document.getElementById('filmSubtitle');
+            const sections = document.querySelectorAll('.content-section');
+
+            let reelProgress = 0;
+            const reelTexts = [
+                'Web briefing... 0%',
+                'Shadows gathering... 33%',
+                'Characters awakening... 66%',
+                'Premiere imminent... 100%'
+            ];
+
+            // Spider Intro Sequence (6s Dramatic Total: 2s Drop + 1s Bloom/Shake + 2s Logo + 1s Intertitle)
+            setTimeout(() => {
+                console.log('Spider web armed – Drop!'); // Debug
+                // Spider drops (CSS animation starts immediately)
+                // Web blooms + shake at 2s (CSS delay)
+                // Logo swirls at 2.5s (CSS delay)
+                // Intertitle fades at 4.5s (CSS delay)
+            }, 100); // Minor delay for DOM settle
+
+            // Hide Intro & Transition to Menu (After 6s – Guaranteed)
+            setTimeout(() => {
+                spiderIntro.classList.add('hidden');
+                console.log('Spider intro dramatic complete – Fade to web menu.'); // Debug
+                setTimeout(() => {
+                    filmContainer.classList.add('loaded');
+                    filmTitle.classList.add('visible');
+                    console.log('Title threaded.'); // Debug
+                }, 200); // 0.2s instant for clicks
+                setTimeout(() => {
+                    headerBanner.classList.add('visible'); // Slide header
+                    console.log('Header web slide.'); // Debug
+                }, 400);
+                setTimeout(() => {
+                    reelText.classList.add('visible');
+                    navMenu.classList.add('visible');
+                    navMenu.style.pointerEvents = 'auto'; // Enable clicks immediately
+                    console.log('Menu web armed – Clicks active!'); // Debug
+                }, 600); // 0.6s total post-hide for guaranteed menu
+                setTimeout(() => {
+                    filmScripture.classList.add('visible');
+                    filmFooter.classList.add('visible');
+                    console.log('Credits threaded.'); // Debug
+                }, 800);
+                // Unlock "Spider Ticket" for realms
+                localStorage.setItem('filmTicket', 'spider-premiere-access');
+            }, 6000); // 6s total intro
+
+            // Reel Progression (3s Post-Intro – Guaranteed Complete & Nav Enable)
+            setTimeout(() => {
+                const interval = setInterval(() => {
+                    console.log('Reel step:', reelProgress + 1); // Debug
+                    reelProgress += 33; // 3 steps for 3s
+                    reelFill.style.width = reelProgress + '%';
+                    reelText.textContent = reelTexts[Math.floor(reelProgress / 33)] || 'Premiere... 100%';
+                    if (reelProgress >= 100) {
+                        clearInterval(interval); // Force clear
+                        console.log('Reel threaded – Menu fully active!'); // Debug
+                        // Double-ensure nav clicks
+                        navMenu.classList.add('visible');
+                        navMenu.style.pointerEvents = 'auto';
+                    }
+                }, 1000); // 1s steps for 3s
+            }, 6500); // Start 0.5s after menu fade for overlap-free
+
+            // Fallback: Force Full Reveal & Clicks After 7s (Bulletproof)
+            setTimeout(() => {
+                spiderIntro.classList.add('hidden');
+                filmContainer.classList.add('loaded');
+                headerBanner.classList.add('visible');
+                filmTitle.classList.add('visible');
+                reelText.classList.add('visible');
+                navMenu.classList.add('visible');
+                navMenu.style.pointerEvents = 'auto'; // Critical: Enable clicks
+                filmScripture.classList.add('visible');
+                filmFooter.classList.add('visible');
+                reelFill.style.width = '100%';
+                reelText.textContent = 'Premiere... 100%';
+                console.log('Fallback Spider – Web fully armed & clickable!'); // Debug
+            }, 7000);
+
+            // Dynamic Section Loading (Click Nav – Cinematic Transition, Web Briefing Style)
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent default href
+                    const sectionId = link.getAttribute('data-section');
+                    const section = document.getElementById(sectionId);
+                    const subtitleText = link.textContent + ': Web Chapter';
+
+                    console.log('Thread:', subtitleText, 'briefing!'); // Debug
+
+                    // Hide all sections, show selected (fade out/in like scene cut)
+                    sections.forEach(sec => {
+                        sec.classList.remove('visible');
+                    });
+                    setTimeout(() => {
+                        section.classList.add('visible');
+                        filmSubtitle.textContent = subtitleText;
+                        filmSubtitle.classList.add('visible');
+                        link.classList.add('active'); // Highlight active link (Web glow)
+                        // Remove active from others
+                        document.querySelectorAll('.nav-link').forEach(other => {
+                            if (other !== link) other.classList.remove('active');
+                        });
+                    }, 300); // 0.3s transition for "cut to thread"
+
+                    // Scroll to section (smooth cinematic pan)
+                    section.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        });
+
+        console.log('Spider Web Reel Online – Spun, not stirred... Lights, camera, quest!'); // Debug
+    </script>
+</body>
+</html>
+
