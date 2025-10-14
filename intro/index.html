@@ -206,7 +206,7 @@
             background: linear-gradient(to right, #FFFFFF 0%, #6495ED
         }
         .reel-bar.visible { opacity: 1; }
-        .reel-fill { 
+                .reel-fill { 
             height: 100%; 
             background: linear-gradient(to right, #FFFFFF 0%, #6495ED 100%); /* White to cornflower progression – film strip tint */
             width: 0%; 
@@ -229,7 +229,7 @@
         }
         @keyframes disintegrate { 
             0% { opacity: 1; filter: blur(0px); transform: scale(1); text-shadow: 0 0 10px rgba(100, 149, 237, 0.5); letter-spacing: 0; } /* Solid start */
-            50% { opacity: 0.7; filter: blur(2px); transform: scale(1.1); text-shadow:             50% { opacity: 0.7; filter: blur(2px); transform: scale(1.1); text-shadow: 0 0 20px rgba(100, 149, 237, 0.8); letter-spacing: 2px; } /* Glow burst + blur/spread */
+            50% { opacity: 0.7; filter: blur(2px); transform: scale(1.1); text-shadow: 0 0 20px rgba(100, 149, 237, 0.8); letter-spacing: 2px; } /* Glow burst + blur/spread */
             100% { opacity: 0; filter: blur(5px); transform: scale(0.8); text-shadow: 0 0 0 rgba(100, 149, 237, 0); letter-spacing: 5px; } /* Crumble fade */
         }
         .narration-container { 
@@ -264,7 +264,7 @@
             animation: none; /* JS triggers crawl */
             letter-spacing: 1px; 
             font-weight: 400; /* Lighter for fluid type */
-            text-shadow: 0 0 2px rgba(100, 149, 237, 0.2); /* Subtle glow */
+            text-shadow: 0 0 2px rgba(100, 149, 237, 0.2); /* Subtle cornflower glow */
         }
         .charlotte-narration.star-wars-text {
             position: absolute;
@@ -360,13 +360,13 @@
             .tea-cup { font-size: 1.5em; } /* Compact tea */
             .spider-logo { font-size: 2em; } /* Compact logo */
             .intertitle { font-size: 1.5em; top: 70%; } /* Adjust position */
-            .narration-container { margin: 20px; padding: 20px; max-width: 90%; } /* Mobile fit */
+            .narration-container { margin: 20px; padding: 20px; max-width: 90%; height: 80vh; } /* Mobile fit for crawl */
             .dynamic-window { margin: 20px; padding: 20px; max-width: 90%; } 
             .thread-button { font-size: 1.2em; padding: 12px 24px; } 
             .reel-bar { width: 90%; } 
             .loading-container { padding-top: 150px; } /* Mobile header offset */
         }
-        /* Typewriter for Reel Text (Cinematic Pace – CSS Fallback, though JS handles narration now) */
+        /* Typewriter for Reel Text (Cinematic Pace – CSS Fallback, though JS handles narration) */
         .typewriter { overflow: hidden; border-right: 2px solid #FFFFFF; white-space: nowrap; animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite; }
         @keyframes typing { from { width: 0; } to { width: 100%; } }
         @keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: #FFFFFF; } }
@@ -500,30 +500,35 @@
                     reelText.classList.add('visible');
                     reelFill.style.width = '100%';
                     reelText.textContent = 'Premiere... 100%';
-                    reelText.classList.add('disintegrate');
+                    reelText.classList.add('disintegrate'); // Trigger shatter for fallback
                 }
                 setTimeout(() => {
                     reelText.style.display = 'none';
-                    reelBar.style.display = 'none';
-                    startCrawl(); // Force crawl in fallback
-                    console.log('Fallback: Crawl starting – Charlotte's tale scrolls!'); // Debug
-                }, 1000);
-                console.log('Fallback Spider – Sequence fully spun with crawl!'); // Debug
-            }, 10000);
+                    reelBar.style.display = 'none'; // Hide reel post-shatter in fallback
+                    console.log('Fallback: Reel shattered – Star Wars crawl activates!'); // Debug
+                    startCrawl(); // Launch the full crawl in fallback
+                    setTimeout(() => {
+                        console.log('Fallback: Crawl complete – Dynamic window weaves!'); // Debug
+                        dynamicWindow.style.opacity = '1';
+                        dynamicWindow.style.transform = 'scale(1)';
+                        dynamicWindow.classList.add('visible');
+                    }, 10000); // 10s for full crawl in fallback
+                }, 1000); // 1s for disintegrate in fallback
+                console.log('Fallback Spider – Sequence fully spun with crawl!'); // Debug end of fallback
+            }, 10000); // Outer fallback delay: 10s total
 
             // Button Click: Follow Thread to Main Page
             function followThread() {
                 console.log('Thread followed – To the Cafe!'); // Debug
-                localStorage.setItem('spiderTicket', 'cafe-access'); // Pass to main.html for continuity
+                localStorage.setItem('spiderTicket', 'cafe-access'); // Pass to main.html for continuity (VIP teases)
                 window.location.href = 'main.html'; // Redirect to dynamic nav page
             }
 
             // Expose followThread globally (for onclick)
             window.followThread = followThread;
-        });
+        }); // Closes DOMContentLoaded
 
-        console.log('Spider Web Loading Online – Spun with whimsy... Lights, camera, quest!'); // Final Debug
+        console.log('Spider Web Loading Online – Spun with whimsy... Lights, camera, quest!'); // Final Debug – Script ends here
     </script>
 </body>
 </html>
-
